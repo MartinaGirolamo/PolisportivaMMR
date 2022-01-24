@@ -67,6 +67,24 @@
         }
 
 
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* Change the link color on hover */
+        li a:hover {
+            background-color: #555;
+            color: white;
+        }
         /* On smaller screens, decrease text size */
         @media only screen and (max-width: 300px) {
             .prev, .next,.text {font-size: 11px}
@@ -149,18 +167,7 @@
     }
 </script>
 
-
-<div class="footer">
-    <p>SEGUICI SUI NOSTRI PROFILI SOCIAL!</p>
-
-    <div class="footer-social-links">
-        <a href="#" title="Facebook" ><i class="fa fa-facebook"></i></a>
-        <a href="#" title="Twitter" ><i class="fa fa-twitter"></i></a>
-        <a href="#" title="Instagram" ><i class="fab fa-instagram"></i></a>
-        <a href="#" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
-    </div>
-
-</div>
+<!-----------------------------------------DA INSERIRE IL FOOTER------------------------------->
 
 </body>
 </html>

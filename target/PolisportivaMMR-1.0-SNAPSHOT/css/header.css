@@ -2,7 +2,7 @@
     font-family: 'Lato';
     font-style: normal;
     font-weight: normal;
-    src: url(../fonts/Lato-Light.ttf);
+    src: url("../fonts/Lato-Light.ttf");
 }
 .header {
     font-family: Lato !important;
@@ -59,20 +59,14 @@
     .header{
         display: block;
         text-align: center;
-    }
-
-    .header a.button{
-        justify-content: center;
-    }
-
-    .header a{
-        justify-content: center;
 
     }
+    .header a.logo{
+        float: none;
+    }
+
     .header-center{
         display: block;
-
-
     }
     .header-center a{
         display: block;

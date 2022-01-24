@@ -67,6 +67,24 @@
         }
 
 
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* Change the link color on hover */
+        li a:hover {
+            background-color: #555;
+            color: white;
+        }
         /* On smaller screens, decrease text size */
         @media only screen and (max-width: 300px) {
             .prev, .next,.text {font-size: 11px}
@@ -149,18 +167,30 @@
     }
 </script>
 
+<div class="header">
 
-<div class="footer">
-    <p>SEGUICI SUI NOSTRI PROFILI SOCIAL!</p>
+    <a href="#home" class="logo"><img src="immagini/Logo.png" width="100px" height="100px"></a>
+    <div class="header-center">
+        <p>MAIN MENU</p>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">Prenota</a></li>
+            <li><a href="#contact">Campi</a></li>
 
-    <div class="footer-social-links">
-        <a href="#" title="Facebook" ><i class="fa fa-facebook"></i></a>
-        <a href="#" title="Twitter" ><i class="fa fa-twitter"></i></a>
-        <a href="#" title="Instagram" ><i class="fab fa-instagram"></i></a>
-        <a href="#" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+        </ul>
     </div>
 
+    <div class="header-right">
+        <p>FOLLOW US ON</p>
+        <ul>
+            <li><a href="#Facebook">Facebook</a></li>
+            <li><a href="#Twitter">Twitter</a></li>
+            <li><a href="#Instagram">Instagram</a></li>
+
+        </ul>
+    </div>
 </div>
+
 
 </body>
 </html>
