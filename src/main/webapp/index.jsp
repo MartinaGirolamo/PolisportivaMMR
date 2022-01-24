@@ -67,24 +67,9 @@
         }
 
 
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 200px;
-        }
 
-        li a {
-            display: block;
-            color: #000;
-            text-decoration: none;
-        }
 
-        /* Change the link color on hover */
-        li a:hover {
-            background-color: #555;
-            color: white;
-        }
+
         /* On smaller screens, decrease text size */
         @media only screen and (max-width: 300px) {
             .prev, .next,.text {font-size: 11px}
@@ -168,6 +153,8 @@
 </script>
 
 <!-----------------------------------------DA INSERIRE IL FOOTER------------------------------->
-
+<jsp:include page="view/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 </body>
 </html>
