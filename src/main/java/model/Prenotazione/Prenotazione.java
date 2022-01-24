@@ -1,16 +1,20 @@
 package model.Prenotazione;
 
+
+import java.sql.Date;
+
 public class Prenotazione {
-    private int codice, oraStart, oraEnd, dateP;
-    private String email, nome;
+    private int oraStart, oraEnd;
+    private Date dateP;
+    private String email, nomeCampo, codice;
 
     public Prenotazione(){}
 
-    public int getCodice() {
+    public String getCodice() {
         return codice;
     }
 
-    public void setCodice(int codice) {
+    public void setCodice(String codice) {
         this.codice = codice;
     }
 
@@ -30,11 +34,11 @@ public class Prenotazione {
         this.oraEnd = oraEnd;
     }
 
-    public int getDateP() {
+    public Date getDateP() {
         return dateP;
     }
 
-    public void setDateP(int dateP) {
+    public void setDateP(Date dateP) {
         this.dateP = dateP;
     }
 
@@ -46,11 +50,11 @@ public class Prenotazione {
         this.email = email;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeCampo() {
+        return nomeCampo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeCampo(String nome) {
+        this.nomeCampo = nome;
     }
 }

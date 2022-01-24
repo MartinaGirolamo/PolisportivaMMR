@@ -1,5 +1,1 @@
-ciao
-
-marco è stato qui
-
-eccomi!
+ Il formato della data prenotazione deve essere: 'AAAA-MM-GG'
