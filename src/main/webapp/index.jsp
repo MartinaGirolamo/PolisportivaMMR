@@ -1,4 +1,4 @@
-
+<%@ page import="model.Utente.Utente" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,10 +77,14 @@
 
     </style>
 
+    <%
+        Utente user=(Utente) request.getSession().getAttribute("user");
+    %>
 
 </head>
 <body>
-
+<!-------------------------------------HEADER UTENTE NON LOGGATO-------------------------->
+<% if(user==null){%>
 <div class="header">
 
     <a href="#home" class="logo"><img src="immagini/Logo.png" width="100px" height="100px"></a>
@@ -91,9 +95,27 @@
     </div>
 
     <div class="header-right">
-        <a class="button" href="#login"> LOGIN</a>
+        <a class="button" href="view/login.jsp"> LOGIN</a>
     </div>
 </div>
+<%}
+
+else if(!user.isIs_Admin()){%>
+<!-------------------------------------HEADER UTENTE  LOGGATO------------------------------>
+<div class="header">
+
+    <a href="#home" class="logo"><img src="immagini/Logo.png" width="100px" height="100px"></a>
+    <div class="header-center">
+        <a class="notLast" href="#abbonamenti">Abbonamenti</a>
+        <a class="notLast" href="#prenota">Prenota</a>
+        <a href="#campi">Campi</a>
+    </div>
+
+    <div class="header-right">
+        <a class="button" href="#profiloPersonale"> <%=user.getNome()%></a>
+    </div>
+</div>
+<%}%>
 
 <div class="descrizione">
     <h2>Vieni a scoprire la nostra polisportiva...</h2>
