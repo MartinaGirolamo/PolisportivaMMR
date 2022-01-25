@@ -153,7 +153,7 @@
 </script>
 
 <!-----------------------------------------DA INSERIRE IL FOOTER------------------------------->
-<jsp:include page="view/footer.jsp">
+<jsp:include page="/view/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 </body>
