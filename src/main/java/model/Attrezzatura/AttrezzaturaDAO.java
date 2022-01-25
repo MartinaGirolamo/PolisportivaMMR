@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 public class AttrezzaturaDAO {
 
+    public AttrezzaturaDAO(){}
+
+
     public ArrayList<Attrezzatura> selectAllAttrezzatura(){
         ArrayList<Attrezzatura> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
