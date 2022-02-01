@@ -56,7 +56,7 @@ public class UtenteDAO {
 
     public boolean insertUtente(Utente utente){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO utente ( email,psword,  nome, cognome, is_Admin, dateN ) VALUES (?,?,?,?,?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO utente ( email,pword,  nome, cognome, is_Admin, dateN ) VALUES (?,?,?,?,?,?);");
             ps.setString(1, utente.getEmail());
             ps.setString(2,utente.getPsword());
             ps.setString(3,utente.getNome());
