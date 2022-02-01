@@ -1,3 +1,4 @@
+<%@ page import="model.Utente.Utente" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,21 @@
 </head>
 
 
+<%
+    Utente user=(Utente) request.getSession().getAttribute("user");
+%>
+<body>
+<% if(user==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
 
+else if(!user.isIs_Admin()){%>
+<jsp:include page="/view/headerLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}%>
 <form action="../ServletLogin" method="post">
     <h2 style="text-align:center">LOGIN FORM</h2>
 
@@ -27,5 +42,8 @@
     </div>
 
 </form>
+<jsp:include page="/view/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 </body>
 </html>

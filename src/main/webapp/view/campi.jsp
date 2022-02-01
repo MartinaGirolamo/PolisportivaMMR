@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Utente.Utente" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 24/01/22
@@ -66,12 +66,25 @@
             font-size: 22px;
         }
     </style>
-
+    <%
+        Utente user=(Utente) request.getSession().getAttribute("user");
+    %>
 </head>
 <body>
+<% if(user==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
+
+else if(!user.isIs_Admin()){%>
+<jsp:include page="/view/headerLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}%>
     <div class="container">
         <div class="item-left">
-            <img src="/immagini/campoDaCalcio.jpg" width="360px" height="240px">
+            <img src="../immagini/campoDaCalcio.jpg" width="360px" height="240px">
         </div>
         <div class="item-right">
             <ul class="list">
@@ -90,12 +103,12 @@
             </ul>
         </div>
         <div class="item-right">
-            <img src="/immagini/campoDaCalcio.jpg" width="360px" height="240px">
+            <img src="../immagini/campoDaPallavolo.jpg" width="360px" height="240px">
         </div>
     </div>
     <div class="container">
         <div class="item-left">
-            <img src="/immagini/campoDaCalcio.jpg" width="360px" height="240px">
+            <img src="../immagini/campoDaTennis.JPG" width="360px" height="240px">
         </div>
         <div class="item-right">
             <ul class="list">
@@ -115,7 +128,7 @@
             </ul>
         </div>
         <div class="item-right">
-            <img src="/immagini/campoDaCalcio.jpg" width="360px" height="240px">
+            <img src="../immagini/palestra.jpg" width="360px" height="240px">
         </div>
     </div>
 

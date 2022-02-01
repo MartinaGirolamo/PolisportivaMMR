@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>.footer-basic {
+        margin-top:100px;
         padding:40px 0;
         background-color:#26272b;
         color:#aaa;

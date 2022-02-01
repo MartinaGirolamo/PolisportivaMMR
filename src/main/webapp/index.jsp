@@ -85,36 +85,15 @@
 <body>
 <!-------------------------------------HEADER UTENTE NON LOGGATO-------------------------->
 <% if(user==null){%>
-<div class="header">
-
-    <a href="#home" class="logo"><img src="immagini/Logo.png" width="100px" height="100px"></a>
-    <div class="header-center">
-        <a class="notLast" href="#abbonamenti">Abbonamenti</a>
-        <a class="notLast" href="#prenota">Prenota</a>
-        <a href="#campi">Campi</a>
-    </div>
-
-    <div class="header-right">
-        <a class="button" href="view/login.jsp"> LOGIN</a>
-    </div>
-</div>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 <%}
 
 else if(!user.isIs_Admin()){%>
-<!-------------------------------------HEADER UTENTE  LOGGATO------------------------------>
-<div class="header">
-
-    <a href="#home" class="logo"><img src="immagini/Logo.png" width="100px" height="100px"></a>
-    <div class="header-center">
-        <a class="notLast" href="#abbonamenti">Abbonamenti</a>
-        <a class="notLast" href="#prenota">Prenota</a>
-        <a href="#campi">Campi</a>
-    </div>
-
-    <div class="header-right">
-        <a class="button" href="#profiloPersonale"> <%=user.getNome()%></a>
-    </div>
-</div>
+<jsp:include page="/view/headerLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 <%}%>
 
 <div class="descrizione">

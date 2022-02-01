@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Utente.Utente" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 25/01/22
@@ -25,12 +25,18 @@
         }
         .selector{
             flex-direction: column;
+
+            margin-bottom: 10px;
+            font-size: x-large;
+        }
+        .elenco{
+            align-items: baseline;
         }
         .selector,.elenco{
             display: flex;
             flex: 50%;
             justify-content: center;
-            align-items: center;
+            flex-direction: column;
         }
         .container{
             display: flex;
@@ -47,8 +53,27 @@
             font-size: 25px;
             display: flex;
             justify-content: center;
+            margin-bottom: 20px;
         }
-        #campo,#dataDiv,#oraDiv{
+        #subBtn{
+            font-size: 25px;
+            display: flex;
+            margin: auto;
+            margin-top: 20px;
+            border: solid #26272b;
+            color:#FFFFFF;
+            background-color:#26272b  ;
+            text-decoration:none;
+            padding: 10px 25px 10px 25px;
+            transition: 0.6s ease;
+            cursor: pointer;
+        }
+
+        #subBtn:hover{
+            background-color: grey;
+
+        }
+        #campo,#dataDiv,#oraDiv,#numOre{
             display: flex;
             flex: 50%;
             justify-content: center;
@@ -58,27 +83,53 @@
 
 
     </style>
-
+        <%
+        Utente user=(Utente) request.getSession().getAttribute("user");
+    %>
 <body>
+<% if(user==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
+
+else if(!user.isIs_Admin()){%>
+<jsp:include page="/view/headerLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}%>
+<form action="" method="post">
+
+
 <label id="title">PRENOTA IL CAMPO</label>
 <div class="container">
 <div class="selector">
     <div id="campo">
     <label>Seleziona Campo:  </label>
-    <select class="campo" required>
-        <option>Calcio</option>
-        <option>Pallavolo</option>
-        <option>Tennis</option>
-    </select>
+
     </div>
 
     <div id="dataDiv">
         <label>Seleziona Data:  </label>
-        <input type="date" id="data">
+
     </div>
 
     <div id="oraDiv">
         <label>Seleziona Ora:  </label>
+
+    </div>
+    <div id="numOre">
+        <label>Quante ore:  </label>
+
+    </div>
+</div>
+<div class="elenco">
+      <select class="campo" required>
+        <option>Calcio</option>
+        <option>Pallavolo</option>
+        <option>Tennis</option>
+    </select>
+         <input type="date" id="data">
         <select class="oraStart" required>
             <option>09:00</option>
             <option>10:00</option>
@@ -93,14 +144,19 @@
             <option>19:00</option>
             <option>20:00</option>
         </select>
-    </div>
-</div>
-<div class="elenco">
-    <span>
-        <label>qui andrebbero inserite le prenotazioni che rispecchiano i canoni , vanno inserite programmaticamente</label>
-    </span>
+         <select class="oraStart" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+
+        </select>
 </div>
 </div>
 
+<input type="submit" onclick="" id="subBtn">
+</form>
+<jsp:include page="/view/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 </body>
 </html>

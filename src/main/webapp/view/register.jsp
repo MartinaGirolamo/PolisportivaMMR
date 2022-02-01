@@ -1,3 +1,4 @@
+<%@ page import="model.Utente.Utente" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,12 @@
             background-color: #504c4c;
             outline: none;
         }
-
+        input[type=date]{
+            width: 100%;
+            height: 45px;
+            padding-left: 20px;
+            border: 3px solid #504c4c;
+        }
         .registerbtn {        /*BOTTONE REGISTRA*/
             background-color: #570900;
             color: white;
@@ -64,9 +70,22 @@
 
 
     </style>
+        <%
+        Utente user=(Utente) request.getSession().getAttribute("user");
+    %>
 </head>
 <body>
+<% if(user==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
 
+else if(!user.isIs_Admin()){%>
+<jsp:include page="/view/headerLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}%>
 <form action="../ServletRegister" method="post">
     <div class="container">
         <h1>Registrati</h1>
@@ -97,6 +116,8 @@
         <p>SEI GIA ISCRITTO? <a href="login.jsp">ENTRA</a>.</p>
     </div>
 </form>
-
+<jsp:include page="/view/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 </body>
 </html>

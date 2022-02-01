@@ -64,7 +64,7 @@ insert into Utente(email,pword,nome,cognome,dateN,is_admin)values
 ('rosabianchi@gmail.com','password1','rosa','bianchi','12-10-1998',false),
 ('admin1@gmail.com','password2','nome1','cognome1','13-04-1999',true),
 ('admin2@gmail.com','password3','nome2','cognome2','07-08-2000',true),
-('admin2@gmail.com','password4','nome3','cognome3','15-06-1997',true);
+('admin3@gmail.com','password4','nome3','cognome3','15-06-1997',true);
 
 insert into Campo(nome,descrizione,tariffa,numGiocatori) values
 ('Campo da calcio','IL CAMPO È GRANDE 100 X 60, CON ERBETTA SINTETICA',20,22),

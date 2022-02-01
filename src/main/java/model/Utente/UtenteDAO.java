@@ -15,7 +15,7 @@ public class UtenteDAO {
     public ArrayList<Utente> selectAllUtenti(){
         ArrayList<Utente> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM utente;");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente;");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 Utente utente = new Utente();
@@ -36,7 +36,7 @@ public class UtenteDAO {
     public Utente selectUtenteByEmailPassword(String email,String password){
         Utente utenteRitorno = new Utente();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM utente WHERE email = '"+email+"' AND pword = '"+password+"'");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente WHERE email = '"+email+"' AND pword = '"+password+"'");
             //ps.setString(1, email);
             ResultSet set = ps.executeQuery();
             while(set.next()){
