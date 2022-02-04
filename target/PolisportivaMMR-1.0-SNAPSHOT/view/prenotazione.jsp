@@ -125,13 +125,16 @@ else if(!user.isIs_Admin()){%>
     </div>
 </div>
 <div class="elenco">
-      <select class="campo"  id="campoScelto" required>
+    <input id="campoScelto">
+      <select class="campo"  for="campoScelto" required>
         <option>Calcio</option>
         <option>Pallavolo</option>
         <option>Tennis</option>
     </select>
          <input type="date" id="dataScelta">
-        <select class="oraStart" id="oraStartScelta" required>
+
+        <input id="oraStartScelta">
+        <select class="oraStart" for="oraStartScelta" required>
             <option>09:00</option>
             <option>10:00</option>
             <option>11:00</option>
@@ -145,7 +148,9 @@ else if(!user.isIs_Admin()){%>
             <option>19:00</option>
             <option>20:00</option>
         </select>
-         <select class="oraStart" id="numOreScelte" required>
+
+         <input id="numOreScelte">
+         <select class="oraStart" for="numOreScelte" required>
             <option>1</option>
             <option>2</option>
             <option>3</option>
