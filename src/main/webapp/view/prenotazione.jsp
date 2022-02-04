@@ -86,6 +86,7 @@
         <%
         Utente user=(Utente) request.getSession().getAttribute("user");
     %>
+</head>
 <body>
 <% if(user==null){%>
 <jsp:include page="/view/headerNotLog.jsp">

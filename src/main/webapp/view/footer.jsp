@@ -44,16 +44,17 @@
         margin-bottom:0;
     }
     </style>
+    <%String contex=request.getContextPath();%>
 </head>
 
 <body>
 <div class="footer-basic">
     <footer>
        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#Home">Home</a></li>
-            <li class="list-inline-item"><a href="#Abbonamenti">Abbonamenti</a></li>
-            <li class="list-inline-item"><a href="#Prenota">Prenota</a></li>
-            <li class="list-inline-item"><a href="#Campi">Campi</a></li>
+            <li class="list-inline-item"><a href="<%=contex%>">Home</a></li>
+            <li class="list-inline-item"><a href="<%=contex%>/view/abbonamenti.jsp"">Abbonamenti</a></li>
+            <li class="list-inline-item"><a href="<%=contex%>/view/prenotazione.jsp">Prenota</a></li>
+            <li class="list-inline-item"><a href="<%=contex%>/view/campi.jsp">Campi</a></li>
 
         </ul>
         <p class="copyright">PolisportivaMMR 2022</p>

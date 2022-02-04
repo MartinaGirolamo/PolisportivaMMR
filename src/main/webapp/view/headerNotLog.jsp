@@ -84,7 +84,7 @@
 
     <a href="<%=contex%>" class="logo"><img src="<%=contex%>/immagini/Logo.png" width="100px" height="100px"></a>
     <div class="header-center">
-        <a class="notLast" href="#abbonamenti">Abbonamenti</a>
+        <a class="notLast" href="<%=contex%>/view/abbonamenti.jsp">Abbonamenti</a>
         <a class="notLast" href="<%=contex%>/view/prenotazione.jsp">Prenota</a>
         <a href="<%=contex%>/view/campi.jsp">Campi</a>
     </div>
