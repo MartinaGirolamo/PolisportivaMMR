@@ -16,6 +16,7 @@ public class PrenotazioneDAO {
     public PrenotazioneDAO(){}
 
     public ArrayList<Prenotazione> selectPrenotazioniByDataAndCampo (Date dataPrenotazione, String nomeCampo){
+        System.out.println("data: "+dataPrenotazione+" nomeCampo: "+nomeCampo);
         ArrayList<Prenotazione> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
             PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione WHERE dateP= '"+dataPrenotazione+"' AND campo='"+nomeCampo+"';");
@@ -27,9 +28,10 @@ public class PrenotazioneDAO {
                prenotazione.setOraEnd(set.getInt("oraEnd"));
                prenotazione.setCodice(set.getString("codice"));
                prenotazione.setNomeCampo(set.getString("campo"));
-               prenotazione.setEmail(set.getString("email"));
+               prenotazione.setEmail(set.getString("utente"));
 
                 list.add(prenotazione);
+                prenotazione.toString();
             }
         } catch (SQLException e) {
             e.printStackTrace();

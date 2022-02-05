@@ -67,6 +67,11 @@ insert into Utente(email,pword,nome,cognome,dateN,is_admin)values
 ('admin3@gmail.com','password4','nome3','cognome3','15-06-1997',true);
 
 insert into Campo(nome,descrizione,tariffa,numGiocatori) values
-('Campo da calcio','IL CAMPO È GRANDE 100 X 60, CON ERBETTA SINTETICA',20,22),
-('Campo da tennis','IL CAMPO È GRANDE 24 X 10 SINTETICO',10,4),
-('Campo da pallavola','IL CAMPO È GRANDE 18 X 9. ALTEZZA RETE REGOLABILE, SI TROVA AL CHIUSO',15,12);
+('Calcio','IL CAMPO È GRANDE 100 X 60, CON ERBETTA SINTETICA',20,22),
+('Tennis','IL CAMPO È GRANDE 24 X 10 SINTETICO',10,4),
+('Pallavolo','IL CAMPO È GRANDE 18 X 9. ALTEZZA RETE REGOLABILE, SI TROVA AL CHIUSO',15,12);
+
+insert into Prenotazione(codice,oraStart,oraEnd,dateP,utente,campo ) values
+('1',10,12,'2022-02-12','rosabianchi@gmail.com','Pallavolo'),
+('2',15,16,'2022-02-12','rosabianchi@gmail.com','Pallavolo'),
+('3',19,20,'2022-02-12','rosabianchi@gmail.com','Pallavolo');
