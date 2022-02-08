@@ -80,6 +80,10 @@
             align-items: center;
             margin-top: 10px;
         }
+        input[type=date]{
+            width: 180px;
+            height: 39px;
+        }
 
 
     </style>
