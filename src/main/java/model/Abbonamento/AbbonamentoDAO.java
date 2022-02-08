@@ -19,7 +19,7 @@ public class AbbonamentoDAO {
             ResultSet set = ps.executeQuery();
             while (set.next()){
             Abbonamento abbonamento = new Abbonamento();
-            abbonamento.setCodice(set.getString("codice"));
+            abbonamento.setCodice(set.getInt("codice"));
             abbonamento.setTipologia(set.getString("tipologia"));
             abbonamento.setTariffa(set.getFloat("tariffa"));
             abbonamento.setMesi(set.getInt("mesi"));
@@ -33,9 +33,24 @@ public class AbbonamentoDAO {
     }
 
 
-    public boolean deleteAbbonamento(String codice){
+    public boolean deleteAbbonamento(int codice){
         try(Connection conn = ConPool.getConnection()){
             PreparedStatement ps = conn.prepareStatement("DELETE FROM abbonamento WHERE codice='"+codice+"'");
+            int ritorno=ps.executeUpdate();
+            if (ritorno==2) return false;
+            else return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean insertAbbonamento(Abbonamento abbonamento){
+        try(Connection conn=ConPool.getConnection()) {
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO abbonamento ( mesi, tariffa, tipologia ) VALUES (?,?,?);");
+            ps.setInt(1,abbonamento.getMesi());
+            ps.setFloat(2,abbonamento.getTariffa());
+            ps.setString(3, abbonamento.getTipologia());
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
             else return true;

@@ -4,17 +4,18 @@ package model.Prenotazione;
 import java.sql.Date;
 
 public class Prenotazione {
-    private int oraStart, oraEnd;
+    private int oraStart, oraEnd, codice;
+    float tariffaTotale;
     private Date dateP;
-    private String email, nomeCampo, codice;
+    private String email, nomeCampo;
 
     public Prenotazione(){}
 
-    public String getCodice() {
+    public int getCodice() {
         return codice;
     }
 
-    public void setCodice(String codice) {
+    public void setCodice(int codice) {
         this.codice = codice;
     }
 
@@ -58,15 +59,24 @@ public class Prenotazione {
         this.nomeCampo = nome;
     }
 
+    public float getTariffaTotale() {
+        return tariffaTotale;
+    }
+
+    public void setTariffaTotale(float tariffaTotale) {
+        this.tariffaTotale = tariffaTotale;
+    }
+
     @Override
     public String toString() {
         return "Prenotazione{" +
                 "oraStart=" + oraStart +
                 ", oraEnd=" + oraEnd +
+                ", codice=" + codice +
+                ", tariffaTotale=" + tariffaTotale +
                 ", dateP=" + dateP +
                 ", email='" + email + '\'' +
                 ", nomeCampo='" + nomeCampo + '\'' +
-                ", codice='" + codice + '\'' +
                 '}';
     }
 }

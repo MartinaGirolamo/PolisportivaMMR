@@ -20,25 +20,26 @@ CREATE TABLE Campo(
 );
 
 CREATE TABLE Prenotazione(
-                             codice varchar(6) PRIMARY KEY,
+                             codice int AUTO_INCREMENT PRIMARY KEY,
                              oraStart int NOT NULL,
                              oraEnd 	int NOT NULL,
                              dateP datetime NOT NULL,
                              utente varchar(40) NOT NULL,
                              campo varchar(20) NOT NULL,
+                             tariffaTotale float NOT NULL,
                              FOREIGN KEY (campo) references Campo (nome),
                              FOREIGN KEY (utente) references Utente (email)
 );
 
 CREATE TABLE Abbonamento(
-                            codice varchar(6) PRIMARY KEY,
+                            codice int AUTO_INCREMENT PRIMARY KEY,
                             mesi int NOT NULL,
                             tariffa float NOT NULL,
                             tipologia varchar(20) NOT NULL
 );
 
 CREATE TABLE Attrezzatura(
-                             codice varchar(6) PRIMARY KEY,
+                             codice int AUTO_INCREMENT PRIMARY KEY,
                              nome varchar(20) NOT NULL,
                              qta int NOT NULL,
                              tariffa float NOT NULL
@@ -46,15 +47,15 @@ CREATE TABLE Attrezzatura(
 
 CREATE TABLE Acquisto(
                          utente varchar(40) NOT NULL,
-                         codiceAbb varchar(6) NOT NULL,
+                         codiceAbb int NOT NULL,
                          dataAcquisto datetime NOT NULL,
                          FOREIGN KEY (utente) references Utente (email),
                          FOREIGN KEY (codiceAbb) references Abbonamento (codice)
 );
 
 CREATE TABLE Noleggio(
-                         codicePren varchar(6) NOT NULL,
-                         codiceAttr varchar(6) NOT NULL,
+                         codicePren int NOT NULL,
+                         codiceAttr int NOT NULL,
                          qta int NOT NULL,
                          FOREIGN KEY (codicePren) references Prenotazione (codice),
                          FOREIGN KEY (codiceAttr) references Attrezzatura (codice)
@@ -71,7 +72,7 @@ insert into Campo(nome,descrizione,tariffa,numGiocatori) values
 ('Tennis','IL CAMPO È GRANDE 24 X 10 SINTETICO',10,4),
 ('Pallavolo','IL CAMPO È GRANDE 18 X 9. ALTEZZA RETE REGOLABILE, SI TROVA AL CHIUSO',15,12);
 
-insert into Prenotazione(codice,oraStart,oraEnd,dateP,utente,campo ) values
-('1',10,12,'2022-02-12','rosabianchi@gmail.com','Pallavolo'),
-('2',15,16,'2022-02-12','rosabianchi@gmail.com','Pallavolo'),
-('3',19,20,'2022-02-12','rosabianchi@gmail.com','Pallavolo');
+insert into Prenotazione(oraStart,oraEnd,dateP,utente,campo, tariffaTotale ) values
+(10,12,'2022-02-12','rosabianchi@gmail.com','Pallavolo',30),
+(15,16,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15),
+(19,20,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15);

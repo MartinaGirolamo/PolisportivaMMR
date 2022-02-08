@@ -1,17 +1,17 @@
 package model.Attrezzatura;
 
 public class Attrezzatura {
-    private String codice,nome;
-    private int qta;
+    private String nome;
+    private int qta, codice;
     private float tariffa;
 
     public Attrezzatura() {}
 
-    public String getCodice() {
+    public int getCodice() {
         return codice;
     }
 
-    public void setCodice(String codice) {
+    public void setCodice(int codice) {
         this.codice = codice;
     }
 

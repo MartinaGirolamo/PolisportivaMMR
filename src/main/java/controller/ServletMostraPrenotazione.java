@@ -1,5 +1,7 @@
 package controller;
 
+import model.Campo.Campo;
+import model.Campo.CampoDAO;
 import model.Prenotazione.Prenotazione;
 import model.Prenotazione.PrenotazioneDAO;
 import model.Prenotazione.PrenotazioneDisponibile;
@@ -32,6 +34,9 @@ public class ServletMostraPrenotazione extends HttpServlet {
         String stringOraStart, stringNumOre;
         int oraStart=0, numOre=0;
         ArrayList<Prenotazione> arrayPrenotazioniPresenti = null;
+        CampoDAO campoDAO = new CampoDAO();
+        Campo campo1 = campoDAO.selectCampoByNome(campo);
+        System.out.println(campo1);
 
         java.sql.Date data = java.sql.Date.valueOf(datetimeString);
         stringOraStart =req.getParameter("oraStartScelta");
@@ -55,10 +60,11 @@ public class ServletMostraPrenotazione extends HttpServlet {
         }
         if(stringNumOre!=null ){;
             numOre = Integer.parseInt(stringNumOre);
+
         }
+        float tariffaTotale=campo1.getTariffa()*numOre;
 
-
-        System.out.println("campo = "+campo+" data= "+data+" oraStart= "+oraStart+" numOre= "+numOre);
+        System.out.println("campo = "+campo+" data= "+data+" oraStart= "+oraStart+" numOre= "+numOre+"");
         PrenotazioneDAO prenotazioneDAO = new PrenotazioneDAO();
         if(data!=null && campo!=null){
             arrayPrenotazioniPresenti =  prenotazioneDAO.selectPrenotazioniByDataAndCampo(data,campo);}
@@ -74,11 +80,20 @@ public class ServletMostraPrenotazione extends HttpServlet {
 
         ArrayList<PrenotazioneDisponibile> prenotazioniDisponibili = new ArrayList<>();
         if(arrayPrenotazioniPresenti.size()==0){
-            for(int i = oraStart; i<20; i++){
+            for(int i = oraStart; i<=20; i++){
                 PrenotazioneDisponibile pd;
                 if((i+numOre)<=22){
-                    pd= new PrenotazioneDisponibile(i,i+numOre,data,campo);
+                    pd= new PrenotazioneDisponibile(i,i+numOre,data,campo, tariffaTotale);
                     System.out.println(pd);
+                    prenotazioniDisponibili.add(pd);
+                }
+            }
+        }
+        else if(arrayPrenotazioniPresenti.size()==1){
+            for(int i = oraStart; i<=20; i++){
+                PrenotazioneDisponibile pd;
+                if(i>=arrayPrenotazioniPresenti.get(0).getOraEnd()|| i+numOre<arrayPrenotazioniPresenti.get(0).getOraStart()){
+                    pd= new PrenotazioneDisponibile(i,i+numOre,data,campo,tariffaTotale);
                     prenotazioniDisponibili.add(pd);
                 }
             }
@@ -89,18 +104,18 @@ public class ServletMostraPrenotazione extends HttpServlet {
                 for(int j=0; j<arrayPrenotazioniPresenti.size()-1;j++){
                     if(i+numOre<=arrayPrenotazioniPresenti.get(j).getOraStart()){
                         if(j==0){
-                            PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo);
+                            PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo,tariffaTotale);
                             prenotazioniDisponibili.add(pd);
                             break;
                         }
                         if(i>=arrayPrenotazioniPresenti.get(j-1).getOraEnd()){
-                            PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo);
+                            PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo,tariffaTotale);
                             prenotazioniDisponibili.add(pd);
                             break;
                         }
                     }
                     else if(i>=arrayPrenotazioniPresenti.get(j).getOraEnd() && i+numOre<=arrayPrenotazioniPresenti.get(j+1).getOraStart()){
-                        PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo);
+                        PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo,tariffaTotale);
                         prenotazioniDisponibili.add(pd);
                         break;
                     }

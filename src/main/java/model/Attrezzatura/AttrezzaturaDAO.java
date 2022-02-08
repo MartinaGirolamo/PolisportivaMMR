@@ -20,7 +20,7 @@ public class AttrezzaturaDAO {
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 Attrezzatura attrezzatura = new Attrezzatura();
-                attrezzatura.setCodice(set.getString("codice"));
+                attrezzatura.setCodice(set.getInt("codice"));
                 attrezzatura.setNome(set.getString("nome"));
                 attrezzatura.setQta(set.getInt("qta"));
                 attrezzatura.setTariffa(set.getFloat("tariffa"));
@@ -34,11 +34,10 @@ public class AttrezzaturaDAO {
 
     public boolean insertAttrezzature(Attrezzatura attrezzatura){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO attrezzatura ( codice, nome, qta,tariffa) VALUES (?,?,?,?);");
-            ps.setString(1,attrezzatura.getCodice());
-            ps.setString(2,attrezzatura.getNome());
-            ps.setInt(3,attrezzatura.getQta());
-            ps.setFloat(4,attrezzatura.getTariffa());
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO attrezzatura ( nome, qta,tariffa) VALUES (?,?,?);");
+            ps.setString(1,attrezzatura.getNome());
+            ps.setInt(2,attrezzatura.getQta());
+            ps.setFloat(3,attrezzatura.getTariffa());
 
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
@@ -61,12 +60,12 @@ public class AttrezzaturaDAO {
         return false;
     }
 
-    public boolean updateQuantitaAttrezzatura(int newQta, String codiceAttrezzatura){
+    public boolean updateQuantitaAttrezzatura(int newQta, int codiceAttrezzatura){
         try(Connection conn=ConPool.getConnection()) {
             PreparedStatement ps= conn.prepareStatement("UPDATE attrezzatura SET  ( qta=?) WHERE  (codice=?);");
 
             ps.setInt(1,newQta);
-            ps.setString(2,codiceAttrezzatura);
+            ps.setInt(2,codiceAttrezzatura);
 
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;

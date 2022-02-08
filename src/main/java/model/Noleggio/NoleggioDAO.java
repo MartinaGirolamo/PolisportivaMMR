@@ -18,8 +18,8 @@ public class NoleggioDAO {
             ResultSet set = ps.executeQuery();
             while (set.next()){
             Noleggio noleggio = new Noleggio();
-            noleggio.setCodiceAttr(set.getString("codiceAttr"));
-            noleggio.setCodicePren(set.getString("codicePren"));
+            noleggio.setCodiceAttr(set.getInt("codiceAttr"));
+            noleggio.setCodicePren(set.getInt("codicePren"));
             noleggio.setQta(set.getInt("qta"));
             list.add(noleggio);
             }
@@ -33,8 +33,8 @@ public class NoleggioDAO {
     public boolean insertNoleggio(Noleggio noleggio){
             try (Connection conn = ConPool.getConnection()){
                 PreparedStatement ps = conn.prepareStatement("INSERT INTO noleggio (codiceAttr, codicePren, qta) VALUES (?,?,?)");
-                ps.setString(1, noleggio.getCodiceAttr());
-                ps.setString(2, noleggio.getCodicePren());
+                ps.setInt(1, noleggio.getCodiceAttr());
+                ps.setInt(2, noleggio.getCodicePren());
                 ps.setInt(3,noleggio.getQta());
                 int ritorno=ps.executeUpdate();
                 if (ritorno==2) return false;
@@ -50,8 +50,8 @@ public class NoleggioDAO {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM noleggio WHERE codicePren='"+codicePrenotazione+"';");
             ResultSet set = ps.executeQuery();
                 Noleggio noleggio = new Noleggio();
-                noleggio.setCodiceAttr(set.getString("codiceAttr"));
-                noleggio.setCodicePren(set.getString("codicePren"));
+                noleggio.setCodiceAttr(set.getInt("codiceAttr"));
+                noleggio.setCodicePren(set.getInt("codicePren"));
                 noleggio.setQta(set.getInt("qta"));
                 return noleggio;
 
