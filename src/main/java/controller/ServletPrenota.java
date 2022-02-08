@@ -38,12 +38,13 @@ public class ServletPrenota extends HttpServlet {
         else{
             PrenotazioneDAO pd = new PrenotazioneDAO();
             Prenotazione prenotazione = new Prenotazione();
+
             prenotazione.setEmail(user.getEmail());
             prenotazione.setNomeCampo(prenotazioneScelta.getNomeCampo());
-            //prenotazione.setCodice(""+(pd.sizeNumeroPrenotazioni()+1));
             prenotazione.setOraStart(prenotazioneScelta.getOraStart());
             prenotazione.setOraEnd(prenotazioneScelta.getOraEnd());
             prenotazione.setDateP(prenotazioneScelta.getDate());
+            prenotazione.setTariffaTotale(prenotazioneScelta.getTariffaTotale());
             if(pd.insertPrenotazione(prenotazione)) {
                 System.out.println("Prenotazione effettuata: "+prenotazione );
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/PrenotazioneEffettuata.jsp");

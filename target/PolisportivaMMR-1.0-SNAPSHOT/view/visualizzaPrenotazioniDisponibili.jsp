@@ -70,6 +70,7 @@ else if(!user.isIs_Admin()){%>
     <tr>
         <th>CAMPO</th>
         <th>DATA</th>
+        <th>TARIFFA</th>
         <th>ORA START</th>
         <th>ORA END</th>
         <th>SCEGLI</th>
@@ -80,6 +81,7 @@ else if(!user.isIs_Admin()){%>
     <tr>
         <td><%=p.getNomeCampo()%></td>
         <td><%=p.getDate()%></td>
+        <td><%=p.getTariffaTotale()%></td>
         <td><%=p.getOraStart()%></td>
         <td><%=p.getOraEnd()%></td>
         <td><input type="radio" name="indiceArrayScelto" value="<%=i%>" id="<%=i%>" /> <%=i%> </td>

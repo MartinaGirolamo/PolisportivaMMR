@@ -37,10 +37,13 @@ public class CampoDAO {
         try (Connection conn = ConPool.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM campo WHERE nome ='" + nome + "';");
             ResultSet set = ps.executeQuery();
+            while(set.next()){
             c.setNome(set.getString("nome"));
             c.setTariffa(set.getFloat("tariffa"));
             c.setNumGiocatori(set.getInt("numGiocatori"));
             c.setDescrizione(set.getString("descrizione"));
+            System.out.println("Stampa in CAMPODAO= "+c.getNome()+" "+c.getTariffa());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
 

@@ -29,6 +29,7 @@ public class PrenotazioneDAO {
                prenotazione.setCodice(set.getInt("codice"));
                prenotazione.setNomeCampo(set.getString("campo"));
                prenotazione.setEmail(set.getString("utente"));
+               prenotazione.setTariffaTotale(set.getFloat("tariffaTotale"));
 
                 list.add(prenotazione);
                 prenotazione.toString();
@@ -52,6 +53,7 @@ public class PrenotazioneDAO {
                 prenotazione.setCodice(set.getInt("codice"));
                 prenotazione.setNomeCampo(set.getString("campo"));
                 prenotazione.setEmail(set.getString("utente"));
+                prenotazione.setTariffaTotale(set.getFloat("tariffaTotale"));
 
                 list.add(prenotazione);
             }
@@ -63,12 +65,13 @@ public class PrenotazioneDAO {
 
     public boolean insertPrenotazione(Prenotazione prenotazione){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO prenotazione ( oraStart, oraEnd, dateP, utente, campo ) VALUES (?,?,?,?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO prenotazione ( oraStart, oraEnd, dateP, utente, campo, tariffaTotale ) VALUES (?,?,?,?,?,?);");
             ps.setInt(1,prenotazione.getOraStart());
             ps.setInt(2,prenotazione.getOraEnd());
             ps.setDate(3,prenotazione.getDateP());
             ps.setString(4,prenotazione.getEmail());
             ps.setString(5,prenotazione.getNomeCampo());
+            ps.setFloat(6,prenotazione.getTariffaTotale());
 
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
@@ -104,7 +107,7 @@ public class PrenotazioneDAO {
                 prenotazione.setCodice(set.getInt("codice"));
                 prenotazione.setNomeCampo(set.getString("campo"));
                 prenotazione.setEmail(set.getString("utente"));
-
+                prenotazione.setTariffaTotale(set.getFloat("tariffaTotale"));
                 list.add(prenotazione);
             }
         } catch (SQLException e) {

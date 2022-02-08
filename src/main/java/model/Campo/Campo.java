@@ -39,4 +39,14 @@ public class Campo {
     public void setNumGiocatori(int numGiocatori) {
         this.numGiocatori = numGiocatori;
     }
+
+    @Override
+    public String toString() {
+        return "Campo{" +
+                "nome='" + nome + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", numGiocatori=" + numGiocatori +
+                ", tariffa=" + tariffa +
+                '}';
+    }
 }
