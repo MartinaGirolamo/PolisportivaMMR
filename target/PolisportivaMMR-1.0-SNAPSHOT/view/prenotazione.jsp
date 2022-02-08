@@ -99,7 +99,7 @@ else if(!user.isIs_Admin()){%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
-<form action="" method="post">
+<form action="../ServletMostraPrenotazione" method="post">
 
 
 <label id="title">PRENOTA IL CAMPO</label>
@@ -125,13 +125,13 @@ else if(!user.isIs_Admin()){%>
     </div>
 </div>
 <div class="elenco">
-      <select class="campo" required>
+      <select class="campo"  name="campoScelto" required>
         <option>Calcio</option>
         <option>Pallavolo</option>
         <option>Tennis</option>
     </select>
-         <input type="date" id="data">
-        <select class="oraStart" required>
+         <input type="date" name="dataScelta">
+        <select class="oraStart" name="oraStartScelta" required>
             <option>09:00</option>
             <option>10:00</option>
             <option>11:00</option>
@@ -145,12 +145,13 @@ else if(!user.isIs_Admin()){%>
             <option>19:00</option>
             <option>20:00</option>
         </select>
-         <select class="oraStart" required>
+         <select class="oraStart" name="numOreScelte" required>
             <option>1</option>
             <option>2</option>
             <option>3</option>
-
         </select>
+
+
 </div>
 </div>
 

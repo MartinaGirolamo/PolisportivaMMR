@@ -57,4 +57,16 @@ public class Prenotazione {
     public void setNomeCampo(String nome) {
         this.nomeCampo = nome;
     }
+
+    @Override
+    public String toString() {
+        return "Prenotazione{" +
+                "oraStart=" + oraStart +
+                ", oraEnd=" + oraEnd +
+                ", dateP=" + dateP +
+                ", email='" + email + '\'' +
+                ", nomeCampo='" + nomeCampo + '\'' +
+                ", codice='" + codice + '\'' +
+                '}';
+    }
 }

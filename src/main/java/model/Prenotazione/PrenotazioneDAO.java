@@ -16,6 +16,7 @@ public class PrenotazioneDAO {
     public PrenotazioneDAO(){}
 
     public ArrayList<Prenotazione> selectPrenotazioniByDataAndCampo (Date dataPrenotazione, String nomeCampo){
+        System.out.println("data: "+dataPrenotazione+" nomeCampo: "+nomeCampo);
         ArrayList<Prenotazione> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
             PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione WHERE dateP= '"+dataPrenotazione+"' AND campo='"+nomeCampo+"';");
@@ -27,9 +28,10 @@ public class PrenotazioneDAO {
                prenotazione.setOraEnd(set.getInt("oraEnd"));
                prenotazione.setCodice(set.getString("codice"));
                prenotazione.setNomeCampo(set.getString("campo"));
-               prenotazione.setEmail(set.getString("email"));
+               prenotazione.setEmail(set.getString("utente"));
 
                 list.add(prenotazione);
+                prenotazione.toString();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,6 +90,28 @@ public class PrenotazioneDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public int sizeNumeroPrenotazioni(){
+        ArrayList<Prenotazione> list = new ArrayList<>();
+        try(Connection conn= ConPool.getConnection()){
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione;");
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                Prenotazione prenotazione = new Prenotazione();
+                prenotazione.setDateP(set.getDate("dateP"));
+                prenotazione.setOraStart(set.getInt("oraStart"));
+                prenotazione.setOraEnd(set.getInt("oraEnd"));
+                prenotazione.setCodice(set.getString("codice"));
+                prenotazione.setNomeCampo(set.getString("campo"));
+                prenotazione.setEmail(set.getString("utente"));
+
+                list.add(prenotazione);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list.size();
     }
 
 

@@ -8,7 +8,7 @@
 <body>
 
         <h2>Email o password SBAGLIATA.</h2>
-        <h3> RITENTA <br> <a href="#tornaALLogin">Torna al login</a></h3>
+        <h3> RITENTA <br> <a href="views/login.jsp">Torna al login</a></h3>
 
 </body>
 </html>
