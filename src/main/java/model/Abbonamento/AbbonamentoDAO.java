@@ -60,6 +60,24 @@ public class AbbonamentoDAO {
         return false;
     }
 
+    public Abbonamento selectAbbonamentoByTipologiaAndMesi(String tipologia, int mesi){
+        Abbonamento a = new Abbonamento();
+        try(Connection conn = ConPool.getConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Abbonamento WHERE tipologia='"+tipologia+"' AND mesi= '"+mesi+"';");
+            ResultSet set = ps.executeQuery();
+            while (set.next()){
+                a.setCodice(set.getInt("codice"));
+                a.setTipologia(set.getString("tipologia"));
+                a.setTariffa(set.getFloat("tariffa"));
+                a.setMesi(set.getInt("mesi"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }
+
 
 
 

@@ -89,8 +89,8 @@ else if(!user.isIs_Admin()){%>
         <div class="item-right">
             <ul class="list">
                 <li class="titolo">CAMPO DA CALCIO</li>
-                <li class="desc">Descrizione ....</li>
-                <li><a class="btn" href="#Prenotazione">Prenota</a></li>
+                <li class="desc">IL CAMPO È GRANDE 100 X 60, CON ERBETTA SINTETICA</li>
+                <li><a class="btn" href="prenotazione.jsp">Prenota</a></li>
             </ul>
         </div>
     </div>
@@ -98,8 +98,8 @@ else if(!user.isIs_Admin()){%>
         <div class="item-left">
             <ul class="list">
                 <li class="titolo">CAMPO DA PALLAVOLO</li>
-                <li class="desc">Descrizione ....</li>
-                <li><a class="btn" href="#Prenotazione">Prenota</a></li>
+                <li class="desc">IL CAMPO È GRANDE 18 X 9. ALTEZZA RETE REGOLABILE, SI TROVA AL CHIUSO</li>
+                <li><a class="btn" href="prenotazione.jsp">Prenota</a></li>
             </ul>
         </div>
         <div class="item-right">
@@ -113,8 +113,8 @@ else if(!user.isIs_Admin()){%>
         <div class="item-right">
             <ul class="list">
                 <li class="titolo">CAMPO DA TENNIS</li>
-                <li class="desc">Descrizione ....</li>
-                <li><a class="btn" href="#Prenotazione">Prenota</a></li>
+                <li class="desc">IL CAMPO È GRANDE 24 X 10 SINTETICO</li>
+                <li><a class="btn" href="prenotazione.jsp">Prenota</a></li>
             </ul>
         </div>
     </div>
@@ -123,8 +123,8 @@ else if(!user.isIs_Admin()){%>
 
             <ul class="list">
                 <li class="titolo">PALESTRA</li>
-                <li class="desc">Descrizione ....</li>
-                <li><a class="btn" href="#Prenotazione">Abbonati</a></li>
+                <li class="desc">PALESTRA DOTATA DI: <br>  TAPIS ROULANT <br> CYCLETTE <br> VOGATORE <br> BILANCIERE <br> PANCA PESI</li>
+                <li><a class="btn" href="abbonamenti.jsp">Abbonati</a></li>
             </ul>
         </div>
         <div class="item-right">

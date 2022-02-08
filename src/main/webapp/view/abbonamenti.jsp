@@ -60,7 +60,7 @@
     %>
 </head>
 <body>
-<% if(user==null){%>
+<% if(user==null || user.getEmail()==null){%>
 <jsp:include page="/view/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
@@ -73,24 +73,27 @@ else if(!user.isIs_Admin()){%>
 <%}%>
     <div class="desc">
         <label class="title">DESCRIZIONE ABBONAMENTI</label><br>
-        <label>Abbonamento Scuola Tennis : Lun/Mer/Ven 16:00/18:00 </label><br>
+        <label>Abbonamento Scuola Tennis : Lun/Mer/Ven 16:00/18:00 Costo: 30euro mensili</label><br>
         <label>Abbonamento Scuola Pallavolo : Lun/Mer/Ven 16:00/18:00 </label><br>
         <label>Abbonamento Scuola Calcio : Lun/Mer/Ven 16:00/18:00 </label><br>
         <label>Abbonamento Palestra : 24H/7GG</label><br>
 
     </div>
-
+<form action="../ServletAcquistaAbbonamento" name="totaleForm" >
     <div class="desc">
         <label class="title">ACQUISTA ABBONAMENTO</label>
         <div>
             <label>Selezione Num Mesi</label>
-            <select class="oraStart" required>
-                <option>1</option>
-                <option>3</option>
-                <option>6</option>
-                <option>12</option>
-                <option>24</option>
-            </select>
+            <form name="totaleForm" action="#nothing">
+                <select name="nMesi" onchange="showTotal() ">
+
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="6">6</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                </select>
+            </form>
         </div>
         <div>
             <label>Scuola Tennis</label>
@@ -108,12 +111,27 @@ else if(!user.isIs_Admin()){%>
             <label>Palestra</label>
             <input type="radio" id="palestra" name="abb" value="palestra">
         </div>
+        <div class="center">
+            <label><p id="totale">Totale: </p></label>
+            <button type="submit" id="acqBtn" onclick="">Acquista</button>
+        </div>
+    </div>
 
-    </div>
-    <div class="center">
-        <label>Totale:$tot</label>
-        <a href="#" id="acqBtn">Acquista</a>
-    </div>
+   <!-- <div class="center">
+        <label><p id="totale">Totale: </p></label>
+        <button type="submit" id="acqBtn" onclick="">Acquista</button>
+    </div>-->
+</form>
+
+<script>
+    function showTotal() {
+        var tariffaMensile =30;
+        var theSelect = totaleForm.nMesi;
+        var tot = document.getElementById('totale');
+
+        tot.innerHTML = ('Totale: ' + theSelect[theSelect.selectedIndex].text*tariffaMensile);
+    }
+</script>
 <jsp:include page="/view/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
