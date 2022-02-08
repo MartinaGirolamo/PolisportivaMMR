@@ -32,7 +32,7 @@ public class ServletPrenota extends HttpServlet {
         PrenotazioneDisponibile prenotazioneScelta = prenotazioniDisponibili.get(indiceArrayScelto);
 
         if(user == null){
-            RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/UtenteNonLoggato");
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/UtenteNonLoggato.jsp");
             requestDispatcher.forward(req, resp);
         }
         else{
@@ -40,7 +40,7 @@ public class ServletPrenota extends HttpServlet {
             Prenotazione prenotazione = new Prenotazione();
             prenotazione.setEmail(user.getEmail());
             prenotazione.setNomeCampo(prenotazioneScelta.getNomeCampo());
-            prenotazione.setCodice(""+(pd.sizeNumeroPrenotazioni()+1));
+            //prenotazione.setCodice(""+(pd.sizeNumeroPrenotazioni()+1));
             prenotazione.setOraStart(prenotazioneScelta.getOraStart());
             prenotazione.setOraEnd(prenotazioneScelta.getOraEnd());
             prenotazione.setDateP(prenotazioneScelta.getDate());

@@ -74,11 +74,20 @@ public class ServletMostraPrenotazione extends HttpServlet {
 
         ArrayList<PrenotazioneDisponibile> prenotazioniDisponibili = new ArrayList<>();
         if(arrayPrenotazioniPresenti.size()==0){
-            for(int i = oraStart; i<20; i++){
+            for(int i = oraStart; i<=20; i++){
                 PrenotazioneDisponibile pd;
                 if((i+numOre)<=22){
                     pd= new PrenotazioneDisponibile(i,i+numOre,data,campo);
                     System.out.println(pd);
+                    prenotazioniDisponibili.add(pd);
+                }
+            }
+        }
+        else if(arrayPrenotazioniPresenti.size()==1){
+            for(int i = oraStart; i<=20; i++){
+                PrenotazioneDisponibile pd;
+                if(i>=arrayPrenotazioniPresenti.get(0).getOraEnd()|| i+numOre<arrayPrenotazioniPresenti.get(0).getOraStart()){
+                    pd= new PrenotazioneDisponibile(i,i+numOre,data,campo);
                     prenotazioniDisponibili.add(pd);
                 }
             }

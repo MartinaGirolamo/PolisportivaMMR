@@ -64,7 +64,7 @@ else if(!user.isIs_Admin()){%>
 
 
 
-<form action="../ServletPrenota" method="get">
+<form action="ServletPrenota" method="get">
     <div style="margin: auto">
 <table>
     <tr>

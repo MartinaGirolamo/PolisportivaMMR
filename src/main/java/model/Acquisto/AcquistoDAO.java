@@ -21,7 +21,7 @@ public class AcquistoDAO {
                 Acquisto acquisto = new Acquisto();
                 acquisto.setDataAcquisto(set.getDate("dataAcquisto"));
                 acquisto.setUtente(set.getString("utente"));
-                acquisto.setCodiceAbb(set.getString("codiceAbb"));
+                acquisto.setCodiceAbb(set.getInt("codiceAbb"));
                 list.add(acquisto);
             }
 
@@ -34,7 +34,7 @@ public class AcquistoDAO {
     public boolean insertAcquisto (Acquisto acquisto){
         try(Connection conn=ConPool.getConnection()) {
             PreparedStatement ps= conn.prepareStatement("INSERT INTO acquisto ( codiceAbb,utente, dataAcquisto ) VALUES (?,?,?);");
-            ps.setString(1,acquisto.getCodiceAbb());
+            ps.setInt(1,acquisto.getCodiceAbb());
             ps.setString(2, acquisto.getUtente());
             ps.setDate(3,acquisto.getDataAcquisto());
 

@@ -1,17 +1,17 @@
 package model.Abbonamento;
 
 public class Abbonamento {
-    private String codice,tipologia;
-    private int mesi;
+    private String tipologia;
+    private int mesi, codice;
     private float tariffa;
 
     public Abbonamento(){}
 
-    public String getCodice() {
+    public int getCodice() {
         return codice;
     }
 
-    public void setCodice(String codice) {
+    public void setCodice(int codice) {
         this.codice = codice;
     }
 

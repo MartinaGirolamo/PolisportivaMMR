@@ -3,7 +3,8 @@ package model.Acquisto;
 import java.sql.Date;
 
 public class Acquisto {
-    private String utente, codiceAbb;
+    private String utente;
+    private int codiceAbb;
     private Date dataAcquisto;
 
     public Acquisto() {
@@ -17,11 +18,11 @@ public class Acquisto {
         this.utente = utente;
     }
 
-    public String getCodiceAbb() {
+    public int getCodiceAbb() {
         return codiceAbb;
     }
 
-    public void setCodiceAbb(String codiceAbb) {
+    public void setCodiceAbb(int codiceAbb) {
         this.codiceAbb = codiceAbb;
     }
 

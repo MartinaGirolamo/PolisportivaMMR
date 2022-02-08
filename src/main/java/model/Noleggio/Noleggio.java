@@ -1,25 +1,25 @@
 package model.Noleggio;
 
 public class Noleggio {
-    private String codicePren, codiceAttr;
+    private int codicePren, codiceAttr;
     private int qta;
 
     public Noleggio() {
     }
 
-    public String getCodicePren() {
+    public int getCodicePren() {
         return codicePren;
     }
 
-    public void setCodicePren(String codicePren) {
+    public void setCodicePren(int codicePren) {
         this.codicePren = codicePren;
     }
 
-    public String getCodiceAttr() {
+    public int getCodiceAttr() {
         return codiceAttr;
     }
 
-    public void setCodiceAttr(String codiceAttr) {
+    public void setCodiceAttr(int codiceAttr) {
         this.codiceAttr = codiceAttr;
     }
 
