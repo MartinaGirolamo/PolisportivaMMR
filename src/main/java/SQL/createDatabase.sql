@@ -42,7 +42,10 @@ CREATE TABLE Attrezzatura(
                              codice int AUTO_INCREMENT PRIMARY KEY,
                              nome varchar(20) NOT NULL,
                              qta int NOT NULL,
-                             tariffa float NOT NULL
+                             tariffa float NOT NULL,
+                             path varchar(70) NOT NULL,
+                             tipologia varchar(20),
+                             FOREIGN KEY  (tipologia) references Campo(nome)
 );
 
 CREATE TABLE Acquisto(
@@ -99,5 +102,19 @@ insert into Abbonamento (mesi,tariffa,tipologia) value
 (6,30,'palestra'),
 (12,30,'palestra'),
 (24,30,'palestra');
+
+
+insert into Attrezzatura (nome,qta,tariffa,path,tipologia) value
+('Guanti',12,2,'immagini/guanti.jpg','calcio'),
+('Casacca',30,2,'immagini/casacca.jpg','calcio'),
+('Pallone da calcio',15,2,'immagini/palloneCalcio.jpg','calcio'),
+('Ginocchiere',20,2,'immagini/ginocchierePallavolo.jpg','pallavolo'),
+('Pallone da pallavolo',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
+('Palline da tennis',20,2,'immagini/pallineTennis.jpg','tennis'),
+('Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
+('Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
+
+
+
 
 

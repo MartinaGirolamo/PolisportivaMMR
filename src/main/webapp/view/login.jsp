@@ -14,7 +14,7 @@
     Utente user=(Utente) request.getSession().getAttribute("user");
 %>
 <body>
-<% if(user==null){%>
+<% if(user==null || user.getEmail()==null) {%>
 <jsp:include page="/view/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>

@@ -1,7 +1,7 @@
 package model.Attrezzatura;
 
 public class Attrezzatura {
-    private String nome;
+    private String nome, path, tipologia;
     private int qta, codice;
     private float tariffa;
 
@@ -37,5 +37,33 @@ public class Attrezzatura {
 
     public void setTariffa(float tariffa) {
         this.tariffa = tariffa;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getTipologia() {
+        return tipologia;
+    }
+
+    public void setTipologia(String tipologia) {
+        this.tipologia = tipologia;
+    }
+
+    @Override
+    public String toString() {
+        return "Attrezzatura{" +
+                "nome='" + nome + '\'' +
+                ", path='" + path + '\'' +
+                ", tipologia='" + tipologia + '\'' +
+                ", qta=" + qta +
+                ", codice=" + codice +
+                ", tariffa=" + tariffa +
+                '}';
     }
 }

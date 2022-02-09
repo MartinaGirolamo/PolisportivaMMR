@@ -1,4 +1,5 @@
-<%@ page import="model.Utente.Utente" %><%--
+<%@ page import="model.Utente.Utente" %>
+<%@ page import="model.Prenotazione.Prenotazione" %><%--
   Created by IntelliJ IDEA.
   User: Martina
   Date: 07/02/2022
@@ -21,7 +22,8 @@
     </style>
 </head>
 <body>
-<%  Utente user=(Utente) request.getSession().getAttribute("user");
+<% Prenotazione prenotazioneEffettuata = (Prenotazione) request.getSession().getAttribute("prenotazioneEffettuata");
+    Utente user=(Utente) request.getSession().getAttribute("user");
     if(user==null || user.getEmail()==null){%>
 <jsp:include page="/view/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
@@ -37,7 +39,26 @@ else if(!user.isIs_Admin()){%>
 <div class="container">
     <h2> SUCCESSO!</h2>
     <p> PRENOTAZIONE REGISTRATA CON SUCCESSO! </p>
+    <p> Prenotazione</p>
+    <p><th>CAMPO</th>
+    <th>DATA</th>
+    <th>TARIFFA</th>
+    <th>ORA START</th>
+    <th>ORA END</th>
+
+    <td><%=prenotazioneEffettuata.getNomeCampo()%></td>
+    <td><%=prenotazioneEffettuata.getDateP()%></td>
+    <td><%=prenotazioneEffettuata.getTariffaTotale()%></td>
+    <td><%=prenotazioneEffettuata.getOraStart()%></td>
+    <td><%=prenotazioneEffettuata.getOraEnd()%></td>
+    </p>
     <p> Per visualizzare i dettagli, controllare sul profilo personale</p>
+</div>
+
+<div class="container">
+    <h2> Vuoi noleggiare l'attrezzatura?  </h2>
+    <p> <a href="view/noleggio.jsp"> CLICCA QUI</a></p>
+
 </div>
 
 <jsp:include page="/view/footer.jsp">
