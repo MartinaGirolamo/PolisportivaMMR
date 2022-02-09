@@ -1066,14 +1066,17 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <RefColNames>codice</RefColNames>
       <RefTableName>abbonamento</RefTableName>
     </foreign-key>
-    <index id="307" parent="291" name="utente">
-      <ColNames>utente</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="308" parent="291" name="codiceAbb">
+    <index id="307" parent="291" name="codiceAbb">
       <ColNames>codiceAbb</ColNames>
       <Type>btree</Type>
     </index>
+    <key id="308" parent="291" name="PRIMARY">
+      <ColNames>utente
+codiceAbb
+dataAcquisto</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
     <column id="309" parent="292" name="codice">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>

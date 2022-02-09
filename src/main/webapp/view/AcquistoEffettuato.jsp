@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title> PRENOTAZIONE EFFETTUATA</title>
+    <title> ACQUISTO ABBONAMENTO EFFETTUATO</title>
 
     <style>
     .container{
@@ -36,7 +36,7 @@ else if(!user.isIs_Admin()){%>
 
 <div class="container">
     <h2> SUCCESSO!</h2>
-    <p> PRENOTAZIONE REGISTRATA CON SUCCESSO! </p>
+    <p> ACQUISTO EFFETTUATO CON SUCCESSO! </p>
     <p> Per visualizzare i dettagli, controllare sul profilo personale</p>
 </div>
 

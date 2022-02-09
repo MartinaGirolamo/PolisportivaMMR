@@ -31,7 +31,7 @@ public class ServletPrenota extends HttpServlet {
         int indiceArrayScelto = Integer.parseInt(req.getParameter("indiceArrayScelto"));
         PrenotazioneDisponibile prenotazioneScelta = prenotazioniDisponibili.get(indiceArrayScelto);
 
-        if(user == null){
+        if(user == null || user.getEmail()==null){
             RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/UtenteNonLoggato.jsp");
             requestDispatcher.forward(req, resp);
         }

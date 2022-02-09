@@ -23,7 +23,7 @@
 <body>
 <div class="container">
     <h2> ERRORE!</h2>
-    <p>EFFETTUARE IL LOGIN PER EFFETTUARE UNA PRENOTAZIONE</p>
+    <p>EFFETTUARE IL LOGIN PER PROCEDERE</p>
     <p>VAI ALLA <a href="view/login.jsp">LOGIN</a></p>
 </div>
 </body>

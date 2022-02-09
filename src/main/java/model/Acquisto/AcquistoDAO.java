@@ -1,6 +1,7 @@
 package model.Acquisto;
 
 import model.ConPool;
+import model.Utente.Utente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,5 +47,28 @@ public class AcquistoDAO {
         }
         return false;
     }
+
+    public boolean acquistoGiaPresente(Acquisto acquisto){
+        Acquisto acquistoRitorno = new Acquisto();
+        try(Connection conn = ConPool.getConnection()){
+
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM acquisto WHERE utente = '"+acquisto.getUtente()+"' AND codiceAbb='"+acquisto.getCodiceAbb()+"' AND dataAcquisto='"+acquisto.getDataAcquisto()+"';");
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                acquistoRitorno.setDataAcquisto(set.getDate("dataAcquisto"));
+                acquistoRitorno.setUtente(set.getString("utente"));
+                acquistoRitorno.setCodiceAbb(set.getInt("codiceAbb"));
+            }
+
+            if(acquistoRitorno.getUtente()!=null) {System.out.println("Acquisto già presente in db"); return true;}
+            else return false;
+
+
+        }catch(SQLException e){
+            System.out.println("non presente in Database");
+            return false;
+        }
+    }
+
 
 }

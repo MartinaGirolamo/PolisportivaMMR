@@ -52,7 +52,7 @@
     <footer>
        <ul class="list-inline">
             <li class="list-inline-item"><a href="<%=contex%>">Home</a></li>
-            <li class="list-inline-item"><a href="<%=contex%>/view/abbonamenti.jsp"">Abbonamenti</a></li>
+            <li class="list-inline-item"><a href="<%=contex%>/view/abbonamenti.jsp">Abbonamenti</a></li>
             <li class="list-inline-item"><a href="<%=contex%>/view/prenotazione.jsp">Prenota</a></li>
             <li class="list-inline-item"><a href="<%=contex%>/view/campi.jsp">Campi</a></li>
 

@@ -33,4 +33,13 @@ public class Acquisto {
     public void setDataAcquisto(Date dataAcquisto) {
         this.dataAcquisto = dataAcquisto;
     }
+
+    @Override
+    public String toString() {
+        return "Acquisto{" +
+                "utente='" + utente + '\'' +
+                ", codiceAbb=" + codiceAbb +
+                ", dataAcquisto=" + dataAcquisto +
+                '}';
+    }
 }
