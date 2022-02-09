@@ -24,6 +24,8 @@ public class AttrezzaturaDAO {
                 attrezzatura.setNome(set.getString("nome"));
                 attrezzatura.setQta(set.getInt("qta"));
                 attrezzatura.setTariffa(set.getFloat("tariffa"));
+                attrezzatura.setPath(set.getString("path"));
+                attrezzatura.setTipologia(set.getString("tipologia"));
                 list.add(attrezzatura);
             }
         } catch (SQLException e) {
@@ -34,10 +36,12 @@ public class AttrezzaturaDAO {
 
     public boolean insertAttrezzature(Attrezzatura attrezzatura){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO attrezzatura ( nome, qta,tariffa) VALUES (?,?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO attrezzatura ( nome, qta,tariffa,path,tipologia) VALUES (?,?,?,?,?);");
             ps.setString(1,attrezzatura.getNome());
             ps.setInt(2,attrezzatura.getQta());
             ps.setFloat(3,attrezzatura.getTariffa());
+            ps.setString(4, attrezzatura.getPath());
+            ps.setString(5, attrezzatura.getTipologia());
 
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
@@ -48,7 +52,7 @@ public class AttrezzaturaDAO {
         return false;
     }
 
-    public boolean deleteAttrezzatura(String codice){
+    public boolean deleteAttrezzatura(int codice){
         try(Connection conn = ConPool.getConnection()){
             PreparedStatement ps = conn.prepareStatement("DELETE FROM attrezzatura WHERE codice='"+codice+"'");
             int ritorno=ps.executeUpdate();
@@ -76,5 +80,25 @@ public class AttrezzaturaDAO {
         return false;
     }
 
+    public ArrayList<Attrezzatura> selectAttrezzaturaByTipologia(String tipologia) {
+        ArrayList<Attrezzatura> list = new ArrayList<>();
+        try(Connection conn= ConPool.getConnection()){
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM attrezzatura WHERE tipologia ='"+tipologia+"';");
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                Attrezzatura attrezzatura = new Attrezzatura();
+                attrezzatura.setCodice(set.getInt("codice"));
+                attrezzatura.setNome(set.getString("nome"));
+                attrezzatura.setQta(set.getInt("qta"));
+                attrezzatura.setTariffa(set.getFloat("tariffa"));
+                attrezzatura.setPath(set.getString("path"));
+                attrezzatura.setTipologia(set.getString("tipologia"));
+                list.add(attrezzatura);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
 

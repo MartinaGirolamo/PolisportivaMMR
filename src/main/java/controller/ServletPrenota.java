@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -47,8 +48,11 @@ public class ServletPrenota extends HttpServlet {
             prenotazione.setTariffaTotale(prenotazioneScelta.getTariffaTotale());
             if(pd.insertPrenotazione(prenotazione)) {
                 System.out.println("Prenotazione effettuata: "+prenotazione );
+                HttpSession session = req.getSession(true);
+                session.setAttribute("prenotazioneEffettuata", prenotazione);
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/PrenotazioneEffettuata.jsp");
                 requestDispatcher.forward(req, resp);
+
             }
             else{
                 System.out.println("Prenotazione NON effettuata: " );
