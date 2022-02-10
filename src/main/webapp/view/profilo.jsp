@@ -106,9 +106,11 @@ else if(!user.isIs_Admin()){%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
-<form action="../ServletCambiaPassword" method="post">
+
     <div class="container">
+
         <div class="element1">
+            <form action="../ServletCambiaPassword" method="post">
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
                 <label>Modifica password</label>
@@ -117,7 +119,9 @@ else if(!user.isIs_Admin()){%>
                 <input type="text" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>
                 <input type="submit" class="subBtn">
             </div>
+            </form>
         </div>
+
 
 
         <div class="element2">
@@ -126,20 +130,15 @@ else if(!user.isIs_Admin()){%>
             <label>Nome: <%=user.getNome()%> </label>
             <label>Cognome <%=user.getCognome()%> </label>
             <label>Email: <%=user.getEmail()%> </label>
+            <form action="../ServletLogout" method="get">
+                    <button type="submit" class="subBtn" onclick="">Logout</button>
 
+            </form>
 
 
         </div>
     </div>
 
-</form>
-<div class="element2">
-<form action="../ServletLogout" method="get">
-    <div class="header-right">
-        <button type="submit" class="button" onclick="">Logout</button>
-    </div>
-</form>
-</div>
 
 <h2>LE MIE PRENOTAZIONI</h2>
 <table>

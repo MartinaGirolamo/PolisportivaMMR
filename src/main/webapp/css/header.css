@@ -9,7 +9,12 @@
     overflow: hidden;
     padding: 20px 10px;
     display: flex;
+    border-bottom: 1px solid;
+    background: linear-gradient(
+            90deg
+            , rgba(2,0,36,1) 0%, rgba(228,33,33,1) 29%, rgba(255,233,0,1) 100%);
 }
+
 
 .header a {
     color: black;
@@ -23,7 +28,7 @@
     border-right: solid black;
 }
 .header a.button{
-
+    padding: 10px 30px 10px 30px;
     border-radius: unset;
     border: solid #8a0101;
     background: #c70000;
