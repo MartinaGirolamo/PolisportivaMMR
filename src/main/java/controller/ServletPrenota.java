@@ -46,6 +46,7 @@ public class ServletPrenota extends HttpServlet {
             prenotazione.setOraEnd(prenotazioneScelta.getOraEnd());
             prenotazione.setDateP(prenotazioneScelta.getDate());
             prenotazione.setTariffaTotale(prenotazioneScelta.getTariffaTotale());
+            prenotazione.setCodice(pd.sizeNumeroPrenotazioni()+1);
             if(pd.insertPrenotazione(prenotazione)) {
                 System.out.println("Prenotazione effettuata: "+prenotazione );
                 HttpSession session = req.getSession(true);

@@ -32,7 +32,7 @@ public class ServletAcquistaAbbonamento extends HttpServlet {
         }
         System.out.println("nMesi= "+nMesi);
         AbbonamentoDAO ad = new AbbonamentoDAO();
-        Abbonamento abbonamento = ad.selectAbbonamentoByTipologiaAndMesi(tipologia,nMesi);
+        Abbonamento abbonamento = ad.selectAbbonamentoByTipologia(tipologia);
         System.out.println(""+abbonamento);
         if(user == null || user.getEmail()==null){
             RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/UtenteNonLoggato.jsp");
@@ -47,6 +47,7 @@ public class ServletAcquistaAbbonamento extends HttpServlet {
             acquisto.setDataAcquisto(data);
             acquisto.setUtente(user.getEmail());
             acquisto.setCodiceAbb(abbonamento.getCodice());
+            acquisto.setnMesi(nMesi);
             if(acquistoDAO.acquistoGiaPresente(acquisto)){
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/AcquistoNonPossibile.jsp");
                 requestDispatcher.forward(req, resp);

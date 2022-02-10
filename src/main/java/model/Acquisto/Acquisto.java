@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Acquisto {
     private String utente;
-    private int codiceAbb;
+    private int codiceAbb, nMesi;
     private Date dataAcquisto;
 
     public Acquisto() {
@@ -34,11 +34,20 @@ public class Acquisto {
         this.dataAcquisto = dataAcquisto;
     }
 
+    public int getnMesi() {
+        return nMesi;
+    }
+
+    public void setnMesi(int nMesi) {
+        this.nMesi = nMesi;
+    }
+
     @Override
     public String toString() {
         return "Acquisto{" +
                 "utente='" + utente + '\'' +
                 ", codiceAbb=" + codiceAbb +
+                ", nMesi=" + nMesi +
                 ", dataAcquisto=" + dataAcquisto +
                 '}';
     }

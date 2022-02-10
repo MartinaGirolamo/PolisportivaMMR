@@ -30,6 +30,7 @@
     <div class="header-right">
         <a class="button" href="<%=contex%>/view/profilo.jsp"> <%=user.getNome()%></a>
     </div>
+
 </div>
 </body>
 </html>
