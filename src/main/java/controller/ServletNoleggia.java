@@ -2,9 +2,12 @@ package controller;
 
 import model.Attrezzatura.Attrezzatura;
 import model.Attrezzatura.AttrezzaturaDAO;
+import model.Noleggio.Noleggio;
+import model.Noleggio.NoleggioDAO;
 import model.Prenotazione.Prenotazione;
 import model.Utente.Utente;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,10 +27,34 @@ public class ServletNoleggia extends HttpServlet {
         Utente user=(Utente) req.getSession().getAttribute("user");
         String tipologia = list.get(0).getTipologia();
         String[] listaParametri =  req.getParameterValues(tipologia);
+        NoleggioDAO noleggioDAO = new NoleggioDAO();
 
         for (int i = 0; i < listaParametri.length; i++) {
+            Attrezzatura a = ad.getAttrezzaturaFromNome(listaParametri[i]);
+            String qtaString= req.getParameter(listaParametri[i]);
+            int qta = 0;
+            if(qtaString!=null) {
+                qta = Integer.parseInt(qtaString);
+            }
+            Noleggio n = new Noleggio();
+            n.setCodiceAttr(a.getCodice());
+            n.setCodicePren(prenotazione.getCodice());
+            n.setQta(qta);
+            System.out.println("codiceAttrezzatura: "+a.getCodice()+" codicePrenotazione: "+prenotazione.getCodice()+" qta: "+qta);
+            if(noleggioDAO.insertNoleggio(n)){
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/NoleggioEffettuato.jsp");
+                requestDispatcher.forward(req, resp);
+            }
+            else {
 
+                RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/Error500.jsp");
+                requestDispatcher.forward(req, resp);
+            }
         }
+
+
+
+
 
 
     }

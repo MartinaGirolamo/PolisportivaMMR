@@ -65,13 +65,14 @@ public class PrenotazioneDAO {
 
     public boolean insertPrenotazione(Prenotazione prenotazione){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO prenotazione ( oraStart, oraEnd, dateP, utente, campo, tariffaTotale ) VALUES (?,?,?,?,?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO prenotazione ( oraStart, oraEnd, dateP, utente, campo, tariffaTotale, codice ) VALUES (?,?,?,?,?,?,?);");
             ps.setInt(1,prenotazione.getOraStart());
             ps.setInt(2,prenotazione.getOraEnd());
             ps.setDate(3,prenotazione.getDateP());
             ps.setString(4,prenotazione.getEmail());
             ps.setString(5,prenotazione.getNomeCampo());
             ps.setFloat(6,prenotazione.getTariffaTotale());
+            ps.setInt(7,prenotazione.getCodice());
 
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;

@@ -45,14 +45,16 @@ public class NoleggioDAO {
             return  false;
     }
 
-    public Noleggio selectNoleggioByPrenotazione(String codicePrenotazione){
+    public Noleggio selectNoleggioByPrenotazione(int codicePrenotazione){
         try(Connection conn = ConPool.getConnection()){
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM noleggio WHERE codicePren='"+codicePrenotazione+"';");
             ResultSet set = ps.executeQuery();
                 Noleggio noleggio = new Noleggio();
-                noleggio.setCodiceAttr(set.getInt("codiceAttr"));
-                noleggio.setCodicePren(set.getInt("codicePren"));
-                noleggio.setQta(set.getInt("qta"));
+                while(set.next()) {
+                    noleggio.setCodiceAttr(set.getInt("codiceAttr"));
+                    noleggio.setCodicePren(set.getInt("codicePren"));
+                    noleggio.setQta(set.getInt("qta"));
+                }
                 return noleggio;
 
         }catch (SQLException e){

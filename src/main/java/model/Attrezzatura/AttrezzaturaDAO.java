@@ -100,5 +100,49 @@ public class AttrezzaturaDAO {
         }
         return list;
     }
+
+    public Attrezzatura getAttrezzaturaFromNome(String nome){
+        Attrezzatura attrezzatura = new Attrezzatura();
+        try(Connection conn= ConPool.getConnection()){
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM attrezzatura WHERE nome ='"+nome+"';");
+            ResultSet set = ps.executeQuery();
+
+            while(set.next()){
+
+                attrezzatura.setCodice(set.getInt("codice"));
+                attrezzatura.setNome(set.getString("nome"));
+                attrezzatura.setQta(set.getInt("qta"));
+                attrezzatura.setTariffa(set.getFloat("tariffa"));
+                attrezzatura.setPath(set.getString("path"));
+                attrezzatura.setTipologia(set.getString("tipologia"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       return attrezzatura;
+    }
+
+    public Attrezzatura getAttrezzaturaByCodice(int codice){
+        Attrezzatura attrezzatura = new Attrezzatura();
+        try(Connection conn= ConPool.getConnection()){
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM attrezzatura WHERE codice ="+codice+";");
+            ResultSet set = ps.executeQuery();
+
+            while(set.next()){
+
+                attrezzatura.setCodice(set.getInt("codice"));
+                attrezzatura.setNome(set.getString("nome"));
+                attrezzatura.setQta(set.getInt("qta"));
+                attrezzatura.setTariffa(set.getFloat("tariffa"));
+                attrezzatura.setPath(set.getString("path"));
+                attrezzatura.setTipologia(set.getString("tipologia"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return attrezzatura;
+    }
 }
 

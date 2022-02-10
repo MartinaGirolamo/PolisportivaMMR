@@ -20,7 +20,7 @@ CREATE TABLE Campo(
 );
 
 CREATE TABLE Prenotazione(
-                             codice int AUTO_INCREMENT PRIMARY KEY,
+                             codice int PRIMARY KEY,
                              oraStart int NOT NULL,
                              oraEnd 	int NOT NULL,
                              dateP datetime NOT NULL,
@@ -33,7 +33,6 @@ CREATE TABLE Prenotazione(
 
 CREATE TABLE Abbonamento(
                             codice int AUTO_INCREMENT PRIMARY KEY,
-                            mesi int NOT NULL,
                             tariffa float NOT NULL,
                             tipologia varchar(20) NOT NULL
 );
@@ -52,6 +51,7 @@ CREATE TABLE Acquisto(
                          utente varchar(40) NOT NULL,
                          codiceAbb int NOT NULL,
                          dataAcquisto datetime NOT NULL,
+                         nMesi int NOT NULL,
                          FOREIGN KEY (utente) references Utente (email),
                          FOREIGN KEY (codiceAbb) references Abbonamento (codice),
                          CONSTRAINT codAcq PRIMARY KEY (utente,codiceAbb,dataAcquisto)
@@ -76,32 +76,16 @@ insert into Campo(nome,descrizione,tariffa,numGiocatori) values
 ('Tennis','IL CAMPO È GRANDE 24 X 10 SINTETICO',10,4),
 ('Pallavolo','IL CAMPO È GRANDE 18 X 9. ALTEZZA RETE REGOLABILE, SI TROVA AL CHIUSO',15,12);
 
-insert into Prenotazione(oraStart,oraEnd,dateP,utente,campo, tariffaTotale ) values
-(10,12,'2022-02-12','rosabianchi@gmail.com','Pallavolo',30),
-(15,16,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15),
-(19,20,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15);
+insert into Abbonamento (tariffa,tipologia) value
+    (30,'calcio'),
+    (30,'tennis'),
+    (30,'pallavolo'),
+    (30,'palestra');
 
-insert into Abbonamento (mesi,tariffa,tipologia) value
-(1,30,'calcio'),
-(3,30,'calcio'),
-(6,30,'calcio'),
-(12,30,'calcio'),
-(24,30,'calcio'),
-(1,30,'tennis'),
-(3,30,'tennis'),
-(6,30,'tennis'),
-(12,30,'tennis'),
-(24,30,'tennis'),
-(1,30,'pallavolo'),
-(3,30,'pallavolo'),
-(6,30,'pallavolo'),
-(12,30,'pallavolo'),
-(24,30,'pallavolo'),
-(1,30,'palestra'),
-(3,30,'palestra'),
-(6,30,'palestra'),
-(12,30,'palestra'),
-(24,30,'palestra');
+insert into Prenotazione(codice, oraStart,oraEnd,dateP,utente,campo, tariffaTotale ) values
+(1,10,12,'2022-02-12','rosabianchi@gmail.com','Pallavolo',30),
+(2,15,16,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15),
+(3,19,20,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15);
 
 
 insert into Attrezzatura (nome,qta,tariffa,path,tipologia) value

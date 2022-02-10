@@ -1,4 +1,10 @@
-<%@ page import="model.Utente.Utente" %><%--
+<%@ page import="model.Utente.Utente" %>
+<%@ page import="model.Prenotazione.Prenotazione" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Attrezzatura.Attrezzatura" %>
+<%@ page import="model.Abbonamento.AbbonamentoDAO" %>
+<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %>
+<%@ page import="model.Prenotazione.PrenotazioneDAO" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 08/02/22
@@ -52,12 +58,17 @@
     </style>
     <%String contex=request.getContextPath();%>
     <%
+        Prenotazione prenotazione = (Prenotazione) request.getSession().getAttribute("prenotazioneEffettuata");
+        AttrezzaturaDAO ad = new AttrezzaturaDAO();
+        ArrayList<Attrezzatura> list = ad.selectAttrezzaturaByTipologia(prenotazione.getNomeCampo());
         Utente user=(Utente) request.getSession().getAttribute("user");
+
+
     %>
 </head>
 <body>
 
-<% if(user==null){%>
+<% if(user==null || user.getEmail()==null){%>
 <jsp:include page="/view/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
@@ -68,24 +79,22 @@ else if(!user.isIs_Admin()){%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
+
+<form action="../ServletNoleggia" method="post">
     <div class="container">
+        <%for (Attrezzatura a: list)
+                  {%>
         <div class="element">
-            <img src="../immagini/guanti.jpg" width="100px" height="100px">
-            <label>Guantoni</label>
-            <input type="checkbox" id="guanti" name="calcio">
+            <img src="<%="../"+a.getPath()%>" width="100px" height="100px">
+            <label><%=a.getNome()%></label>
+            <input type="checkbox" id="<%=a.getNome()%>" name="<%=a.getTipologia()%>" value="<%=a.getNome()%>">
+            <label for="quantity<%=a.getNome()%>"> Inserire quantità:</label>
+            <input type="number" name="<%=a.getNome()%>" id="quantity<%=a.getNome()%>" min="1" max="<%=a.getQta()%>">
         </div>
-        <div class="element">
-            <img src="..immagini/palloneCalcio.jpg" width="100px" height="100px">
-            <label>Pallone</label>
-            <input type="checkbox" id="pallone" name="calcio">
-        </div>
-        <div class="element">
-            <img src="/immagini/casacca.jpg" width="100px" height="100px">
-            <label>Casacca</label>
-            <input type="checkbox" id="casacca" name="calcio">
-        </div>
+        <%}%>
     </div>
     <input type="submit" onclick="" id="subBtn" value="Noleggia">
+</form>
 
 <jsp:include page="/view/footer.jsp">
     <jsp:param name="title" value=""/>

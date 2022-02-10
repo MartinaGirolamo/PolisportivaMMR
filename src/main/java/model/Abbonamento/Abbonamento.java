@@ -2,7 +2,7 @@ package model.Abbonamento;
 
 public class Abbonamento {
     private String tipologia;
-    private int mesi, codice;
+    private int codice;
     private float tariffa;
 
     public Abbonamento(){}
@@ -21,14 +21,6 @@ public class Abbonamento {
 
     public void setTipologia(String tipologia) {
         this.tipologia = tipologia;
-    }
-
-    public int getMesi() {
-        return mesi;
-    }
-
-    public void setMesi(int mesi) {
-        this.mesi = mesi;
     }
 
     public float getTariffa() {

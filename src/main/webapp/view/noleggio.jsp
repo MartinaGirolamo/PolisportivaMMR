@@ -3,7 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Attrezzatura.Attrezzatura" %>
 <%@ page import="model.Abbonamento.AbbonamentoDAO" %>
-<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %><%--
+<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %>
+<%@ page import="model.Prenotazione.PrenotazioneDAO" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 08/02/22
@@ -62,6 +63,7 @@
         ArrayList<Attrezzatura> list = ad.selectAttrezzaturaByTipologia(prenotazione.getNomeCampo());
         Utente user=(Utente) request.getSession().getAttribute("user");
 
+
     %>
 </head>
 <body>
@@ -85,7 +87,9 @@ else if(!user.isIs_Admin()){%>
         <div class="element">
             <img src="<%="../"+a.getPath()%>" width="100px" height="100px">
             <label><%=a.getNome()%></label>
-            <input type="checkbox" id="<%=a.getNome()%>" name="<%=a.getTipologia()%>">
+            <input type="checkbox" id="<%=a.getNome()%>" name="<%=a.getTipologia()%>" value="<%=a.getNome()%>">
+            <label for="quantity<%=a.getNome()%>"> Inserire quantità:</label>
+            <input type="number" name="<%=a.getNome()%>" id="quantity<%=a.getNome()%>" min="1" max="<%=a.getQta()%>">
         </div>
         <%}%>
     </div>

@@ -1,4 +1,16 @@
-<%@ page import="model.Utente.Utente" %><%--
+<%@ page import="model.Utente.Utente" %>
+<%@ page import="model.Prenotazione.PrenotazioneDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Prenotazione.Prenotazione" %>
+<%@ page import="model.Prenotazione.PrenotazioneDisponibile" %>
+<%@ page import="model.Acquisto.AcquistoDAO" %>
+<%@ page import="model.Acquisto.Acquisto" %>
+<%@ page import="model.Abbonamento.AbbonamentoDAO" %>
+<%@ page import="model.Abbonamento.Abbonamento" %>
+<%@ page import="model.Noleggio.Noleggio" %>
+<%@ page import="model.Noleggio.NoleggioDAO" %>
+<%@ page import="model.Attrezzatura.Attrezzatura" %>
+<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 08/02/22
@@ -52,8 +64,32 @@
             background-color: grey;
 
         }
+
+        table {
+            margin-bottom: 20px;
+            margin-top: 100px;
+            margin-left: 20px;
+            border-collapse: collapse;
+            width: 97%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {background-color: #8c8888;}
+
+
         <%
        Utente user=(Utente) request.getSession().getAttribute("user");
+       PrenotazioneDAO pd = new PrenotazioneDAO();
+       ArrayList<Prenotazione> elencoPrenotazioni = pd.selectPrenotazioneByUtente(user.getEmail());
+       AcquistoDAO ad = new AcquistoDAO();
+       NoleggioDAO noleggioDAO = new NoleggioDAO();
+       AttrezzaturaDAO attrezzaturaDAO= new AttrezzaturaDAO();
+       ArrayList<Acquisto> listAcquisto = ad.selectAcquistoByUtente(user.getEmail());
+       AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO();
    %>
     </style>
 </head>
@@ -70,31 +106,111 @@ else if(!user.isIs_Admin()){%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
+<form action="../ServletCambiaPassword" method="post">
     <div class="container">
         <div class="element1">
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
-                <label>Modifica nome utente</label>
-                <input type="text" placeholder="Inserisci nuovo nome utente">
-                <input type="submit" class="subBtn">
-            </div>
-            <div class="element3">
                 <label>Modifica password</label>
-                <input type="text" placeholder="Inserisci password attuale" required>
-                <input type="text" placeholder="Inserisci nuova password" required>
-                <input type="text" placeholder="Verifica nuova password" required>
+                <input type="text" name="passwordAttuale" placeholder="Inserisci password attuale" required>
+                <input type="text" name="nuovaPassword" placeholder="Inserisci nuova password" required>
+                <input type="text" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>
                 <input type="submit" class="subBtn">
             </div>
         </div>
+
+
         <div class="element2">
-            <h2><label>Ciao *nome*</label></h2>
+            <h2><label>Ciao <%=user.getNome()%> !</label></h2>
             <p>I tuoi Dati:</p>
-            <label>Nome Utente: </label>
-            <label>Nome: </label>
-            <label>Cognome </label>
-            <label>Email: </label>
+            <label>Nome: <%=user.getNome()%> </label>
+            <label>Cognome <%=user.getCognome()%> </label>
+            <label>Email: <%=user.getEmail()%> </label>
+
+
+
         </div>
     </div>
+
+</form>
+<div class="element2">
+<form action="../ServletLogout" method="get">
+    <div class="header-right">
+        <button type="submit" class="button" onclick="">Logout</button>
+    </div>
+</form>
+</div>
+
+<h2>LE MIE PRENOTAZIONI</h2>
+<table>
+    <tr>
+        <th>CODICE PRENOTAZIONE</th>
+        <th>CAMPO</th>
+        <th>DATA</th>
+        <th>TARIFFA</th>
+        <th>ORA START</th>
+        <th>ORA END</th>
+    </tr>
+    <%for(int i = 0; i<elencoPrenotazioni.size();i++){
+        Prenotazione p = elencoPrenotazioni.get(i);%>
+
+    <tr>
+        <td><%=p.getCodice()%></td>
+        <td><%=p.getNomeCampo()%></td>
+        <td><%=p.getDateP()%></td>
+        <td><%=p.getTariffaTotale()%></td>
+        <td><%=p.getOraStart()%></td>
+        <td><%=p.getOraEnd()%></td>
+    </tr>
+    <%}%>
+</table>
+
+<h2>NOLEGGI </h2>
+<table>
+    <tr>
+        <th>CODICE PRENOTAZIONE</th>
+        <th>NOME ATTREZZATURA</th>
+        <th>QUANTITA</th>
+        <th>TARIFFA TOTALE</th>
+    </tr>
+    <%for (int i = 0; i<elencoPrenotazioni.size();i++){
+        Prenotazione p = elencoPrenotazioni.get(i);
+          Noleggio n =  noleggioDAO.selectNoleggioByPrenotazione(p.getCodice());
+          if(n!=null && n.getCodiceAttr()!=0){
+          Attrezzatura attrezzatura = attrezzaturaDAO.getAttrezzaturaByCodice(n.getCodiceAttr());%>
+    <tr>
+        <td><%=p.getCodice()%></td>
+        <td><%=attrezzatura.getNome()%></td>
+        <td><%=n.getQta()%></td>
+        <td><%=n.getQta()* attrezzatura.getTariffa()%></td>
+    </tr>
+    <%}}%>
+</table>
+
+<h2>I MIEI ABBONAMENTI</h2>
+<table>
+    <tr>
+        <th>TIPOLOGIA</th>
+        <th>DATA ACQUISTO</th>
+        <th>NUMERO MESI</th>
+        <th>TARIFFA TOTALE</th>
+    </tr>
+    <%for(int i = 0; i<listAcquisto.size();i++){
+       Acquisto acq = listAcquisto.get(i);
+        Abbonamento a = abbonamentoDAO.selectAbbonamentoByCodice(acq.getCodiceAbb());%>
+
+    <tr>
+        <td><%=a.getTipologia()%></td>
+        <td><%=acq.getDataAcquisto()%></td>
+        <td><%=acq.getnMesi()%></td>
+        <td><%=a.getTariffa()* acq.getnMesi()%></td>
+    </tr>
+    <%}%>
+</table>
+
+
+
+
 <jsp:include page="/view/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>

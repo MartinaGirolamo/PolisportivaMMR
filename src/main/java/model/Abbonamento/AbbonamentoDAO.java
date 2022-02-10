@@ -22,7 +22,6 @@ public class AbbonamentoDAO {
             abbonamento.setCodice(set.getInt("codice"));
             abbonamento.setTipologia(set.getString("tipologia"));
             abbonamento.setTariffa(set.getFloat("tariffa"));
-            abbonamento.setMesi(set.getInt("mesi"));
             list.add(abbonamento);
 
             }
@@ -47,10 +46,9 @@ public class AbbonamentoDAO {
 
     public boolean insertAbbonamento(Abbonamento abbonamento){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO abbonamento ( mesi, tariffa, tipologia ) VALUES (?,?,?);");
-            ps.setInt(1,abbonamento.getMesi());
-            ps.setFloat(2,abbonamento.getTariffa());
-            ps.setString(3, abbonamento.getTipologia());
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO abbonamento ( tariffa, tipologia ) VALUES (?,?);");
+            ps.setFloat(1,abbonamento.getTariffa());
+            ps.setString(2, abbonamento.getTipologia());
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
             else return true;
@@ -60,22 +58,40 @@ public class AbbonamentoDAO {
         return false;
     }
 
-    public Abbonamento selectAbbonamentoByTipologiaAndMesi(String tipologia, int mesi){
+    public Abbonamento selectAbbonamentoByTipologia(String tipologia){
         Abbonamento a = new Abbonamento();
         try(Connection conn = ConPool.getConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Abbonamento WHERE tipologia='"+tipologia+"' AND mesi= '"+mesi+"';");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Abbonamento WHERE tipologia='"+tipologia+"';");
             ResultSet set = ps.executeQuery();
             while (set.next()){
                 a.setCodice(set.getInt("codice"));
                 a.setTipologia(set.getString("tipologia"));
                 a.setTariffa(set.getFloat("tariffa"));
-                a.setMesi(set.getInt("mesi"));
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return a;
+    }
+
+    public Abbonamento selectAbbonamentoByCodice(int codice){
+        Abbonamento abbonamento = new Abbonamento();
+        try(Connection conn = ConPool.getConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Abbonamento WHERE codice="+codice+";");
+            ResultSet set = ps.executeQuery();
+            while (set.next()){
+
+                abbonamento.setCodice(set.getInt("codice"));
+                abbonamento.setTipologia(set.getString("tipologia"));
+                abbonamento.setTariffa(set.getFloat("tariffa"));
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return abbonamento;
     }
 
 

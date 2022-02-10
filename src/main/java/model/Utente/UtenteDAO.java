@@ -90,10 +90,8 @@ public class UtenteDAO {
 
     public boolean updateUtente(Utente utente){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("UPDATE utente SET  ( psword=?) WHERE  (email=?);");
-
-            ps.setString(1,utente.getPsword());
-
+            PreparedStatement ps= conn.prepareStatement("UPDATE utente SET pword='"+utente.getPsword()+"'WHERE email='"+utente.getEmail()+"';");
+            System.out.println(utente);
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
             else return true;
@@ -101,6 +99,28 @@ public class UtenteDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public boolean checkPassword(Utente u, String vecchiaPassword){
+        Utente utenteRitorno =new Utente();
+        try(Connection conn=ConPool.getConnection()) {
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM UTENTE where email='"+u.getEmail()+"' and pword='"+vecchiaPassword+"'");
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                utenteRitorno.setEmail(set.getString("email"));
+                System.out.println(utenteRitorno.getEmail());
+                utenteRitorno.setIs_Admin(set.getBoolean("is_admin"));//IfAdmin in parentesi è quello del database (NOME)
+                utenteRitorno.setPsword(set.getString("pword"));
+                utenteRitorno.setNome(set.getString("nome"));
+                utenteRitorno.setCognome(set.getString("cognome"));
+                utenteRitorno.setDateN(set.getString("dateN"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(utenteRitorno.getPsword()!=null)return true;
+        else return false;
     }
 
 
