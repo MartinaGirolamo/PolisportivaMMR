@@ -10,9 +10,7 @@
     padding: 20px 10px;
     display: flex;
     border-bottom: 1px solid;
-    background: linear-gradient(
-            90deg
-            , rgba(2,0,36,1) 0%, rgba(228,33,33,1) 29%, rgba(255,233,0,1) 100%);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(210,39,39,1) 97%, rgba(255,255,255,1) 100%);
 }
 
 
