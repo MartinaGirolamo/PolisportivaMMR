@@ -20,7 +20,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Profilo</title>
+    <title>Profilo admin</title>
     <style>
         .container{
             display: flex;
@@ -106,11 +106,9 @@ else if(!user.isIs_Admin()){%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
-
+<form action="../ServletCambiaPassword" method="post">
     <div class="container">
-
         <div class="element1">
-            <form action="../ServletCambiaPassword" method="post">
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
                 <label>Modifica password</label>
@@ -119,19 +117,17 @@ else if(!user.isIs_Admin()){%>
                 <input type="text" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>
                 <input type="submit" class="subBtn">
             </div>
-            </form>
         </div>
 
 
-
         <div class="element2">
-            <h2><label>Ciao <%=user.getNome()%> !</label></h2>
+            <h2><label>Ciao Admin <%=user.getNome()%> !</label></h2>
             <p>I tuoi Dati:</p>
             <label>Nome: <%=user.getNome()%> </label>
             <label>Cognome <%=user.getCognome()%> </label>
             <label>Email: <%=user.getEmail()%> </label>
             <form action="../ServletLogout" method="get">
-                    <button type="submit" class="subBtn" onclick="">Logout</button>
+                <button type="submit" class="subBtn" onclick="">Logout</button>
 
             </form>
 
@@ -139,8 +135,12 @@ else if(!user.isIs_Admin()){%>
         </div>
     </div>
 
+</form>
+<div class="element2">
 
-<h2>LE MIE PRENOTAZIONI</h2>
+</div>
+
+<h2>TUTTE LE PRENOTAZIONI</h2>
 <table>
     <tr>
         <th>CODICE PRENOTAZIONE</th>
@@ -164,7 +164,7 @@ else if(!user.isIs_Admin()){%>
     <%}%>
 </table>
 
-<h2>NOLEGGI </h2>
+<h2>TUTTI I NOLEGGI </h2>
 <table>
     <tr>
         <th>CODICE PRENOTAZIONE</th>
@@ -174,9 +174,9 @@ else if(!user.isIs_Admin()){%>
     </tr>
     <%for (int i = 0; i<elencoPrenotazioni.size();i++){
         Prenotazione p = elencoPrenotazioni.get(i);
-          Noleggio n =  noleggioDAO.selectNoleggioByPrenotazione(p.getCodice());
-          if(n!=null && n.getCodiceAttr()!=0){
-          Attrezzatura attrezzatura = attrezzaturaDAO.getAttrezzaturaByCodice(n.getCodiceAttr());%>
+        Noleggio n =  noleggioDAO.selectNoleggioByPrenotazione(p.getCodice());
+        if(n!=null && n.getCodiceAttr()!=0){
+            Attrezzatura attrezzatura = attrezzaturaDAO.getAttrezzaturaByCodice(n.getCodiceAttr());%>
     <tr>
         <td><%=p.getCodice()%></td>
         <td><%=attrezzatura.getNome()%></td>
@@ -186,7 +186,7 @@ else if(!user.isIs_Admin()){%>
     <%}}%>
 </table>
 
-<h2>I MIEI ABBONAMENTI</h2>
+<h2>TUTTI GLI ABBONAMENTI</h2>
 <table>
     <tr>
         <th>TIPOLOGIA</th>
@@ -195,7 +195,7 @@ else if(!user.isIs_Admin()){%>
         <th>TARIFFA TOTALE</th>
     </tr>
     <%for(int i = 0; i<listAcquisto.size();i++){
-       Acquisto acq = listAcquisto.get(i);
+        Acquisto acq = listAcquisto.get(i);
         Abbonamento a = abbonamentoDAO.selectAbbonamentoByCodice(acq.getCodiceAbb());%>
 
     <tr>
