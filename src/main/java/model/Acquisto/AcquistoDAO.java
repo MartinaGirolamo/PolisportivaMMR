@@ -10,6 +10,26 @@ public class AcquistoDAO {
 
     public AcquistoDAO(){}
 
+    public ArrayList<Acquisto> selectAllAcquisti(){
+        ArrayList<Acquisto> list = new ArrayList<>();
+        try(Connection conn = ConPool.getConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Acquisto;");
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                Acquisto acquisto = new Acquisto();
+                acquisto.setDataAcquisto(set.getDate("dataAcquisto"));
+                acquisto.setUtente(set.getString("utente"));
+                acquisto.setCodiceAbb(set.getInt("codiceAbb"));
+                acquisto.setnMesi(set.getInt("nMesi"));
+                list.add(acquisto);
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public ArrayList<Acquisto> selectAcquistoByUtente(String email){
         ArrayList<Acquisto> list = new ArrayList<>();
         try(Connection conn = ConPool.getConnection()){

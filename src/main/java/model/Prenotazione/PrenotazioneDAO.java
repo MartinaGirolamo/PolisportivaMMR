@@ -40,6 +40,31 @@ public class PrenotazioneDAO {
         return list;
     }
 
+    public ArrayList<Prenotazione> selectAllPrenotazioni (){
+        ArrayList<Prenotazione> list = new ArrayList<>();
+        try(Connection conn= ConPool.getConnection()){
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione;");
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                Prenotazione prenotazione = new Prenotazione();
+                prenotazione.setDateP(set.getDate("dateP"));
+                prenotazione.setOraStart(set.getInt("oraStart"));
+                prenotazione.setOraEnd(set.getInt("oraEnd"));
+                prenotazione.setCodice(set.getInt("codice"));
+                prenotazione.setNomeCampo(set.getString("campo"));
+                prenotazione.setEmail(set.getString("utente"));
+                prenotazione.setTariffaTotale(set.getFloat("tariffaTotale"));
+
+                list.add(prenotazione);
+                prenotazione.toString();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
     public ArrayList<Prenotazione> selectPrenotazioneByUtente (String email){
         ArrayList<Prenotazione> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){

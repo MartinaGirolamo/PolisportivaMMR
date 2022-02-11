@@ -10,7 +10,9 @@
 <%@ page import="model.Noleggio.Noleggio" %>
 <%@ page import="model.Noleggio.NoleggioDAO" %>
 <%@ page import="model.Attrezzatura.Attrezzatura" %>
-<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %><%--
+<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %>
+<%@ page import="model.Utente.UtenteDAO" %>
+<%@ page import="com.mysql.cj.x.protobuf.MysqlxDatatypes" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 08/02/22
@@ -92,12 +94,16 @@
         <%
        Utente user=(Utente) request.getSession().getAttribute("user");
        PrenotazioneDAO pd = new PrenotazioneDAO();
-       ArrayList<Prenotazione> elencoPrenotazioni = pd.selectPrenotazioneByUtente(user.getEmail());
-       AcquistoDAO ad = new AcquistoDAO();
-       NoleggioDAO noleggioDAO = new NoleggioDAO();
-       AttrezzaturaDAO attrezzaturaDAO= new AttrezzaturaDAO();
-       ArrayList<Acquisto> listAcquisto = ad.selectAcquistoByUtente(user.getEmail());
        AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO();
+       AcquistoDAO ad = new AcquistoDAO();
+       AttrezzaturaDAO attrezzaturaDAO= new AttrezzaturaDAO();
+       NoleggioDAO noleggioDAO = new NoleggioDAO();
+       UtenteDAO utenteDAO= new UtenteDAO();
+       ArrayList<Prenotazione> elencoPrenotazioni = pd.selectAllPrenotazioni();
+       ArrayList<Utente> elencoUtenti = utenteDAO.selectAllUtenti();
+       ArrayList<Acquisto> listAcquisto = ad.selectAllAcquisti(); //acquistiAbbonamenti
+       ArrayList<Noleggio> listaNoleggi = noleggioDAO.selectAllNoleggio();
+
    %>
     </style>
 </head>
@@ -145,11 +151,101 @@ else if(!user.isIs_Admin()){%>
 
 </form>
 <div class="element4">
-    <input type="button" onclick="" value="Prenotazioni effettuate" class="subBtn">
-    <input type="button" onclick="" value="Abbonamenti acquistati" class="subBtn">
-    <input type="button" onclick="" value="Noleggi effettuati" class="subBtn">
+    <input type="button" onclick="mostraPrenotazioni()" value="Prenotazioni effettuate" class="subBtn">
+    <input type="button" onclick="mostraAbbonamenti()" value="Abbonamenti acquistati" class="subBtn">
+    <input type="button" onclick="mostraNoleggi()" value="Noleggi effettuati" class="subBtn">
+    <input type="button" onclick="mostraUtenti()" value="Utenti" class="subBtn">
 </div>
 
+<script>
+    function mostraPrenotazioni() {
+        var disPrenotazioni = document.getElementById('prenotazioni');
+        var disAbbonamenti = document.getElementById('abbonamenti');
+        var disNoleggi = document.getElementById('noleggi');
+        var disUtenti = document.getElementById('utenti');
+
+        disPrenotazioni.style.visibility = 'visible';
+        disAbbonamenti.style.visibility = 'hidden';
+        disNoleggi.style.visibility = 'hidden';
+        disUtenti.style.visibility = 'hidden';
+    }
+
+    function mostraAbbonamenti() {
+        var disPrenotazioni = document.getElementById('prenotazioni');
+        var disAbbonamenti = document.getElementById('abbonamenti');
+        var disNoleggi = document.getElementById('noleggi');
+        var disUtenti = document.getElementById('utenti');
+
+        disAbbonamenti.style.visibility ='visible';
+        disPrenotazioni.style.display = 'hidden';
+        disNoleggi.style.display = 'hidden';
+        disUtenti.style.display = 'hidden';
+    }
+
+    function mostraNoleggi() {
+        var disPrenotazioni = document.getElementById('prenotazioni');
+        var disAbbonamenti = document.getElementById('abbonamenti');
+        var disNoleggi = document.getElementById('noleggi');
+        var disUtenti = document.getElementById('utenti');
+
+        disNoleggi.style.display = 'inline';
+        disAbbonamenti.style.display = 'none';
+        disPrenotazioni.style.display = 'none';
+        disUtenti.style.display = 'none';
+    }
+
+    function mostraUtenti() {
+        var disPrenotazioni = document.getElementById('prenotazioni');
+        var disAbbonamenti = document.getElementById('abbonamenti');
+        var disNoleggi = document.getElementById('noleggi');
+        var disUtenti = document.getElementById('utenti');
+
+        disUtenti.style.display = 'inline';
+        disAbbonamenti.style.display = 'none';
+        disNoleggi.style.display = 'none';
+        disPrenotazioni.style.display = 'none';
+    }
+</script>
+
+
+<div id="prenotazioni" style="visibility: hidden">
+    <p>PRENOTAZIONI EFFETTUATE</p>
+    <table>
+        <tr>
+            <th>UTENTE </th>
+            <th>CODICE PRENOTAZIONE</th>
+            <th>CAMPO</th>
+            <th>DATA</th>
+            <th>TARIFFA</th>
+            <th>ORA START</th>
+            <th>ORA END</th>
+        </tr>
+
+<%
+    for (Prenotazione p: elencoPrenotazioni) { %>
+        <tr>
+            <td><%=p.getEmail()%></td>
+            <td><%=p.getCodice()%></td>
+            <td><%=p.getNomeCampo()%></td>
+            <td><%=p.getDateP()%></td>
+            <td><%=p.getTariffaTotale()%></td>
+            <td><%=p.getOraStart()%></td>
+            <td><%=p.getOraEnd()%></td>
+        </tr>
+   <% }%>
+</div>
+
+<div id="abbonamenti">
+<p>ABBONAMENTI ACQUISTATI</p>
+</div>
+
+<div id="noleggi"  >
+    <p>NOLEGGI EFFETTUATI</p>
+</div>
+
+<div id="utenti" >
+    <p>UTENTE</p>
+</div>
 
 
 <jsp:include page="/view/footer.jsp">
