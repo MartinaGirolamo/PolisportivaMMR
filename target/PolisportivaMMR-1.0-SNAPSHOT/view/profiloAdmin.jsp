@@ -136,9 +136,7 @@ else if(!user.isIs_Admin()){%>
     </div>
 
 </form>
-<div class="element2">
 
-</div>
 
 <h2>TUTTE LE PRENOTAZIONI</h2>
 <table>
