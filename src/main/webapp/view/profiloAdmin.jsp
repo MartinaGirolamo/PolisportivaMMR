@@ -36,7 +36,6 @@
             border-radius: 50px;
             display: flex;
             flex-direction: column;
-            padding: 20px;
             align-items: center;
             margin: auto;
         }
@@ -58,13 +57,22 @@
             text-decoration:none;
             transition: 0.6s ease;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         .subBtn:hover{
             background-color: grey;
 
         }
+        .element4{
+            display: flex;
+            justify-content: center;
 
+        }
+        .element4 *{
+            margin: 10px;
+            padding: 5px 10px 5px 10px;
+        }
         table {
             margin-bottom: 20px;
             margin-top: 100px;
@@ -136,75 +144,11 @@ else if(!user.isIs_Admin()){%>
     </div>
 
 </form>
-
-
-<h2>TUTTE LE PRENOTAZIONI</h2>
-<table>
-    <tr>
-        <th>CODICE PRENOTAZIONE</th>
-        <th>CAMPO</th>
-        <th>DATA</th>
-        <th>TARIFFA</th>
-        <th>ORA START</th>
-        <th>ORA END</th>
-    </tr>
-    <%for(int i = 0; i<elencoPrenotazioni.size();i++){
-        Prenotazione p = elencoPrenotazioni.get(i);%>
-
-    <tr>
-        <td><%=p.getCodice()%></td>
-        <td><%=p.getNomeCampo()%></td>
-        <td><%=p.getDateP()%></td>
-        <td><%=p.getTariffaTotale()%></td>
-        <td><%=p.getOraStart()%></td>
-        <td><%=p.getOraEnd()%></td>
-    </tr>
-    <%}%>
-</table>
-
-<h2>TUTTI I NOLEGGI </h2>
-<table>
-    <tr>
-        <th>CODICE PRENOTAZIONE</th>
-        <th>NOME ATTREZZATURA</th>
-        <th>QUANTITA</th>
-        <th>TARIFFA TOTALE</th>
-    </tr>
-    <%for (int i = 0; i<elencoPrenotazioni.size();i++){
-        Prenotazione p = elencoPrenotazioni.get(i);
-        Noleggio n =  noleggioDAO.selectNoleggioByPrenotazione(p.getCodice());
-        if(n!=null && n.getCodiceAttr()!=0){
-            Attrezzatura attrezzatura = attrezzaturaDAO.getAttrezzaturaByCodice(n.getCodiceAttr());%>
-    <tr>
-        <td><%=p.getCodice()%></td>
-        <td><%=attrezzatura.getNome()%></td>
-        <td><%=n.getQta()%></td>
-        <td><%=n.getQta()* attrezzatura.getTariffa()%></td>
-    </tr>
-    <%}}%>
-</table>
-
-<h2>TUTTI GLI ABBONAMENTI</h2>
-<table>
-    <tr>
-        <th>TIPOLOGIA</th>
-        <th>DATA ACQUISTO</th>
-        <th>NUMERO MESI</th>
-        <th>TARIFFA TOTALE</th>
-    </tr>
-    <%for(int i = 0; i<listAcquisto.size();i++){
-        Acquisto acq = listAcquisto.get(i);
-        Abbonamento a = abbonamentoDAO.selectAbbonamentoByCodice(acq.getCodiceAbb());%>
-
-    <tr>
-        <td><%=a.getTipologia()%></td>
-        <td><%=acq.getDataAcquisto()%></td>
-        <td><%=acq.getnMesi()%></td>
-        <td><%=a.getTariffa()* acq.getnMesi()%></td>
-    </tr>
-    <%}%>
-</table>
-
+<div class="element4">
+    <input type="button" onclick="" value="Prenotazioni effettuate" class="subBtn">
+    <input type="button" onclick="" value="Abbonamenti acquistati" class="subBtn">
+    <input type="button" onclick="" value="Noleggi effettuati" class="subBtn">
+</div>
 
 
 
