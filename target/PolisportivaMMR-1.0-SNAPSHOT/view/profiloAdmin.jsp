@@ -10,7 +10,9 @@
 <%@ page import="model.Noleggio.Noleggio" %>
 <%@ page import="model.Noleggio.NoleggioDAO" %>
 <%@ page import="model.Attrezzatura.Attrezzatura" %>
-<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %><%--
+<%@ page import="model.Attrezzatura.AttrezzaturaDAO" %>
+<%@ page import="model.Utente.UtenteDAO" %>
+<%@ page import="com.mysql.cj.x.protobuf.MysqlxDatatypes" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 08/02/22
@@ -36,7 +38,6 @@
             border-radius: 50px;
             display: flex;
             flex-direction: column;
-            padding: 20px;
             align-items: center;
             margin: auto;
         }
@@ -58,6 +59,7 @@
             text-decoration:none;
             transition: 0.6s ease;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         .subBtn:hover{
@@ -90,33 +92,26 @@
 
 
         <%
+        String context = request.getContextPath();
        Utente user=(Utente) request.getSession().getAttribute("user");
-       PrenotazioneDAO pd = new PrenotazioneDAO();
-       ArrayList<Prenotazione> elencoPrenotazioni = pd.selectPrenotazioneByUtente(user.getEmail());
-       AcquistoDAO ad = new AcquistoDAO();
-       NoleggioDAO noleggioDAO = new NoleggioDAO();
-       AttrezzaturaDAO attrezzaturaDAO= new AttrezzaturaDAO();
-       ArrayList<Acquisto> listAcquisto = ad.selectAcquistoByUtente(user.getEmail());
-       AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO();
    %>
     </style>
 </head>
 <body>
 
-<% if(user==null){%>
-<jsp:include page="/view/headerNotLog.jsp">
-    <jsp:param name="title" value=""/>
-</jsp:include>
-<%}
+<% if(user==null||!user.isIs_Admin()|| user.getEmail()==null  ){
+    RequestDispatcher requestDispatcher= request.getRequestDispatcher("Error500.jsp");
+    requestDispatcher.forward(request, response);}%>
 
-else if(!user.isIs_Admin()){%>
 <jsp:include page="/view/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
-<%}%>
-<form action="../ServletCambiaPassword" method="post">
+
+
     <div class="container">
+
         <div class="element1">
+            <form action="../ServletCambiaPassword" method="post">
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
                 <label>Modifica password</label>
@@ -125,6 +120,7 @@ else if(!user.isIs_Admin()){%>
                 <input type="text" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>
                 <input type="submit" class="subBtn">
             </div>
+            </form>
         </div>
 
 
@@ -136,19 +132,18 @@ else if(!user.isIs_Admin()){%>
             <label>Email: <%=user.getEmail()%> </label>
             <form action="../ServletLogout" method="get">
                 <button type="submit" class="subBtn" onclick="">Logout</button>
-
             </form>
-
-
         </div>
     </div>
 
-</form>
+
 <div class="element4">
-    <input type="button" onclick="" value="Prenotazioni effettuate" class="subBtn">
-    <input type="button" onclick="" value="Abbonamenti acquistati" class="subBtn">
-    <input type="button" onclick="" value="Noleggi effettuati" class="subBtn">
+    <a class="subBtn" href="<%=context%>/view/prenotazioniEffettuateAdmin.jsp">MOSTRA PRENOTAZIONI EFFETTUATE</a>
+    <a class="subBtn" href="<%=context%>/view/noleggiEffettuatiAdmin.jsp">MOSTRA NOLEGGI EFFETTUATI</a>
+    <a class="subBtn" href="<%=context%>/view/abbonamentiAcquistatiAdmin.jsp">MOSTRA ACQUISTI EFFETTUATI</a>
+    <a class="subBtn" href="<%=context%>/view/mostraUtentiAdmin.jsp">MOSTRA UTENTI</a>
 </div>
+
 
 
 

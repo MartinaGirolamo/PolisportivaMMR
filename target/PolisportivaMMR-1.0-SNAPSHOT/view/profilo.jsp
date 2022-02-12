@@ -36,7 +36,6 @@
             border-radius: 50px;
             display: flex;
             flex-direction: column;
-
             align-items: center;
             margin: auto;
         }
@@ -46,11 +45,12 @@
             padding: 20px;
             width: 50%;
         }
+
         .element4{
             display: flex;
             justify-content: center;
-
         }
+
         .element4 *{
             margin: 10px;
             padding: 5px 10px 5px 10px;
@@ -94,13 +94,7 @@
 
         <%
        Utente user=(Utente) request.getSession().getAttribute("user");
-       PrenotazioneDAO pd = new PrenotazioneDAO();
-       ArrayList<Prenotazione> elencoPrenotazioni = pd.selectPrenotazioneByUtente(user.getEmail());
-       AcquistoDAO ad = new AcquistoDAO();
-       NoleggioDAO noleggioDAO = new NoleggioDAO();
-       AttrezzaturaDAO attrezzaturaDAO= new AttrezzaturaDAO();
-       ArrayList<Acquisto> listAcquisto = ad.selectAcquistoByUtente(user.getEmail());
-       AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO();
+       String context = request.getContextPath();
    %>
     </style>
 </head>
@@ -151,11 +145,11 @@ else if(!user.isIs_Admin()){%>
     </div>
 
 
-        <div class="element4">
-            <input type="button" onclick="" value="Prenotazioni effettuate" class="subBtn">
-            <input type="button" onclick="" value="Abbonamenti acquistati" class="subBtn">
-            <input type="button" onclick="" value="Noleggi effettuati" class="subBtn">
-        </div>
+<div class="element4">
+    <a class="subBtn" href="<%=context%>/view/prenotazioniUtente.jsp">MOSTRA PRENOTAZIONI EFFETTUATE</a>
+    <a class="subBtn" href="<%=context%>/view/noleggiEffettuatiUtente.jsp">MOSTRA NOLEGGI EFFETTUATI</a>
+    <a class="subBtn" href="<%=context%>/view/abbonamentiAcquistatiUtente.jsp">MOSTRA ACQUISTI EFFETTUATI</a>
+</div>
 
 
 

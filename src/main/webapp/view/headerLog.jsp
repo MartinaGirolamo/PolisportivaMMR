@@ -15,6 +15,7 @@
         Utente user=(Utente) request.getSession().getAttribute("user");
         String contex=request.getContextPath();
     %>
+
 </head>
 <body>
 <div class="header">
@@ -27,10 +28,15 @@
     </div>
 
 
+    <%if(!user.isIs_Admin()){%>
     <div class="header-right">
         <a class="button" href="<%=contex%>/view/profilo.jsp"> <%=user.getNome()%></a>
     </div>
-
+    <%}else {%>
+    <div class="header-right">
+        <a class="button" href="<%=contex%>/view/profiloAdmin.jsp"> <%=user.getNome()%></a>
+    </div>
+    <%}%>
 </div>
 </body>
 </html>
