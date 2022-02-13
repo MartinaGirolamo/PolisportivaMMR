@@ -1,16 +1,15 @@
 <%@ page import="model.Utente.Utente" %>
 <%@ page import="model.Acquisto.AcquistoDAO" %>
 <%@ page import="model.Abbonamento.AbbonamentoDAO" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Acquisto.Acquisto" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Abbonamento.Abbonamento" %><%--
   Created by IntelliJ IDEA.
   User: Martina
   Date: 12/02/2022
-  Time: 17:45
+  Time: 18:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>MOSTRA ABBONAMENTI UTENTI</title>
@@ -24,7 +23,7 @@
         }
 
         th, td {
-            text-align: center;
+            text-align: left;
             padding: 8px;
         }
 
@@ -35,44 +34,44 @@
         Utente user=(Utente) request.getSession().getAttribute("user");
         AcquistoDAO acquistoDAO = new AcquistoDAO();
         AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO();
-        ArrayList<Acquisto> elencoAcquisti = acquistoDAO.selectAllAcquisti();
+        ArrayList<Acquisto> elencoAcquisti = acquistoDAO.selectAcquistoByUtente(user.getEmail());
     %>
 
 </head>
 <body>
-<% if(user==null||!user.isIs_Admin()|| user.getEmail()==null  ){
-    RequestDispatcher requestDispatcher= request.getRequestDispatcher("Error500.jsp");
-    requestDispatcher.forward(request, response);}%>
+<% if(user==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
 
+else if(!user.isIs_Admin()){%>
 <jsp:include page="/view/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
+<%}%>
 
-<h2><p>ACQUISTI EFFETTUATI DAGLI UTENTI</p></h2>
+<h2>I MIEI ABBONAMENTI</h2>
 <table>
     <tr>
-        <th>UTENTE </th>
-        <th>TIPOLOGIA ABBONAMENTO</th>
+        <th>TIPOLOGIA</th>
         <th>DATA ACQUISTO</th>
         <th>NUMERO MESI</th>
         <th>TARIFFA TOTALE</th>
-
     </tr>
+    <%for(int i = 0; i<elencoAcquisti.size();i++){
+        Acquisto acq = elencoAcquisti.get(i);
+        Abbonamento a = abbonamentoDAO.selectAbbonamentoByCodice(acq.getCodiceAbb());%>
 
-    <%
-        for (Acquisto n: elencoAcquisti) {
-            Abbonamento a = abbonamentoDAO.selectAbbonamentoByCodice(n.getCodiceAbb());
-    %>
     <tr>
-        <td><%=n.getUtente()%></td>
         <td><%=a.getTipologia()%></td>
-        <td><%=n.getDataAcquisto()%></td>
-        <td><%=n.getnMesi()%></td>
-        <td><%=n.getnMesi()*a.getTariffa()%></td>
-
+        <td><%=acq.getDataAcquisto()%></td>
+        <td><%=acq.getnMesi()%></td>
+        <td><%=a.getTariffa()* acq.getnMesi()%></td>
     </tr>
-    <% }%>
+    <%}%>
 </table>
+
 
 <jsp:include page="/view/footer.jsp">
     <jsp:param name="title" value=""/>
@@ -80,3 +79,4 @@
 
 </body>
 </html>
+

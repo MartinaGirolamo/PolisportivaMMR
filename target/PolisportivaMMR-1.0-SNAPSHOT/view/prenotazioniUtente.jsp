@@ -1,11 +1,11 @@
-<%@ page import="model.Utente.Utente" %>
 <%@ page import="model.Prenotazione.Prenotazione" %>
+<%@ page import="model.Utente.Utente" %>
 <%@ page import="model.Prenotazione.PrenotazioneDAO" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Martina
   Date: 12/02/2022
-  Time: 17:44
+  Time: 18:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -22,7 +22,7 @@
         }
 
         th, td {
-            text-align: center;
+            text-align: left;
             padding: 8px;
         }
         tr:nth-child(even) {background-color: #8c8888;}
@@ -30,22 +30,26 @@
     <%String context = request.getContextPath();
         Utente user=(Utente) request.getSession().getAttribute("user");
         PrenotazioneDAO pd = new PrenotazioneDAO();
-        ArrayList<Prenotazione> elencoPrenotazioni = pd.selectAllPrenotazioni();
+        ArrayList<Prenotazione> elencoPrenotazioni = pd.selectPrenotazioneByUtente(user.getEmail());
     %>
 </head>
 <body>
-<% if(user==null||!user.isIs_Admin()|| user.getEmail()==null  ){
-    RequestDispatcher requestDispatcher= request.getRequestDispatcher("Error500.jsp");
-    requestDispatcher.forward(request, response);}%>
+<% if(user==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
 
+else if(!user.isIs_Admin()){%>
 <jsp:include page="/view/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
+<%}%>
 
-<h2><p>PRENOTAZIONI EFFETTUATE</p></h2>
+
+<h2>LE MIE PRENOTAZIONI</h2>
 <table>
     <tr>
-        <th>UTENTE </th>
         <th>CODICE PRENOTAZIONE</th>
         <th>CAMPO</th>
         <th>DATA</th>
@@ -53,11 +57,10 @@
         <th>ORA START</th>
         <th>ORA END</th>
     </tr>
+    <%for(int i = 0; i<elencoPrenotazioni.size();i++){
+        Prenotazione p = elencoPrenotazioni.get(i);%>
 
-        <%
-    for (Prenotazione p: elencoPrenotazioni) { %>
     <tr>
-        <td><%=p.getEmail()%></td>
         <td><%=p.getCodice()%></td>
         <td><%=p.getNomeCampo()%></td>
         <td><%=p.getDateP()%></td>
@@ -65,14 +68,14 @@
         <td><%=p.getOraStart()%></td>
         <td><%=p.getOraEnd()%></td>
     </tr>
-        <% }%>
+    <%}%>
 </table>
 
 
 
 
-    <jsp:include page="/view/footer.jsp">
-        <jsp:param name="title" value=""/>
-    </jsp:include>
+<jsp:include page="/view/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 </body>
 </html>
