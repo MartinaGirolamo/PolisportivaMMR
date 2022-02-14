@@ -31,9 +31,13 @@ public class ServletPrenota extends HttpServlet {
         ArrayList<PrenotazioneDisponibile> prenotazioniDisponibili = (ArrayList<PrenotazioneDisponibile>) req.getSession().getAttribute("listaPrenotazioniDisponibili");
         int indiceArrayScelto = Integer.parseInt(req.getParameter("indiceArrayScelto"));
         PrenotazioneDisponibile prenotazioneScelta = prenotazioniDisponibili.get(indiceArrayScelto);
-
+        System.out.println(indiceArrayScelto);
         if(user == null || user.getEmail()==null){
             RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/UtenteNonLoggato.jsp");
+            requestDispatcher.forward(req, resp);
+        }
+        else if(indiceArrayScelto<0 || prenotazioneScelta==null || prenotazioneScelta.getDate()==null){
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/Error500.jsp");
             requestDispatcher.forward(req, resp);
         }
         else{

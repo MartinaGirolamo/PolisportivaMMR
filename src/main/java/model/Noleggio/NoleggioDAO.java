@@ -14,7 +14,7 @@ public class NoleggioDAO {
     public ArrayList<Noleggio> selectAllNoleggio(){
         ArrayList<Noleggio> list = new ArrayList<>();
         try(Connection conn = ConPool.getConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM noleggio");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Noleggio");
             ResultSet set = ps.executeQuery();
             while (set.next()){
             Noleggio noleggio = new Noleggio();
@@ -32,7 +32,7 @@ public class NoleggioDAO {
 
     public boolean insertNoleggio(Noleggio noleggio){
             try (Connection conn = ConPool.getConnection()){
-                PreparedStatement ps = conn.prepareStatement("INSERT INTO noleggio (codiceAttr, codicePren, qta) VALUES (?,?,?)");
+                PreparedStatement ps = conn.prepareStatement("INSERT INTO Noleggio (codiceAttr, codicePren, qta) VALUES (?,?,?)");
                 ps.setInt(1, noleggio.getCodiceAttr());
                 ps.setInt(2, noleggio.getCodicePren());
                 ps.setInt(3,noleggio.getQta());
@@ -47,7 +47,7 @@ public class NoleggioDAO {
 
     public Noleggio selectNoleggioByPrenotazione(int codicePrenotazione){
         try(Connection conn = ConPool.getConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM noleggio WHERE codicePren='"+codicePrenotazione+"';");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Noleggio WHERE codicePren='"+codicePrenotazione+"';");
             ResultSet set = ps.executeQuery();
                 Noleggio noleggio = new Noleggio();
                 while(set.next()) {

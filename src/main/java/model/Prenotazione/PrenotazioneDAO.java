@@ -19,7 +19,7 @@ public class PrenotazioneDAO {
         System.out.println("data: "+dataPrenotazione+" nomeCampo: "+nomeCampo);
         ArrayList<Prenotazione> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione WHERE dateP= '"+dataPrenotazione+"' AND campo='"+nomeCampo+"';");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Prenotazione WHERE dateP= '"+dataPrenotazione+"' AND campo='"+nomeCampo+"';");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                Prenotazione prenotazione = new Prenotazione();
@@ -43,7 +43,7 @@ public class PrenotazioneDAO {
     public ArrayList<Prenotazione> selectAllPrenotazioni (){
         ArrayList<Prenotazione> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione;");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Prenotazione;");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 Prenotazione prenotazione = new Prenotazione();
@@ -68,7 +68,7 @@ public class PrenotazioneDAO {
     public ArrayList<Prenotazione> selectPrenotazioneByUtente (String email){
         ArrayList<Prenotazione> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione WHERE utente= '"+email+"';");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Prenotazione WHERE utente= '"+email+"';");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 Prenotazione prenotazione = new Prenotazione();
@@ -90,7 +90,7 @@ public class PrenotazioneDAO {
 
     public boolean insertPrenotazione(Prenotazione prenotazione){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO prenotazione ( oraStart, oraEnd, dateP, utente, campo, tariffaTotale, codice ) VALUES (?,?,?,?,?,?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO Prenotazione ( oraStart, oraEnd, dateP, utente, campo, tariffaTotale, codice ) VALUES (?,?,?,?,?,?,?);");
             ps.setInt(1,prenotazione.getOraStart());
             ps.setInt(2,prenotazione.getOraEnd());
             ps.setDate(3,prenotazione.getDateP());
@@ -110,7 +110,7 @@ public class PrenotazioneDAO {
 
     public boolean deletePrenotazione( int codice) {
         try(Connection conn = ConPool.getConnection()){
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM prenotazione WHERE codice='"+codice+"'");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM Prenotazione WHERE codice='"+codice+"'");
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
             else return true;
@@ -123,7 +123,7 @@ public class PrenotazioneDAO {
     public int sizeNumeroPrenotazioni(){
         ArrayList<Prenotazione> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione;");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Prenotazione;");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 Prenotazione prenotazione = new Prenotazione();
@@ -145,7 +145,7 @@ public class PrenotazioneDAO {
     public Prenotazione selectPrenotazioneByCodice(int codice){
         Prenotazione prenotazione = new Prenotazione();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM prenotazione WHERE codice="+codice+";");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Prenotazione WHERE codice="+codice+";");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 prenotazione.setDateP(set.getDate("dateP"));

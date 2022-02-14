@@ -84,7 +84,7 @@ else if(!user.isIs_Admin()){%>
         <td><%=p.getTariffaTotale()%></td>
         <td><%=p.getOraStart()%></td>
         <td><%=p.getOraEnd()%></td>
-        <td><input type="radio" name="indiceArrayScelto" value="<%=i%>" id="<%=i%>" /> <%=i%> </td>
+        <td><input type="radio" name="indiceArrayScelto" required value="<%=i%>" id="<%=i%>" /> <%=i%> </td>
     </tr>
     <%}%>
 </table>
