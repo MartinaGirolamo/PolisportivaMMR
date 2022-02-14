@@ -3,7 +3,8 @@ package model.Campo;
 public class Campo {
 
     private String nome,descrizione;
-    private int tariffa, numGiocatori;
+    private int numGiocatori;
+    private float tariffa;
 
     public Campo(){}
 
@@ -23,11 +24,11 @@ public class Campo {
         this.descrizione = descrizione;
     }
 
-    public int getTariffa() {
+    public float getTariffa() {
         return tariffa;
     }
 
-    public void setTariffa(int tariffa) {
+    public void setTariffa(float tariffa) {
         this.tariffa = tariffa;
     }
 
@@ -37,5 +38,15 @@ public class Campo {
 
     public void setNumGiocatori(int numGiocatori) {
         this.numGiocatori = numGiocatori;
+    }
+
+    @Override
+    public String toString() {
+        return "Campo{" +
+                "nome='" + nome + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", numGiocatori=" + numGiocatori +
+                ", tariffa=" + tariffa +
+                '}';
     }
 }

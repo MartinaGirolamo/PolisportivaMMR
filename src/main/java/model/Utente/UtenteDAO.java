@@ -15,7 +15,7 @@ public class UtenteDAO {
     public ArrayList<Utente> selectAllUtenti(){
         ArrayList<Utente> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM utente;");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente;");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 Utente utente = new Utente();
@@ -36,7 +36,7 @@ public class UtenteDAO {
     public Utente selectUtenteByEmailPassword(String email,String password){
         Utente utenteRitorno = new Utente();
         try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM utente WHERE email = '"+email+"' AND pword = '"+password+"'");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente WHERE email = '"+email+"' AND pword = '"+password+"'");
             //ps.setString(1, email);
             ResultSet set = ps.executeQuery();
             while(set.next()){
@@ -56,7 +56,7 @@ public class UtenteDAO {
 
     public boolean insertUtente(Utente utente){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO utente ( email,psword,  nome, cognome, is_Admin, dateN ) VALUES (?,?,?,?,?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO Utente ( email,pword,  nome, cognome, is_Admin, dateN ) VALUES (?,?,?,?,?,?);");
             ps.setString(1, utente.getEmail());
             ps.setString(2,utente.getPsword());
             ps.setString(3,utente.getNome());
@@ -76,7 +76,7 @@ public class UtenteDAO {
 
     public boolean deleteUtente(String email) {
         try(Connection conn = ConPool.getConnection()){
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM utente WHERE email='"+email+"'");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM Utente WHERE email='"+email+"'");
            // ps.setString(1,email);
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
@@ -90,10 +90,8 @@ public class UtenteDAO {
 
     public boolean updateUtente(Utente utente){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("UPDATE utente SET  ( psword=?) WHERE  (email=?);");
-
-            ps.setString(1,utente.getPsword());
-
+            PreparedStatement ps= conn.prepareStatement("UPDATE Utente SET pword='"+utente.getPsword()+"'WHERE email='"+utente.getEmail()+"';");
+            System.out.println(utente);
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
             else return true;
@@ -103,6 +101,28 @@ public class UtenteDAO {
         return false;
     }
 
+    public boolean checkPassword(Utente u, String vecchiaPassword){
+        Utente utenteRitorno =new Utente();
+        try(Connection conn=ConPool.getConnection()) {
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente where email='"+u.getEmail()+"' and pword='"+vecchiaPassword+"'");
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                utenteRitorno.setEmail(set.getString("email"));
+                System.out.println(utenteRitorno.getEmail());
+                utenteRitorno.setIs_Admin(set.getBoolean("is_admin"));//IfAdmin in parentesi è quello del database (NOME)
+                utenteRitorno.setPsword(set.getString("pword"));
+                utenteRitorno.setNome(set.getString("nome"));
+                utenteRitorno.setCognome(set.getString("cognome"));
+                utenteRitorno.setDateN(set.getString("dateN"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(utenteRitorno.getPsword()!=null)return true;
+        else return false;
+    }
+
 
 
     public boolean controllaEmail(Utente utente){
@@ -110,7 +130,7 @@ public class UtenteDAO {
         Utente utenteRitorno = new Utente();
         try(Connection conn = ConPool.getConnection()){
 
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM utente WHERE email = '"+utente.getEmail()+"'");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente WHERE email = '"+utente.getEmail()+"'");
             //ps.setString(1, email);
             ResultSet set = ps.executeQuery();
             while(set.next()){

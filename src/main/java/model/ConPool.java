@@ -21,7 +21,7 @@ public class ConPool {
             p.setUrl("jdbc:mysql://127.0.0.1:3306/Polisportiva?serverTimezone=" + TimeZone.getDefault().getID());
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("root");
-            p.setPassword("raffaele99");
+            p.setPassword("Password123*");
             p.setMaxActive(100);
             p.setInitialSize(10);
             p.setMinIdle(10);

@@ -53,4 +53,15 @@ public class Utente {
     public void setIs_Admin(boolean is_Admin) {
         this.is_Admin = is_Admin;
     }
+
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "email='" + email + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dateN='" + dateN + '\'' +
+                ", is_Admin=" + is_Admin +
+                '}';
+    }
 }

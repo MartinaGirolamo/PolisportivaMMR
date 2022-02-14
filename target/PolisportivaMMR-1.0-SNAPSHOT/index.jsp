@@ -1,4 +1,4 @@
-
+<%@ page import="model.Utente.Utente" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,24 +67,9 @@
         }
 
 
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 200px;
-        }
 
-        li a {
-            display: block;
-            color: #000;
-            text-decoration: none;
-        }
 
-        /* Change the link color on hover */
-        li a:hover {
-            background-color: #555;
-            color: white;
-        }
+
         /* On smaller screens, decrease text size */
         @media only screen and (max-width: 300px) {
             .prev, .next,.text {font-size: 11px}
@@ -92,23 +77,26 @@
 
     </style>
 
+    <%
+        Utente user=(Utente) request.getSession().getAttribute("user");
+    %>
 
 </head>
 <body>
+<!-------------------------------------HEADER UTENTE NON LOGGATO-------------------------->
+<% if(user==null || user.getEmail()==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
 
-<div class="header">
-
-    <a href="#home" class="logo"><img src="immagini/Logo.png" width="100px" height="100px"></a>
-    <div class="header-center">
-        <a class="notLast" href="#abbonamenti">Abbonamenti</a>
-        <a class="notLast" href="#prenota">Prenota</a>
-        <a href="#campi">Campi</a>
-    </div>
-
-    <div class="header-right">
-        <a class="button" href="#login"> LOGIN</a>
-    </div>
-</div>
+else if(!user.isIs_Admin()){%>
+<jsp:include page="/view/headerLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}else if(user.isIs_Admin() ){
+    RequestDispatcher requestDispatcher= request.getRequestDispatcher("view/profiloAdmin.jsp");
+    requestDispatcher.forward(request, response);}%>
 
 <div class="descrizione">
     <h2>Vieni a scoprire la nostra polisportiva...</h2>
@@ -168,6 +156,8 @@
 </script>
 
 <!-----------------------------------------DA INSERIRE IL FOOTER------------------------------->
-
+<jsp:include page="/view/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 </body>
 </html>

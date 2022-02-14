@@ -1,0 +1,82 @@
+<%@ page import="model.Utente.Utente" %>
+<%@ page import="model.Acquisto.AcquistoDAO" %>
+<%@ page import="model.Abbonamento.AbbonamentoDAO" %>
+<%@ page import="model.Acquisto.Acquisto" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Abbonamento.Abbonamento" %><%--
+  Created by IntelliJ IDEA.
+  User: Martina
+  Date: 12/02/2022
+  Time: 18:28
+  To change this template use File | Settings | File Templates.
+--%>
+<html>
+<head>
+    <title>MOSTRA ABBONAMENTI UTENTI</title>
+    <style>
+        table {
+            margin-bottom: 20px;
+            margin-top: 100px;
+            margin-left: 20px;
+            border-collapse: collapse;
+            width: 97%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {background-color: #8c8888;}
+    </style>
+
+    <%String context = request.getContextPath();
+        Utente user=(Utente) request.getSession().getAttribute("user");
+        AcquistoDAO acquistoDAO = new AcquistoDAO();
+        AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO();
+        ArrayList<Acquisto> elencoAcquisti = acquistoDAO.selectAcquistoByUtente(user.getEmail());
+    %>
+
+</head>
+<body>
+<% if(user==null){%>
+<jsp:include page="/view/headerNotLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}
+
+else if(!user.isIs_Admin()){%>
+<jsp:include page="/view/headerLog.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+<%}%>
+
+<h2>I MIEI ABBONAMENTI</h2>
+<table>
+    <tr>
+        <th>TIPOLOGIA</th>
+        <th>DATA ACQUISTO</th>
+        <th>NUMERO MESI</th>
+        <th>TARIFFA TOTALE</th>
+    </tr>
+    <%for(int i = 0; i<elencoAcquisti.size();i++){
+        Acquisto acq = elencoAcquisti.get(i);
+        Abbonamento a = abbonamentoDAO.selectAbbonamentoByCodice(acq.getCodiceAbb());%>
+
+    <tr>
+        <td><%=a.getTipologia()%></td>
+        <td><%=acq.getDataAcquisto()%></td>
+        <td><%=acq.getnMesi()%></td>
+        <td><%=a.getTariffa()* acq.getnMesi()%></td>
+    </tr>
+    <%}%>
+</table>
+
+
+<jsp:include page="/view/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
+
+</body>
+</html>
+
