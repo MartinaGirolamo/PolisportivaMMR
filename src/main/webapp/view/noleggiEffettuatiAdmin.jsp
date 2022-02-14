@@ -26,7 +26,7 @@
         }
 
         th, td {
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
 
@@ -51,7 +51,7 @@
     <jsp:param name="title" value=""/>
 </jsp:include>
 
-<p>NOLEGGI EFFETTUATI PER PRENOTAZIONE</p>
+<h2><p>NOLEGGI EFFETTUATI PER PRENOTAZIONE</p></h2>
 <table>
     <tr>
         <th>UTENTE </th>

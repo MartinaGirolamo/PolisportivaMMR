@@ -21,11 +21,29 @@
         }
 
         th, td {
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
 
         tr:nth-child(even) {background-color: #8c8888;}
+        .subBtn{
+
+            display: flex;
+            margin: auto;
+            margin-top: 10px;
+            border: solid #26272b;
+            color:#FFFFFF;
+            background-color:#26272b  ;
+            text-decoration:none;
+            padding: 10px 25px 10px 25px;
+            transition: 0.6s ease;
+            cursor: pointer;
+        }
+
+        .subBtn:hover{
+            background-color: grey;
+
+        }
     </style>
 
     <%String context = request.getContextPath();
@@ -43,7 +61,7 @@
     <jsp:param name="title" value=""/>
 </jsp:include>
 
-<p>UTENTI</p>
+<h2><p>UTENTI</p></h2>
 <table>
     <tr>
         <th>EMAIL </th>
@@ -63,7 +81,7 @@
         <td><%=u.getCognome()%></td>
         <td><%=u.isIs_Admin()%></td>
         <td><form action="../ServletEliminaUtente" method="post">
-            <input type="hidden" name="email" value=<%=u.getEmail()%> ><button type="submit">ELIMINA</button></form></td>
+            <input type="hidden" name="email" value=<%=u.getEmail()%> ><button type="submit" class="subBtn">ELIMINA</button></form></td>
 
     </tr>
     <% }%>

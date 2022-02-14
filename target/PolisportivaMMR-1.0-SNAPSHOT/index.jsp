@@ -94,7 +94,9 @@ else if(!user.isIs_Admin()){%>
 <jsp:include page="/view/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
-<%}%>
+<%}else if(user.isIs_Admin() ){
+    RequestDispatcher requestDispatcher= request.getRequestDispatcher("view/profiloAdmin.jsp");
+    requestDispatcher.forward(request, response);}%>
 
 <div class="descrizione">
     <h2>Vieni a scoprire la nostra polisportiva...</h2>

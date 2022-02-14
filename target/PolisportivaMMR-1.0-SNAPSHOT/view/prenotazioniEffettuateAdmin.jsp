@@ -42,7 +42,7 @@
     <jsp:param name="title" value=""/>
 </jsp:include>
 
-<p>PRENOTAZIONI EFFETTUATE</p>
+<h2><p>PRENOTAZIONI EFFETTUATE</p></h2>
 <table>
     <tr>
         <th>UTENTE </th>

@@ -48,7 +48,7 @@
     <jsp:param name="title" value=""/>
 </jsp:include>
 
-<p>ACQUISTI EFFETTUATI DAGLI UTENTI</p>
+<h2><p>ACQUISTI EFFETTUATI DAGLI UTENTI</p></h2>
 <table>
     <tr>
         <th>UTENTE </th>

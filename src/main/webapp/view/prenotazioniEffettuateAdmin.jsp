@@ -22,7 +22,7 @@
         }
 
         th, td {
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
         tr:nth-child(even) {background-color: #8c8888;}
@@ -42,7 +42,7 @@
     <jsp:param name="title" value=""/>
 </jsp:include>
 
-<p>PRENOTAZIONI EFFETTUATE</p>
+<h2><p>PRENOTAZIONI EFFETTUATE</p></h2>
 <table>
     <tr>
         <th>UTENTE </th>
