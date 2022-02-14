@@ -135,7 +135,7 @@ else if(!user.isIs_Admin()){%>
         <option>Pallavolo</option>
         <option>Tennis</option>
     </select>
-         <input type="date" name="dataScelta">
+         <input type="date" name="dataScelta" required>
         <select class="oraStart" name="oraStartScelta" required>
             <option>09:00</option>
             <option>10:00</option>

@@ -85,7 +85,7 @@ else if(!user.isIs_Admin()){%>
         <div>
             <label>Selezione Num Mesi</label>
             <form name="totaleForm" action="#nothing">
-                <select name="nMesi" onchange="showTotal() ">
+                <select name="nMesi" onchange="showTotal()" >
 
                     <option value="1">1</option>
                     <option value="3">3</option>
@@ -112,7 +112,7 @@ else if(!user.isIs_Admin()){%>
             <input type="radio" id="palestra" name="abb" value="palestra">
         </div>
         <div class="center">
-            <label><p id="totale">Totale: </p></label>
+            <label><p id="totale">Totale: 30</p></label>
             <button type="submit" id="acqBtn" onclick="">Acquista</button>
         </div>
     </div>

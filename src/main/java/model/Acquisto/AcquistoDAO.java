@@ -52,7 +52,7 @@ public class AcquistoDAO {
 
     public boolean insertAcquisto (Acquisto acquisto){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO acquisto ( codiceAbb,utente, dataAcquisto,nMesi ) VALUES (?,?,?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO Acquisto ( codiceAbb,utente, dataAcquisto,nMesi ) VALUES (?,?,?,?);");
             ps.setInt(1,acquisto.getCodiceAbb());
             ps.setString(2, acquisto.getUtente());
             ps.setDate(3,acquisto.getDataAcquisto());
@@ -71,7 +71,7 @@ public class AcquistoDAO {
         ArrayList<Acquisto> list = new ArrayList<>();
         try(Connection conn = ConPool.getConnection()){
 
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM acquisto WHERE dataAcquisto BETWEEN '"+a.getDataAcquisto()+"' AND adddate('"+a.getDataAcquisto()+"',INTERVAL "+a.getnMesi()+" MONTH) AND utente='"+a.getUtente()+"' AND codiceAbb="+a.getCodiceAbb()+";");
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Acquisto WHERE dataAcquisto BETWEEN '"+a.getDataAcquisto()+"' AND adddate('"+a.getDataAcquisto()+"',INTERVAL "+a.getnMesi()+" MONTH) AND utente='"+a.getUtente()+"' AND codiceAbb="+a.getCodiceAbb()+";");
             ResultSet set = ps.executeQuery();
             while(set.next()){
                 Acquisto acquistoRitorno = new Acquisto();

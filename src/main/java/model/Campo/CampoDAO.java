@@ -35,7 +35,7 @@ public class CampoDAO {
     public Campo selectCampoByNome(String nome) {
         Campo c = new Campo();
         try (Connection conn = ConPool.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM campo WHERE nome ='" + nome + "';");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Campo WHERE nome ='" + nome + "';");
             ResultSet set = ps.executeQuery();
             while(set.next()){
             c.setNome(set.getString("nome"));
@@ -53,7 +53,7 @@ public class CampoDAO {
 
     public boolean insertCampo(Campo campo){
         try (Connection conn = ConPool.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement("INSERT into campo (nome, descrizione, tariffa, numGiocatori) VALUES (?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT into Campo (nome, descrizione, tariffa, numGiocatori) VALUES (?,?,?,?)");
 
             ps.setString(1,campo.getNome());
             ps.setString(2,campo.getDescrizione());

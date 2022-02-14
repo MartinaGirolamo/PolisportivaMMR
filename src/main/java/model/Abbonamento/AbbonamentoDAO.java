@@ -34,7 +34,7 @@ public class AbbonamentoDAO {
 
     public boolean deleteAbbonamento(int codice){
         try(Connection conn = ConPool.getConnection()){
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM abbonamento WHERE codice='"+codice+"'");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM Abbonamento WHERE codice='"+codice+"'");
             int ritorno=ps.executeUpdate();
             if (ritorno==2) return false;
             else return true;
@@ -46,7 +46,7 @@ public class AbbonamentoDAO {
 
     public boolean insertAbbonamento(Abbonamento abbonamento){
         try(Connection conn=ConPool.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("INSERT INTO abbonamento ( tariffa, tipologia ) VALUES (?,?);");
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO Abbonamento ( tariffa, tipologia ) VALUES (?,?);");
             ps.setFloat(1,abbonamento.getTariffa());
             ps.setString(2, abbonamento.getTipologia());
             int ritorno=ps.executeUpdate();
