@@ -36,7 +36,7 @@ public class CampoDAO {
         Campo c = new Campo();
         try (Connection conn = ConPool.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM campo WHERE nome ='" + nome + "';");
-            ResultSet set = ps.executeQuery();
+            ResultSet set = ps.executeQuery();//esegue una query
             while(set.next()){
             c.setNome(set.getString("nome"));
             c.setTariffa(set.getFloat("tariffa"));
