@@ -70,13 +70,13 @@
 </head>
 <body>
 <% if(user==null || user.getEmail()==null){%>
-<jsp:include page="/view/headerNotLog.jsp">
+<jsp:include page="/interface/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}
 
 else if(!user.isIs_Admin()){%>
-<jsp:include page="/view/headerLog.jsp">
+<jsp:include page="/interface/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
@@ -90,7 +90,7 @@ else if(!user.isIs_Admin()){%>
             <li class="desc">Campo regolamentare a 11 giocatori </li>
             <li class="desc">Erba sintetica</li>
             <li class="desc">Illuminazione notturna </li>
-            <li><a class="btn" href="${pageContext.request.contextPath}/view/prenotazione.jsp">Prenota</a></li>
+            <li><a class="btn" href="${pageContext.request.contextPath}/interface/prenotazione.jsp">Prenota</a></li>
         </ul>
     </div>
 </div>
@@ -100,7 +100,7 @@ else if(!user.isIs_Admin()){%>
             <li class="titolo">CAMPO DA PALLAVOLO</li>
             <li class="desc">Altezza rete regolabile</li>
             <li class="desc">Postazione arbitro </li>
-            <li><a class="btn" href="${pageContext.request.contextPath}/view/prenotazione.jsp">Prenota</a></li>
+            <li><a class="btn" href="${pageContext.request.contextPath}/interface/prenotazione.jsp">Prenota</a></li>
         </ul>
     </div>
     <div class="item-right">
@@ -116,7 +116,7 @@ else if(!user.isIs_Admin()){%>
             <li class="titolo">CAMPO DA TENNIS</li>
             <li class="desc">Terra battuta</li>
             <li class="desc">Postazione arbitro </li>
-            <li><a class="btn" href="${pageContext.request.contextPath}/view/prenotazione.jsp">Prenota</a></li>
+            <li><a class="btn" href="${pageContext.request.contextPath}/interface/prenotazione.jsp">Prenota</a></li>
         </ul>
     </div>
 </div>
@@ -128,7 +128,7 @@ else if(!user.isIs_Admin()){%>
             <li class="desc">Sala pesi</li>
             <li class="desc">Sala aerobica</li>
             <li class="desc">Zona cyclette e tapis roulant</li>
-            <li><a class="btn" href="${pageContext.request.contextPath}/view/abbonamenti.jsp">Abbonati</a></li>
+            <li><a class="btn" href="${pageContext.request.contextPath}/interface/abbonamenti.jsp">Abbonati</a></li>
         </ul>
     </div>
     <div class="item-right">
@@ -136,7 +136,7 @@ else if(!user.isIs_Admin()){%>
     </div>
 </div>
 
-<jsp:include page="/view/footer.jsp">
+<jsp:include page="/interface/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 </body>

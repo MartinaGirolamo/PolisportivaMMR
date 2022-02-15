@@ -25,7 +25,7 @@ public class ServletLogin extends HttpServlet {
         System.out.println("utente : "+utente.toString());
         String address=null;
         if(utente.getEmail()== null || utente.getPsword()== null){
-               address="view/ErroreLogin.jsp";
+               address="interface/ErroreLogin.jsp";
         }
         else address="index.jsp";
         HttpSession session = request.getSession(true);

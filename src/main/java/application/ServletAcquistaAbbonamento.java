@@ -34,7 +34,7 @@ public class ServletAcquistaAbbonamento extends HttpServlet {
         Abbonamento abbonamento = ad.selectAbbonamentoByTipologia(tipologia);
         System.out.println(""+abbonamento);
         if(user == null || user.getEmail()==null){
-            RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/UtenteNonLoggato.jsp");
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/UtenteNonLoggato.jsp");
             requestDispatcher.forward(req, resp);
         }
 
@@ -48,22 +48,22 @@ public class ServletAcquistaAbbonamento extends HttpServlet {
             acquisto.setCodiceAbb(abbonamento.getCodice());
             acquisto.setnMesi(nMesi);
             if(acquistoDAO.acquistoGiaPresente(acquisto)){
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/AcquistoNonPossibile.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/AcquistoNonPossibile.jsp");
                 requestDispatcher.forward(req, resp);
             }
             if (acquistoDAO.insertAcquisto(acquisto)) {
                 System.out.println("Acquisto effettuato: " + acquisto);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/AcquistoEffettuato.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/AcquistoEffettuato.jsp");
                 requestDispatcher.forward(req, resp);
             } else {
                 System.out.println("Acquisto NON effettuato: ");
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/Error500.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/Error500.jsp");
                 requestDispatcher.forward(req, resp);
             }
         }
         else{
             System.out.println("tipologia e nMesi null");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/Error500.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/Error500.jsp");
             requestDispatcher.forward(req, resp);
         }
 

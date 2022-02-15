@@ -42,12 +42,12 @@ public class ServletNoleggia extends HttpServlet {
             n.setQta(qta);
             System.out.println("codiceAttrezzatura: "+a.getCodice()+" codicePrenotazione: "+prenotazione.getCodice()+" qta: "+qta);
             if(noleggioDAO.insertNoleggio(n)){
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/NoleggioEffettuato.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/NoleggioEffettuato.jsp");
                 requestDispatcher.forward(req, resp);
             }
             else {
 
-                RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/Error500.jsp");
+                RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/Error500.jsp");
                 requestDispatcher.forward(req, resp);
             }
         }

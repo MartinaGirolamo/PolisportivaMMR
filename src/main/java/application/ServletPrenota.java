@@ -53,13 +53,13 @@ public class ServletPrenota extends HttpServlet {
                 System.out.println("Prenotazione effettuata: "+prenotazione );
                 HttpSession session = req.getSession(true);
                 session.setAttribute("prenotazioneEffettuata", prenotazione);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/PrenotazioneEffettuata.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/PrenotazioneEffettuata.jsp");
                 requestDispatcher.forward(req, resp);
 
             }
             else{
                 System.out.println("Prenotazione NON effettuata: " );
-                RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/Error500.jsp");
+                RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/Error500.jsp");
                 requestDispatcher.forward(req, resp);
             }
 

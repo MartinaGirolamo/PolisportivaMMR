@@ -20,11 +20,11 @@ public class ServletEliminaUtente extends HttpServlet {
             UtenteDAO utenteDAO=new UtenteDAO();
             String email = request.getParameter("email");
             if(utenteDAO.deleteUtente(email)){
-                RequestDispatcher requestDispatcher= request.getRequestDispatcher("view/mostraUtentiAdmin.jsp");
+                RequestDispatcher requestDispatcher= request.getRequestDispatcher("interface/mostraUtentiAdmin.jsp");
                 requestDispatcher.forward(request, response);
             }
             else {
-                RequestDispatcher requestDispatcher= request.getRequestDispatcher("view/Error500.jsp");
+                RequestDispatcher requestDispatcher= request.getRequestDispatcher("interface/Error500.jsp");
                 requestDispatcher.forward(request, response);
             }
         }
