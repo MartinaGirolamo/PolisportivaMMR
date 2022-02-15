@@ -44,7 +44,7 @@
     RequestDispatcher requestDispatcher= request.getRequestDispatcher("Error500.jsp");
     requestDispatcher.forward(request, response);}%>
 
-<jsp:include page="/view/headerLog.jsp">
+<jsp:include page="/interface/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 
@@ -74,7 +74,7 @@
     <% }%>
 </table>
 
-<jsp:include page="/view/footer.jsp">
+<jsp:include page="/interface/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 

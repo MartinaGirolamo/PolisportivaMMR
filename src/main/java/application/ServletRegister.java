@@ -49,7 +49,7 @@ public class ServletRegister extends HttpServlet {
         String address=null;
 
         if(utenteDAO.controllaEmail(utente)){
-            address="view/EmailGiaInUso.jsp";
+            address="interface/EmailGiaInUso.jsp";
             System.out.println("email già presente in database");
         }else{
             if(utenteDAO.insertUtente(utente)){
@@ -57,11 +57,11 @@ public class ServletRegister extends HttpServlet {
                 if(user.isIs_Admin()){
                     address="index.jsp";
                 }
-                address="view/RegistrazioneEffettuata.jsp";
+                address="interface/RegistrazioneEffettuata.jsp";
             }
             else{
                 System.out.println("Inserimento NON effettuato");
-                address="view/RegistrazioneNonEffettuata.jsp";
+                address="interface/RegistrazioneNonEffettuata.jsp";
             }
         }
 

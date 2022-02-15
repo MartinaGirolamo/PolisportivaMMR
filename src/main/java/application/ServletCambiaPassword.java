@@ -23,7 +23,7 @@ public class ServletCambiaPassword extends HttpServlet {
         String verificaNuovaPassword = req.getParameter("verificaNuovaPassword");
         String passwordAttuale = req.getParameter("passwordAttuale");
         if(newPassword==null||verificaNuovaPassword==null||passwordAttuale==null){
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/Error500.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/Error500.jsp");
             requestDispatcher.forward(req, resp);
         }
         if(newPassword.equals(verificaNuovaPassword)) {
@@ -38,20 +38,20 @@ public class ServletCambiaPassword extends HttpServlet {
                 if (utenteDAO.updateUtente(utenteModifica)) {
                     HttpSession session = req.getSession(true);
                     session.setAttribute("user", utenteModifica);
-                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/CambioPasswordEffettuato.jsp");
+                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/CambioPasswordEffettuato.jsp");
                     requestDispatcher.forward(req, resp);
                 } else {
-                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/Error500.jsp");
+                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/Error500.jsp");
                     requestDispatcher.forward(req, resp);
                 }
 
             } else {
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/CambioPasswordNonEffettuato.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/CambioPasswordNonEffettuato.jsp");
                 requestDispatcher.forward(req, resp);
             }
         }
         else{
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/CambioPasswordNonEffettuato.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/CambioPasswordNonEffettuato.jsp");
             requestDispatcher.forward(req, resp);
         }
     }

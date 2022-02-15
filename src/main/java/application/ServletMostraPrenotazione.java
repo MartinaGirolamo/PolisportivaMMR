@@ -136,7 +136,7 @@ public class ServletMostraPrenotazione extends HttpServlet {
 
         HttpSession session = req.getSession(true);
         session.setAttribute("listaPrenotazioniDisponibili", prenotazioniDisponibili);
-        RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/visualizzaPrenotazioniDisponibili.jsp");
+        RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/visualizzaPrenotazioniDisponibili.jsp");
         requestDispatcher.forward(req, resp);
     }
 }
