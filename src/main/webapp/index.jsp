@@ -1,4 +1,4 @@
-<%@ page import="model.Utente.Utente" %>
+<%@ page import="storage.Utente.Utente" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,13 +85,13 @@
 <body>
 <!-------------------------------------HEADER UTENTE NON LOGGATO-------------------------->
 <% if(user==null || user.getEmail()==null){%>
-<jsp:include page="/view/headerNotLog.jsp">
+<jsp:include page="/interface/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}
 
 else if(!user.isIs_Admin()){%>
-<jsp:include page="/view/headerLog.jsp">
+<jsp:include page="/interface/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}else if(user.isIs_Admin() ){
@@ -156,7 +156,7 @@ else if(!user.isIs_Admin()){%>
 </script>
 
 <!-----------------------------------------DA INSERIRE IL FOOTER------------------------------->
-<jsp:include page="/view/footer.jsp">
+<jsp:include page="/interface/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 </body>
