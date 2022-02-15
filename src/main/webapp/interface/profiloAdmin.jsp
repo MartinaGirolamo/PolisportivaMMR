@@ -138,10 +138,10 @@
 
 
 <div class="element4">
-    <a class="subBtn" href="<%=context%>/view/prenotazioniEffettuateAdmin.jsp">MOSTRA PRENOTAZIONI EFFETTUATE</a>
-    <a class="subBtn" href="<%=context%>/view/noleggiEffettuatiAdmin.jsp">MOSTRA NOLEGGI EFFETTUATI</a>
-    <a class="subBtn" href="<%=context%>/view/abbonamentiAcquistatiAdmin.jsp">MOSTRA ACQUISTI EFFETTUATI</a>
-    <a class="subBtn" href="<%=context%>/view/mostraUtentiAdmin.jsp">MOSTRA UTENTI</a>
+    <a class="subBtn" href="<%=context%>/interface/prenotazioniEffettuateAdmin.jsp">MOSTRA PRENOTAZIONI EFFETTUATE</a>
+    <a class="subBtn" href="<%=context%>/interface/noleggiEffettuatiAdmin.jsp">MOSTRA NOLEGGI EFFETTUATI</a>
+    <a class="subBtn" href="<%=context%>/interface/abbonamentiAcquistatiAdmin.jsp">MOSTRA ACQUISTI EFFETTUATI</a>
+    <a class="subBtn" href="<%=context%>/interface/mostraUtentiAdmin.jsp">MOSTRA UTENTI</a>
 </div>
 
 

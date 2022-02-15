@@ -146,9 +146,9 @@ else if(!user.isIs_Admin()){%>
 
 
 <div class="element4">
-    <a class="subBtn" href="<%=context%>/view/prenotazioniUtente.jsp">MOSTRA PRENOTAZIONI EFFETTUATE</a>
-    <a class="subBtn" href="<%=context%>/view/noleggiEffettuatiUtente.jsp">MOSTRA NOLEGGI EFFETTUATI</a>
-    <a class="subBtn" href="<%=context%>/view/abbonamentiAcquistatiUtente.jsp">MOSTRA ACQUISTI EFFETTUATI</a>
+    <a class="subBtn" href="<%=context%>/interface/prenotazioniUtente.jsp">MOSTRA PRENOTAZIONI EFFETTUATE</a>
+    <a class="subBtn" href="<%=context%>/interface/noleggiEffettuatiUtente.jsp">MOSTRA NOLEGGI EFFETTUATI</a>
+    <a class="subBtn" href="<%=context%>/interface/abbonamentiAcquistatiUtente.jsp">MOSTRA ACQUISTI EFFETTUATI</a>
 </div>
 
 

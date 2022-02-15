@@ -45,7 +45,7 @@ else if(!user.isIs_Admin()){%>
 
 <div class="container">
     <h2> Vuoi noleggiare l'attrezzatura?  </h2>
-    <p> <a href="view/noleggio.jsp"> CLICCA QUI</a></p>
+    <p> <a href="interface/noleggio.jsp"> CLICCA QUI</a></p>
 
 </div>
 
