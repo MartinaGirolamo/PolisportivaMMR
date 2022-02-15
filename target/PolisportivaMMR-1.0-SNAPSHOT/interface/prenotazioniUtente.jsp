@@ -40,12 +40,11 @@
 </jsp:include>
 <%}
 
-else if(!user.isIs_Admin()){%>
+else {%>
 <jsp:include page="/interface/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
-
 
 <h2>LE MIE PRENOTAZIONI</h2>
 <table>

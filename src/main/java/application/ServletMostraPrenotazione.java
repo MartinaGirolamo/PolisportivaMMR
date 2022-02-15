@@ -22,15 +22,6 @@ import java.util.Comparator;
 @WebServlet (name = "ServletMostraPrenotazione", value = "/ServletMostraPrenotazione")
 public class ServletMostraPrenotazione extends HttpServlet {
 
-    static class SortByOraStart implements Comparator<Prenotazione> {
-
-        @Override
-        public int compare(Prenotazione o1, Prenotazione o2) {
-            if(o1.getOraStart()<o2.getOraStart()) return -1;
-            else if(o1.getOraStart()>o2.getOraStart()) return 1;
-            else return 0;
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -131,7 +122,7 @@ public class ServletMostraPrenotazione extends HttpServlet {
                         prenotazioniDisponibili.add(pd);
                         break;
                     }
-                    if(i>arrayPrenotazioniPresenti.get(arrayPrenotazioniPresenti.size()-1).getOraEnd() && i+numOre<=22){
+                    if(i>=arrayPrenotazioniPresenti.get(arrayPrenotazioniPresenti.size()-1).getOraEnd() && i+numOre<=22){
                         PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo,tariffaTotale);
                         prenotazioniDisponibili.add(pd);
                         break;
@@ -159,4 +150,25 @@ public class ServletMostraPrenotazione extends HttpServlet {
         RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/visualizzaPrenotazioniDisponibili.jsp");
         requestDispatcher.forward(req, resp);
     }
+
+
+
+
+
+
+
+
+
+
+
+    static class SortByOraStart implements Comparator<Prenotazione> {
+
+        @Override
+        public int compare(Prenotazione o1, Prenotazione o2) {
+            if(o1.getOraStart()<o2.getOraStart()) return -1;
+            else if(o1.getOraStart()>o2.getOraStart()) return 1;
+            else return 0;
+        }
+    }
+
 }
