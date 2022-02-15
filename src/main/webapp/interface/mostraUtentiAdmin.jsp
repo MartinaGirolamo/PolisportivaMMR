@@ -57,7 +57,7 @@
     RequestDispatcher requestDispatcher= request.getRequestDispatcher("Error500.jsp");
     requestDispatcher.forward(request, response);}%>
 
-<jsp:include page="/view/headerLog.jsp">
+<jsp:include page="/interface/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 
@@ -91,7 +91,7 @@
     <p>VUOI INSERIRE UN NUOVO AMMINISTRATORE?  <a href="register.jsp"> CREA!</a></p>
 </div>
 
-<jsp:include page="/view/footer.jsp">
+<jsp:include page="/interface/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 

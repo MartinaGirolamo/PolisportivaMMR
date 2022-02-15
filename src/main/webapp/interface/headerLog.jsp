@@ -22,19 +22,19 @@
 
     <a href="<%=contex%>" class="logo"><img src="<%=contex%>/immagini/Logo.png" width="100px" height="100px"></a>
     <div class="header-center">
-        <a class="notLast" href="<%=contex%>/view/abbonamenti.jsp">Abbonamenti</a>
-        <a class="notLast" href="<%=contex%>/view/prenotazione.jsp">Prenota</a>
-        <a href="<%=contex%>/view/campi.jsp">Campi</a>
+        <a class="notLast" href="<%=contex%>/interface/abbonamenti.jsp">Abbonamenti</a>
+        <a class="notLast" href="<%=contex%>/interface/prenotazione.jsp">Prenota</a>
+        <a href="<%=contex%>/interface/campi.jsp">Campi</a>
     </div>
 
 
     <%if(!user.isIs_Admin()){%>
     <div class="header-right">
-        <a class="button" href="<%=contex%>/view/profilo.jsp"> <%=user.getNome()%></a>
+        <a class="button" href="<%=contex%>/interface/profilo.jsp"> <%=user.getNome()%></a>
     </div>
     <%}else {%>
     <div class="header-right">
-        <a class="button" href="<%=contex%>/view/profiloAdmin.jsp"> <%=user.getNome()%></a>
+        <a class="button" href="<%=contex%>/interface/profiloAdmin.jsp"> <%=user.getNome()%></a>
     </div>
     <%}%>
 </div>

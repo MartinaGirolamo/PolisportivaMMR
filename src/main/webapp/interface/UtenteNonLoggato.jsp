@@ -24,7 +24,7 @@
 <div class="container">
     <h2> ERRORE!</h2>
     <p>EFFETTUARE IL LOGIN PER PROCEDERE</p>
-    <p>VAI ALLA <a href="view/login.jsp">LOGIN</a></p>
+    <p>VAI ALLA <a href="interface/login.jsp">LOGIN</a></p>
 </div>
 </body>
 </html>

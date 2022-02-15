@@ -84,13 +84,13 @@
 
     <a href="<%=contex%>" class="logo"><img src="<%=contex%>/immagini/Logo.png" width="100px" height="100px"></a>
     <div class="header-center">
-        <a class="notLast" href="<%=contex%>/view/abbonamenti.jsp">Abbonamenti</a>
-        <a class="notLast" href="<%=contex%>/view/prenotazione.jsp">Prenota</a>
-        <a href="<%=contex%>/view/campi.jsp">Campi</a>
+        <a class="notLast" href="<%=contex%>/interface/abbonamenti.jsp">Abbonamenti</a>
+        <a class="notLast" href="<%=contex%>/interface/prenotazione.jsp">Prenota</a>
+        <a href="<%=contex%>/interface/campi.jsp">Campi</a>
     </div>
 
     <div class="header-right">
-        <a class="button" href="<%=contex%>/view/login.jsp"> LOGIN</a>
+        <a class="button" href="<%=contex%>/interface/login.jsp"> LOGIN</a>
     </div>
 </div>
 </body>

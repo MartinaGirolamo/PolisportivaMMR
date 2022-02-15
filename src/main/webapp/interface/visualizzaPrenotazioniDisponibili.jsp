@@ -51,13 +51,13 @@
     ArrayList<PrenotazioneDisponibile> elencoPrenotazioni = (ArrayList<PrenotazioneDisponibile>) request.getSession().getAttribute("listaPrenotazioniDisponibili");%>
 
 <% if(user==null || user.getEmail()==null){%>
-<jsp:include page="/view/headerNotLog.jsp">
+<jsp:include page="/interface/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}
 
 else if(!user.isIs_Admin()){%>
-<jsp:include page="/view/headerLog.jsp">
+<jsp:include page="/interface/headerLog.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
@@ -94,7 +94,7 @@ else if(!user.isIs_Admin()){%>
 
 
 
-<jsp:include page="/view/footer.jsp">
+<jsp:include page="/interface/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
 </body>
