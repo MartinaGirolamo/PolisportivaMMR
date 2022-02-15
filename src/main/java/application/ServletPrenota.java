@@ -31,11 +31,11 @@ public class ServletPrenota extends HttpServlet {
         PrenotazioneDisponibile prenotazioneScelta = prenotazioniDisponibili.get(indiceArrayScelto);
         System.out.println(indiceArrayScelto);
         if(user == null || user.getEmail()==null){
-            RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/UtenteNonLoggato.jsp");
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/UtenteNonLoggato.jsp");
             requestDispatcher.forward(req, resp);
         }
         else if(indiceArrayScelto<0 || prenotazioneScelta==null || prenotazioneScelta.getDate()==null){
-            RequestDispatcher requestDispatcher= req.getRequestDispatcher("view/Error500.jsp");
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/Error500.jsp");
             requestDispatcher.forward(req, resp);
         }
         else{
