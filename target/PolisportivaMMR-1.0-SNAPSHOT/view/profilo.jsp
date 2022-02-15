@@ -119,9 +119,9 @@ else if(!user.isIs_Admin()){%>
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
                 <label>Modifica password</label>
-                <input type="text" name="passwordAttuale" placeholder="Inserisci password attuale" required>
-                <input type="text" name="nuovaPassword" placeholder="Inserisci nuova password" required>
-                <input type="text" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>
+                <input type="password" name="passwordAttuale" placeholder="Inserisci password attuale" required>
+                <input type="password" name="nuovaPassword" placeholder="Inserisci nuova password" required>
+                <input type="password" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>
                 <input type="submit" class="subBtn">
             </div>
             </form>

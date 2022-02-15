@@ -39,19 +39,7 @@ else if(!user.isIs_Admin()){%>
 <div class="container">
     <h2> SUCCESSO!</h2>
     <p> PRENOTAZIONE REGISTRATA CON SUCCESSO! </p>
-    <p> Prenotazione</p>
-    <p><th>CAMPO</th>
-    <th>DATA</th>
-    <th>TARIFFA</th>
-    <th>ORA START</th>
-    <th>ORA END</th>
 
-    <td><%=prenotazioneEffettuata.getNomeCampo()%></td>
-    <td><%=prenotazioneEffettuata.getDateP()%></td>
-    <td><%=prenotazioneEffettuata.getTariffaTotale()%></td>
-    <td><%=prenotazioneEffettuata.getOraStart()%></td>
-    <td><%=prenotazioneEffettuata.getOraEnd()%></td>
-    </p>
     <p> Per visualizzare i dettagli, controllare sul profilo personale</p>
 </div>
 
