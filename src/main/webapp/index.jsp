@@ -1,4 +1,4 @@
-<%@ page import="model.Utente.Utente" %>
+<%@ page import="storage.Utente.Utente" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
