@@ -131,7 +131,7 @@ public class ServletMostraPrenotazione extends HttpServlet {
                         prenotazioniDisponibili.add(pd);
                         break;
                     }
-                    if(i>arrayPrenotazioniPresenti.get(arrayPrenotazioniPresenti.size()-1).getOraEnd() && i+numOre<=22){
+                    if(i>=arrayPrenotazioniPresenti.get(arrayPrenotazioniPresenti.size()-1).getOraEnd() && i+numOre<=22){
                         PrenotazioneDisponibile pd = new PrenotazioneDisponibile(i,i+numOre,data,campo,tariffaTotale);
                         prenotazioniDisponibili.add(pd);
                         break;
