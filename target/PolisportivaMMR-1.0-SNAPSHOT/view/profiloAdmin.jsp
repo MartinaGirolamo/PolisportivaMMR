@@ -111,7 +111,7 @@
     <div class="container">
 
         <div class="element1">
-            <form action="../ServletCambiaPassword" method="post">
+            <form action="${pageContext.request.contextPath}/ServletCambiaPassword" method="get">
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
                 <label>Modifica password</label>
@@ -130,7 +130,7 @@
             <label>Nome: <%=user.getNome()%> </label>
             <label>Cognome <%=user.getCognome()%> </label>
             <label>Email: <%=user.getEmail()%> </label>
-            <form action="../ServletLogout" method="get">
+            <form action="${pageContext.request.contextPath}/ServletLogout" method="get">
                 <button type="submit" class="subBtn" onclick="">Logout</button>
             </form>
         </div>

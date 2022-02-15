@@ -13,7 +13,7 @@ public class CampoDAO {
     public CampoDAO() {
     }
 
-    public ArrayList<Campo> selectALlCampi() {
+    public ArrayList<Campo> selectAllCampi() {
         ArrayList<Campo> list = new ArrayList<>();
         try (Connection conn = ConPool.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Campo ");
