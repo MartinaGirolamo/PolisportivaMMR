@@ -15,9 +15,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 @WebServlet (name = "ServletMostraPrenotazione", value = "/ServletMostraPrenotazione")
 public class ServletMostraPrenotazione extends HttpServlet {
+
+    static class SortByOraStart implements Comparator<Prenotazione> {
+
+        @Override
+        public int compare(Prenotazione o1, Prenotazione o2) {
+            if(o1.getOraStart()<o2.getOraStart()) return -1;
+            else if(o1.getOraStart()>o2.getOraStart()) return 1;
+            else return 0;
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -63,8 +76,10 @@ public class ServletMostraPrenotazione extends HttpServlet {
 
         System.out.println("campo = "+campo+" data= "+data+" oraStart= "+oraStart+" numOre= "+numOre+"");
         PrenotazioneDAO prenotazioneDAO = new PrenotazioneDAO();
-        if(data!=null && campo!=null){
-            arrayPrenotazioniPresenti =  prenotazioneDAO.selectPrenotazioniByDataAndCampo(data,campo);}
+        if(data!=null && campo!=null && oraStart!=0){
+            arrayPrenotazioniPresenti =  prenotazioneDAO.selectPrenotazioniByDataAndCampo(data,campo);
+            Collections.sort(arrayPrenotazioniPresenti,new SortByOraStart());
+        }
         /*STAMPA DI PROVA PRENOTAZIONI PRESENTI*/
         if(arrayPrenotazioniPresenti.size()!=0){
             System.out.println("PRENOTAZIONI GIA PRESENTI IN DB");
