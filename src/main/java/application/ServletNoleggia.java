@@ -28,7 +28,10 @@ public class ServletNoleggia extends HttpServlet {
         String tipologia = list.get(0).getTipologia();
         String[] listaParametri =  req.getParameterValues(tipologia);
         NoleggioDAO noleggioDAO = new NoleggioDAO();
-
+        if(listaParametri==null){
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/errorNoleggio.jsp");
+            requestDispatcher.forward(req, resp);
+        }
         for (int i = 0; i < listaParametri.length; i++) {
             Attrezzatura a = ad.getAttrezzaturaFromNome(listaParametri[i]);
             String qtaString= req.getParameter(listaParametri[i]);
