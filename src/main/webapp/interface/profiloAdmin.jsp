@@ -142,7 +142,7 @@
     <a class="subBtn" href="<%=context%>/interface/noleggiEffettuatiAdmin.jsp">MOSTRA NOLEGGI EFFETTUATI</a>
     <a class="subBtn" href="<%=context%>/interface/abbonamentiAcquistatiAdmin.jsp">MOSTRA ACQUISTI EFFETTUATI</a>
     <a class="subBtn" href="<%=context%>/interface/mostraUtentiAdmin.jsp">MOSTRA UTENTI</a>
-    <a class="subBtn" href="<%=context%>/interface/mostraUtentiAdmin.jsp">BLOCCA DATA</a>
+    <a class="subBtn" href="<%=context%>/interface/bloccaDataAdmin.jsp">BLOCCA DATA</a>
 </div>
 
 

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title> PRENOTAZIONE EFFETTUATA</title>
+    <title> PRENOTAZIONE ELIMINATA</title>
 
     <style>
     .container{
@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-<% Prenotazione prenotazioneEffettuata = (Prenotazione) request.getSession().getAttribute("prenotazioneEffettuata");
+<%
     Utente user=(Utente) request.getSession().getAttribute("user");
     if(user==null || user.getEmail()==null){%>
 <jsp:include page="/interface/headerNotLog.jsp">
@@ -36,15 +36,15 @@ else {%>
 </jsp:include>
 <%}%>
 <div class="container">
-    <h2> SUCCESSO!</h2>
-    <p> PRENOTAZIONE REGISTRATA CON SUCCESSO! </p>
+    <h2> </h2>
+    <p> PRENOTAZIONE ELIMINATA CON SUCCESSO! </p>
 
     <p> Per visualizzare i dettagli, controllare sul profilo personale</p>
 </div>
 
 <div class="container">
-    <h2> Vuoi noleggiare l'attrezzatura?  </h2>
-    <p> <a href="interface/noleggio.jsp"> CLICCA QUI</a></p>
+    <h2> Torna al profilo personale  </h2>
+    <p> <a href="interface/profilo.jsp"> CLICCA QUI</a></p>
 
 </div>
 

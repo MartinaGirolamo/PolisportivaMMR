@@ -27,6 +27,17 @@ public class ServletPrenota extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Utente user=(Utente) req.getSession().getAttribute("user");
         ArrayList<PrenotazioneDisponibile> prenotazioniDisponibili = (ArrayList<PrenotazioneDisponibile>) req.getSession().getAttribute("listaPrenotazioniDisponibili");
+        PrenotazioneDAO prenotazioneDAO = new PrenotazioneDAO();
+        ArrayList<Prenotazione> listPrenotazioniPresenti = prenotazioneDAO.selectAllPrenotazioni();
+        int max =0;
+        for (Prenotazione p: listPrenotazioniPresenti) {
+            if(p.getCodice()>max)
+                max=p.getCodice();
+        }
+        if(prenotazioniDisponibili==null || prenotazioniDisponibili.isEmpty()){
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/Error500.jsp");
+            requestDispatcher.forward(req, resp);
+        }
         int indiceArrayScelto = Integer.parseInt(req.getParameter("indiceArrayScelto"));
         PrenotazioneDisponibile prenotazioneScelta = prenotazioniDisponibili.get(indiceArrayScelto);
         System.out.println(indiceArrayScelto);
@@ -48,7 +59,7 @@ public class ServletPrenota extends HttpServlet {
             prenotazione.setOraEnd(prenotazioneScelta.getOraEnd());
             prenotazione.setDateP(prenotazioneScelta.getDate());
             prenotazione.setTariffaTotale(prenotazioneScelta.getTariffaTotale());
-            prenotazione.setCodice(pd.sizeNumeroPrenotazioni()+1);
+            prenotazione.setCodice(max+1);
             if(pd.insertPrenotazione(prenotazione)) {
                 System.out.println("Prenotazione effettuata: "+prenotazione );
                 HttpSession session = req.getSession(true);

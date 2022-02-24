@@ -104,10 +104,10 @@ else {%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
-<form action="../ServletMostraPrenotazione" method="post">
+<form action="../ServletBloccaData" method="post">
 
 
-<label id="title">PRENOTA IL CAMPO</label>
+<label id="title">BLOCCA DATA PER TUTTI I CAMPI</label>
 <div class="container">
 <div class="selector">
 
@@ -118,11 +118,7 @@ else {%>
 
 </div>
 <div class="elenco">
-      <select class="campo"  name="campoScelto" required>
-        <option>Calcio</option>
-        <option>Pallavolo</option>
-        <option>Tennis</option>
-      </select>
+
 
     <input type="date" name="dataScelta" required>
 

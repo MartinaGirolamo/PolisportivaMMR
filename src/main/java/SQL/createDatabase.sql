@@ -91,10 +91,10 @@ insert into Prenotazione(codice, oraStart,oraEnd,dateP,utente,campo, tariffaTota
 insert into Attrezzatura (nome,qta,tariffa,path,tipologia) value
 ('Guanti',12,2,'immagini/guanti.jpg','calcio'),
 ('Casacca',30,2,'immagini/casacca.jpg','calcio'),
-('Pallone da calcio',15,2,'immagini/palloneCalcio.jpg','calcio'),
+('Pallone',15,2,'immagini/palloneCalcio.jpg','calcio'),
 ('Ginocchiere',20,2,'immagini/ginocchierePallavolo.jpg','pallavolo'),
-('Pallone da pallavolo',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
-('Palline da tennis',20,2,'immagini/pallineTennis.jpg','tennis'),
+('Pallone',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
+('Palline',20,2,'immagini/pallineTennis.jpg','tennis'),
 ('Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
 ('Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
 

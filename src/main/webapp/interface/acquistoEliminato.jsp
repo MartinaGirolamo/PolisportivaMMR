@@ -1,4 +1,5 @@
-<%@ page import="storage.Utente.Utente" %><%--
+<%@ page import="storage.Utente.Utente" %>
+<%@ page import="storage.Prenotazione.Prenotazione" %><%--
   Created by IntelliJ IDEA.
   User: Martina
   Date: 07/02/2022
@@ -8,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title> ACQUISTO ABBONAMENTO EFFETTUATO</title>
+    <title> PRENOTAZIONE ELIMINATA</title>
 
     <style>
     .container{
@@ -21,7 +22,8 @@
     </style>
 </head>
 <body>
-<%  Utente user=(Utente) request.getSession().getAttribute("user");
+<%
+    Utente user=(Utente) request.getSession().getAttribute("user");
     if(user==null || user.getEmail()==null){%>
 <jsp:include page="/interface/headerNotLog.jsp">
     <jsp:param name="title" value=""/>
@@ -33,11 +35,17 @@ else {%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
+<div class="container">
+    <h2> </h2>
+    <p> ACQUISTO ELIMINATO CON SUCCESSO! </p>
+
+    <p> Per visualizzare i dettagli, controllare sul profilo personale</p>
+</div>
 
 <div class="container">
-    <h2> SUCCESSO!</h2>
-    <p> ACQUISTO EFFETTUATO CON SUCCESSO! </p>
-    <p> Per visualizzare i dettagli, controllare sul profilo personale</p>
+    <h2> Torna al profilo personale  </h2>
+    <p> <a href="interface/profilo.jsp"> CLICCA QUI</a></p>
+
 </div>
 
 <jsp:include page="/interface/footer.jsp">

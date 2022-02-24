@@ -86,7 +86,7 @@ else {%>
         <td><%=p.getTariffaTotale()%></td>
         <td><%=p.getOraStart()%></td>
         <td><%=p.getOraEnd()%></td>
-        <td><form action="../ServletEliminaUtente" method="post">
+        <td><form action="../ServletEliminaPrenotazione" method="post">
             <input type="hidden" name="codice" value=<%=p.getCodice()%> ><button type="submit" class="subBtn">ELIMINA</button></form></td>
     </tr>
     <%}%>

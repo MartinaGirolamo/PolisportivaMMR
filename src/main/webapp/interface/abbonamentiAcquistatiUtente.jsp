@@ -58,6 +58,7 @@ else {%>
         <th>DATA ACQUISTO</th>
         <th>NUMERO MESI</th>
         <th>TARIFFA TOTALE</th>
+        <th>ELIMINA</th>
     </tr>
     <%for(int i = 0; i<elencoAcquisti.size();i++){
         Acquisto acq = elencoAcquisti.get(i);
@@ -68,6 +69,8 @@ else {%>
         <td><%=acq.getDataAcquisto()%></td>
         <td><%=acq.getnMesi()%></td>
         <td><%=a.getTariffa()* acq.getnMesi()%></td>
+        <td><form action="../ServletEliminaAcquisto" method="post">
+            <input type="hidden" name="tipologia" value=<%=a.getTipologia()%> ><button type="submit" class="subBtn">ELIMINA</button></form></td>
     </tr>
     <%}%>
 </table>
