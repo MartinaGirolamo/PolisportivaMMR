@@ -119,12 +119,12 @@ else {%>
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
                 <label>Modifica password</label>
-                <label><br> La password deve contenere almeno: <br>
-                    un carattere maiuscolo,<br>
-                    un carattere minuscolo,<br>
-                    un numero.<br>
-                    Deve avere lunghezza minimo di 8 caratteri e massimo 20.
-                </label>
+                <input type="button" onclick="passwordAlert()" name="Info" value="Info" id="subBtn">
+                <script>
+                    function passwordAlert() {
+                        alert("La password deve contenere almeno:un carattere maiuscolo,un carattere minuscolo un numero.Deve avere lunghezza minimo di 8 caratteri e massimo 20.");
+                    }
+                </script>
                 <input type="password" name="passwordAttuale" placeholder="Inserisci password attuale" required>
                 <input type="password" name="nuovaPassword" placeholder="Inserisci nuova password" required>
                 <input type="password" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>
