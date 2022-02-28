@@ -102,9 +102,15 @@ else {%>
         <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
         <label for="psw"><b>Password</b></label>
+        <label for="psw"><br> La password deve contenere almeno: <br>
+            un carattere maiuscolo,<br>
+            un carattere minuscolo,<br>
+            un numero.<br>
+            Deve avere lunghezza minimo di 8 caratteri e massimo 20.
+            </label>
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-        <laber for="dateN"><b>Data di nascite </b></laber>
+        <laber for="dateN"><b>Data di nascita </b></laber>
         <input type="date" placeholder="AAAA-MM-GG" name="dateN" id="dateN" required>
 
         <hr>

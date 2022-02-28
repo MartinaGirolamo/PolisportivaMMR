@@ -24,8 +24,9 @@ public class ServletRegister extends HttpServlet {
         String psw = request.getParameter("psw");
         String dateN = request.getParameter("dateN");
 
+
         Utente utente= new Utente();
-        if(user==null){
+        if(user==null||user.getEmail()==null || !user.isIs_Admin()){
 
         utente.setNome(nome);
         utente.setCognome(cognome);
@@ -47,6 +48,10 @@ public class ServletRegister extends HttpServlet {
 
         UtenteDAO utenteDAO = new UtenteDAO();
         String address=null;
+        while(!checkPassword(psw)){
+            RequestDispatcher requestDispatcher= request.getRequestDispatcher("interface/ErrorePasswordRegister.jsp");
+            requestDispatcher.forward(request, response);
+        }
 
         if(utenteDAO.controllaEmail(utente)){
             address="interface/EmailGiaInUso.jsp";
@@ -54,10 +59,12 @@ public class ServletRegister extends HttpServlet {
         }else{
             if(utenteDAO.insertUtente(utente)){
                 System.out.println("Inserimento effettuato");
-                if(user.isIs_Admin()){
+                if(utente.isIs_Admin()){
                     address="index.jsp";
                 }
+                else{
                 address="interface/RegistrazioneEffettuata.jsp";
+                }
             }
             else{
                 System.out.println("Inserimento NON effettuato");
@@ -79,5 +86,12 @@ public class ServletRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
+    }
+
+    private boolean checkPassword(String password){
+        if(password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})")){
+            return true;
+        }
+        return false;
     }
 }

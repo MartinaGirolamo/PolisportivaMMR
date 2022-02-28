@@ -114,6 +114,12 @@
             <form action="${pageContext.request.contextPath}/ServletCambiaPassword" method="post">
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
+                <label><br> La password deve contenere almeno: <br>
+                    un carattere maiuscolo,<br>
+                    un carattere minuscolo,<br>
+                    un numero.<br>
+                    Deve avere lunghezza minimo di 8 caratteri e massimo 20.
+                </label>
                 <label>Modifica password</label>
                 <input type="password" name="passwordAttuale" placeholder="Inserisci password attuale" required>
                 <input type="password" name="nuovaPassword" placeholder="Inserisci nuova password" required>

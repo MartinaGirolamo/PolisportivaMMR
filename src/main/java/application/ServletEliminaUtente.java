@@ -20,7 +20,7 @@ public class ServletEliminaUtente extends HttpServlet {
             UtenteDAO utenteDAO=new UtenteDAO();
             String email = request.getParameter("email");
             if(utenteDAO.deleteUtente(email)){
-                RequestDispatcher requestDispatcher= request.getRequestDispatcher("interface/mostraUtentiAdmin.jsp");
+                RequestDispatcher requestDispatcher= request.getRequestDispatcher("interface/UtenteEliminato.jsp");
                 requestDispatcher.forward(request, response);
             }
             else {
