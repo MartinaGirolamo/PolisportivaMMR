@@ -115,6 +115,13 @@
             <h2>IMPOSTAZIONI</h2>
             <div class="element3">
                 <label>Modifica password</label>
+                <input type="button" onclick="passwordAlert()" name="Info" value="Info" id="subBtn">
+                <script>
+                    function passwordAlert() {
+                        alert("La password deve contenere almeno:\nun carattere maiuscolo,\nun carattere minuscolo \nun numero.\nDeve avere lunghezza minimo di 8 caratteri e massimo 20.");
+                    }
+                </script>
+
                 <input type="password" name="passwordAttuale" placeholder="Inserisci password attuale" required>
                 <input type="password" name="nuovaPassword" placeholder="Inserisci nuova password" required>
                 <input type="password" name="verificaNuovaPassword" placeholder="Verifica nuova password" required>

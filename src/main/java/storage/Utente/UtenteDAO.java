@@ -12,7 +12,7 @@ public class UtenteDAO {
 
     public UtenteDAO(){}
 
-    public ArrayList<Utente> selectAllUtenti(){
+    public ArrayList<Utente> selectAllUtenti(){ //stampa utenti nella pagina mostraUtentiAdmin
         ArrayList<Utente> list = new ArrayList<>();
         try(Connection conn= ConPool.getConnection()){
             PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente;");
@@ -33,7 +33,7 @@ public class UtenteDAO {
         return list;
     }
 
-    public Utente selectUtenteByEmailPassword(String email,String password){
+    public Utente selectUtenteByEmailPassword(String email,String password){  //controllo nel login
         Utente utenteRitorno = new Utente();
         try(Connection conn= ConPool.getConnection()){
             PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente WHERE email = '"+email+"' AND pword = '"+password+"'");
@@ -153,6 +153,28 @@ public class UtenteDAO {
         }
 
 
+    }
+
+    public boolean isAdmin (String email){
+        Utente utenteRitorno = new Utente();
+        try(Connection conn= ConPool.getConnection()){
+            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Utente WHERE email = '"+email+"'");
+            //ps.setString(1, email);
+            ResultSet set = ps.executeQuery();
+            while(set.next()){
+                utenteRitorno.setEmail(set.getString("email"));
+                System.out.println(utenteRitorno.getEmail());
+                utenteRitorno.setIs_Admin(set.getBoolean("is_admin"));//IfAdmin in parentesi è quello del database (NOME)
+                utenteRitorno.setPsword(set.getString("pword"));
+                utenteRitorno.setNome(set.getString("nome"));
+                utenteRitorno.setCognome(set.getString("cognome"));
+                utenteRitorno.setDateN(set.getString("dateN"));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(utenteRitorno.isIs_Admin()) return true;
+        return false;
     }
 
 

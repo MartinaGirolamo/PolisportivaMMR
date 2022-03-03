@@ -1,7 +1,8 @@
 <%@ page import="storage.Utente.Utente" %>
 <%@ page import="storage.Prenotazione.Prenotazione" %>
 <%@ page import="storage.Prenotazione.PrenotazioneDAO" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="storage.Utente.UtenteDAO" %><%--
   Created by IntelliJ IDEA.
   User: Martina
   Date: 12/02/2022
@@ -29,6 +30,7 @@
     </style>
     <%String context = request.getContextPath();
         Utente user=(Utente) request.getSession().getAttribute("user");
+        UtenteDAO ud = new UtenteDAO();
         PrenotazioneDAO pd = new PrenotazioneDAO();
         ArrayList<Prenotazione> elencoPrenotazioni = pd.selectAllPrenotazioni();
     %>
@@ -55,7 +57,9 @@
     </tr>
 
         <%
-    for (Prenotazione p: elencoPrenotazioni) { %>
+    for (Prenotazione p: elencoPrenotazioni) {
+
+        if(!ud.isAdmin(p.getEmail())){%>
     <tr>
         <td><%=p.getEmail()%></td>
         <td><%=p.getCodice()%></td>
@@ -65,7 +69,7 @@
         <td><%=p.getOraStart()%></td>
         <td><%=p.getOraEnd()%></td>
     </tr>
-        <% }%>
+        <% }}%>
 </table>
 
 

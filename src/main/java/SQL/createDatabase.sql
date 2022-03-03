@@ -98,6 +98,9 @@ insert into Attrezzatura (nome,qta,tariffa,path,tipologia) value
 ('Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
 ('Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
 
+insert into Acquisto (utente, codiceAbb, dataAcquisto, nMesi) value
+    ('rosabianchi@gmail.com',4,'2021-12-12',1);
+
 
 
 

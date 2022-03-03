@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -62,7 +63,21 @@
         .registerbtn:hover {
             opacity: 1;
         }
+        #subBtn{
+            font-size: 12px;
+            display: flex;
+            border: solid #26272b;
+            color:#FFFFFF;
+            background-color:#26272b  ;
+            text-decoration:none;
+            transition: 0.6s ease;
+            cursor: pointer;
+        }
 
+        #subBtn:hover{
+            background-color: grey;
+
+        }
 
         a {
             color: dodgerblue;  /*PER I LINK */
@@ -86,6 +101,8 @@ else {%>
     <jsp:param name="title" value=""/>
 </jsp:include>
 <%}%>
+
+
 <form action="../ServletRegister" method="post">
     <div class="container">
         <h1>Registrati</h1>
@@ -102,12 +119,13 @@ else {%>
         <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
         <label for="psw"><b>Password</b></label>
-        <label for="psw"><br> La password deve contenere almeno: <br>
-            un carattere maiuscolo,<br>
-            un carattere minuscolo,<br>
-            un numero.<br>
-            Deve avere lunghezza minimo di 8 caratteri e massimo 20.
-            </label>
+        <input type="button" onclick="passwordAlert()" name="Info" value="Info" id="subBtn">
+        <script>
+            function passwordAlert() {
+                alert("La password deve contenere almeno:\nun carattere maiuscolo,\nun carattere minuscolo \nun numero.\nDeve avere lunghezza minimo di 8 caratteri e massimo 20.");
+            }
+        </script>
+
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
         <laber for="dateN"><b>Data di nascita </b></laber>

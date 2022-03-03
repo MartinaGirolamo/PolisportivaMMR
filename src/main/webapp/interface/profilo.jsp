@@ -122,7 +122,7 @@ else {%>
                 <input type="button" onclick="passwordAlert()" name="Info" value="Info" id="subBtn">
                 <script>
                     function passwordAlert() {
-                        alert("La password deve contenere almeno:un carattere maiuscolo,un carattere minuscolo un numero.Deve avere lunghezza minimo di 8 caratteri e massimo 20.");
+                        alert("La password deve contenere almeno:\nun carattere maiuscolo,\nun carattere minuscolo \nun numero.\nDeve avere lunghezza minimo di 8 caratteri e massimo 20.");
                     }
                 </script>
                 <input type="password" name="passwordAttuale" placeholder="Inserisci password attuale" required>

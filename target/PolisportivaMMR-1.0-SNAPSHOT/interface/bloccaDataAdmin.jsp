@@ -1,4 +1,8 @@
-<%@ page import="storage.Utente.Utente" %><%--
+<%@ page import="storage.Utente.Utente" %>
+<%@ page import="storage.Prenotazione.Prenotazione" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="storage.Prenotazione.PrenotazioneDAO" %>
+<%@ page import="storage.Utente.UtenteDAO" %><%--
   Created by IntelliJ IDEA.
   User: pastore
   Date: 25/01/22
@@ -86,10 +90,27 @@
             height: 39px;
         }
 
+        table {
+            margin-bottom: 20px;
+            margin-top: 100px;
+            margin-left: 20px;
+            border-collapse: collapse;
+            width: 97%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+        tr:nth-child(even) {background-color: #8c8888;}
+
 
     </style>
-        <%
+    <%String context = request.getContextPath();
         Utente user=(Utente) request.getSession().getAttribute("user");
+        UtenteDAO ud = new UtenteDAO();
+        PrenotazioneDAO pd = new PrenotazioneDAO();
+        ArrayList<Prenotazione> elencoPrenotazioni = pd.selectPrenotazioniCampo("Calcio");
     %>
 </head>
 <body>
@@ -118,17 +139,33 @@ else {%>
 
 </div>
 <div class="elenco">
-
-
     <input type="date" name="dataScelta" required>
-
-
 
 </div>
 </div>
 
 <input type="submit" onclick="" id="subBtn">
 </form>
+
+<h2><p>DATE BLOCCATE</p></h2>
+<table>
+    <tr>
+        <th>UTENTE </th>
+        <th>DATA</th>
+
+    </tr>
+
+    <%
+        for (Prenotazione p: elencoPrenotazioni) {
+
+            if(ud.isAdmin(p.getEmail())){%>
+    <tr>
+        <td><%=p.getEmail()%></td>
+        <td><%=p.getDateP()%></td>
+
+    </tr>
+    <% }}%>
+</table>
 <jsp:include page="/interface/footer.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>

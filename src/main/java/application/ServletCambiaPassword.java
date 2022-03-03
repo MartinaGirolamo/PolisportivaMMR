@@ -31,7 +31,7 @@ public class ServletCambiaPassword extends HttpServlet {
         if(newPassword.equals(verificaNuovaPassword)) {
 
             while(!checkPassword(newPassword)){
-                RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/ErrorePasswordRegister.jsp");
+                RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/ErrorePasswordCambioPassword.jsp");
                 requestDispatcher.forward(req, resp);
             }
 

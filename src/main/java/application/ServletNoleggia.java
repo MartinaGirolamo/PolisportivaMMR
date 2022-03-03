@@ -44,17 +44,21 @@ public class ServletNoleggia extends HttpServlet {
             int qta = 0;
             if (qtaString != "") {
                 qta = Integer.parseInt(qtaString);
-            } else {
+            }
+            if(qta==0) {
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/errorNoleggio.jsp");
                 requestDispatcher.forward(req, resp);
+
             }
-            Noleggio n = new Noleggio();
-            n.setCodiceAttr(a.getCodice());
-            n.setCodicePren(prenotazione.getCodice());
-            n.setQta(qta);
-            listNoleggi.add(n);
-            System.out.println("codiceAttrezzatura: " + a.getCodice() + " codicePrenotazione: " + prenotazione.getCodice() + " qta: " + qta);
-        }
+            else {
+                Noleggio n = new Noleggio();
+                n.setCodiceAttr(a.getCodice());
+                n.setCodicePren(prenotazione.getCodice());
+                n.setQta(qta);
+                listNoleggi.add(n);
+                System.out.println("codiceAttrezzatura: " + a.getCodice() + " codicePrenotazione: " + prenotazione.getCodice() + " qta: " + qta);
+            }
+            }
         boolean effettuato=true;
         for (int i = 0; i<listNoleggi.size() && effettuato;i++) {
             Noleggio n = listNoleggi.get(i);
