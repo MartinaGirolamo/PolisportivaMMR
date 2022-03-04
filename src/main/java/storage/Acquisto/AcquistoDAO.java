@@ -89,6 +89,18 @@ public class AcquistoDAO {
         else return true;
     }
 
+    public boolean deleteAcquisto(int codice,String utente){
+        try(Connection conn = ConPool.getConnection()){
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM Acquisto WHERE codiceAbb="+codice+" AND utente='"+utente+"'");
+            int ritorno=ps.executeUpdate();
+            if (ritorno==2) return false;
+            else return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 
 

@@ -14,23 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 @WebServlet (name = "ServletMostraPrenotazione", value = "/ServletMostraPrenotazione")
 public class ServletMostraPrenotazione extends HttpServlet {
 
-    static class SortByOraStart implements Comparator<Prenotazione> {
-
-        @Override
-        public int compare(Prenotazione o1, Prenotazione o2) {
-            if(o1.getOraStart()<o2.getOraStart()) return -1;
-            else if(o1.getOraStart()>o2.getOraStart()) return 1;
-            else return 0;
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -159,4 +147,25 @@ public class ServletMostraPrenotazione extends HttpServlet {
         RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/visualizzaPrenotazioniDisponibili.jsp");
         requestDispatcher.forward(req, resp);
     }
+
+
+
+
+
+
+
+
+
+
+
+    static class SortByOraStart implements Comparator<Prenotazione> {
+
+        @Override
+        public int compare(Prenotazione o1, Prenotazione o2) {
+            if(o1.getOraStart()<o2.getOraStart()) return -1;
+            else if(o1.getOraStart()>o2.getOraStart()) return 1;
+            else return 0;
+        }
+    }
+
 }

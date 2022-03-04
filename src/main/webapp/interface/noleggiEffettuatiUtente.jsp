@@ -64,8 +64,10 @@ else {%>
     </tr>
     <%for (int i = 0; i<elencoPrenotazioni.size();i++){
         Prenotazione p = elencoPrenotazioni.get(i);
-        Noleggio n =  nd.selectNoleggioByPrenotazione(p.getCodice());
-        if(n!=null && n.getCodiceAttr()!=0){
+
+        ArrayList<Noleggio> list=  nd.selectNoleggioByPrenotazione(p.getCodice());
+        if(!list.isEmpty()){
+            for (Noleggio n : list) {
             Attrezzatura attrezzatura = ad.getAttrezzaturaByCodice(n.getCodiceAttr());%>
     <tr>
         <td><%=p.getCodice()%></td>
@@ -73,9 +75,9 @@ else {%>
         <td><%=n.getQta()%></td>
         <td><%=n.getQta()* attrezzatura.getTariffa()%></td>
     </tr>
-    <%}}%>
+    <%}}}%>
 </table>
-<%}%>
+
 
 
 

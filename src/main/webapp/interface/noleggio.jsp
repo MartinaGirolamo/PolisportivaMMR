@@ -89,7 +89,7 @@ else {%>
             <label><%=a.getNome()%></label>
             <input type="checkbox" id="<%=a.getNome()%>" name="<%=a.getTipologia()%>" value="<%=a.getNome()%>">
             <label for="quantity<%=a.getNome()%>"> Inserire quantità:</label>
-            <input type="number" name="<%=a.getNome()%>" id="quantity<%=a.getNome()%>" min="1" max="<%=a.getQta()%>">
+            <input type="number" name="<%=a.getNome()%>" id="quantity<%=a.getNome()%>" min="1" max="<%=a.getQta()%>" value="1">
         </div>
         <%}%>
     </div>

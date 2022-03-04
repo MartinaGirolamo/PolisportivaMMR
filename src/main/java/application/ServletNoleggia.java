@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @WebServlet(name = "ServletNoleggia", value = "/ServletNoleggia")
@@ -27,29 +28,55 @@ public class ServletNoleggia extends HttpServlet {
         Utente user=(Utente) req.getSession().getAttribute("user");
         String tipologia = list.get(0).getTipologia();
         String[] listaParametri =  req.getParameterValues(tipologia);
-        NoleggioDAO noleggioDAO = new NoleggioDAO();
 
+
+        NoleggioDAO noleggioDAO = new NoleggioDAO();
+        if(listaParametri==null){
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/errorNoleggio.jsp");
+            requestDispatcher.forward(req, resp);
+        }
+        for(int i = 0; i< listaParametri.length;i++){
+            System.out.println(listaParametri[i]);}
+        ArrayList<Noleggio> listNoleggi = new ArrayList<>();
         for (int i = 0; i < listaParametri.length; i++) {
             Attrezzatura a = ad.getAttrezzaturaFromNome(listaParametri[i]);
-            String qtaString= req.getParameter(listaParametri[i]);
+            String qtaString = req.getParameter(listaParametri[i]);
             int qta = 0;
-            if(qtaString!=null) {
+            if (qtaString != "") {
                 qta = Integer.parseInt(qtaString);
             }
-            Noleggio n = new Noleggio();
-            n.setCodiceAttr(a.getCodice());
-            n.setCodicePren(prenotazione.getCodice());
-            n.setQta(qta);
-            System.out.println("codiceAttrezzatura: "+a.getCodice()+" codicePrenotazione: "+prenotazione.getCodice()+" qta: "+qta);
-            if(noleggioDAO.insertNoleggio(n)){
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/NoleggioEffettuato.jsp");
+            if(qta==0) {
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/errorNoleggio.jsp");
                 requestDispatcher.forward(req, resp);
+
             }
             else {
-
-                RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/Error500.jsp");
-                requestDispatcher.forward(req, resp);
+                Noleggio n = new Noleggio();
+                n.setCodiceAttr(a.getCodice());
+                n.setCodicePren(prenotazione.getCodice());
+                n.setQta(qta);
+                listNoleggi.add(n);
+                System.out.println("codiceAttrezzatura: " + a.getCodice() + " codicePrenotazione: " + prenotazione.getCodice() + " qta: " + qta);
             }
+            }
+        boolean effettuato=true;
+        for (int i = 0; i<listNoleggi.size() && effettuato;i++) {
+            Noleggio n = listNoleggi.get(i);
+            if(noleggioDAO.insertNoleggio(n)){
+                effettuato=true;
+            }
+            else {
+                effettuato=false;
+            }
+        }
+
+        if(effettuato){
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/NoleggioEffettuato.jsp");
+            requestDispatcher.forward(req, resp);
+        }
+        else {
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/Error500.jsp");
+            requestDispatcher.forward(req, resp);
         }
 
 

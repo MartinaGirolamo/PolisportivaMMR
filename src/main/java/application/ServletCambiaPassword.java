@@ -26,7 +26,15 @@ public class ServletCambiaPassword extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("interface/Error500.jsp");
             requestDispatcher.forward(req, resp);
         }
+
+
         if(newPassword.equals(verificaNuovaPassword)) {
+
+            while(!checkPassword(newPassword)){
+                RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/ErrorePasswordCambioPassword.jsp");
+                requestDispatcher.forward(req, resp);
+            }
+
             if (utenteDAO.checkPassword(user, passwordAttuale)) {
                 Utente utenteModifica = new Utente();
                 utenteModifica.setCognome(user.getCognome());
@@ -62,4 +70,13 @@ public class ServletCambiaPassword extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
+
+
+    private boolean checkPassword(String password){
+        if(password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})")){
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -26,6 +26,25 @@
             padding: 8px;
         }
         tr:nth-child(even) {background-color: #8c8888;}
+
+        .subBtn{
+
+            display: flex;
+            margin: auto;
+            margin-top: 10px;
+            border: solid #26272b;
+            color:#FFFFFF;
+            background-color:#26272b  ;
+            text-decoration:none;
+            padding: 10px 25px 10px 25px;
+            transition: 0.6s ease;
+            cursor: pointer;
+        }
+
+        .subBtn:hover{
+            background-color: grey;
+
+        }
     </style>
     <%String context = request.getContextPath();
         Utente user=(Utente) request.getSession().getAttribute("user");
@@ -55,6 +74,7 @@ else {%>
         <th>TARIFFA</th>
         <th>ORA START</th>
         <th>ORA END</th>
+        <th>ELIMINA</th>
     </tr>
     <%for(int i = 0; i<elencoPrenotazioni.size();i++){
         Prenotazione p = elencoPrenotazioni.get(i);%>
@@ -66,6 +86,8 @@ else {%>
         <td><%=p.getTariffaTotale()%></td>
         <td><%=p.getOraStart()%></td>
         <td><%=p.getOraEnd()%></td>
+        <td><form action="../ServletEliminaPrenotazione" method="post">
+            <input type="hidden" name="codice" value=<%=p.getCodice()%> ><button type="submit" class="subBtn">ELIMINA</button></form></td>
     </tr>
     <%}%>
 </table>

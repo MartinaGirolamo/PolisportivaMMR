@@ -75,7 +75,8 @@ else {%>
         <th>ORA END</th>
         <th>SCEGLI</th>
     </tr>
-    <%for(int i = 0; i<elencoPrenotazioni.size();i++){
+    <%  if(!elencoPrenotazioni.isEmpty()){
+        for(int i = 0; i<elencoPrenotazioni.size();i++){
         PrenotazioneDisponibile p = elencoPrenotazioni.get(i);%>
 
     <tr>
@@ -86,7 +87,7 @@ else {%>
         <td><%=p.getOraEnd()%></td>
         <td><input type="radio" name="indiceArrayScelto" required value="<%=i%>" id="<%=i%>" /> <%=i%> </td>
     </tr>
-    <%}%>
+    <%}}%>
 </table>
     </div>
     <button type="submit" class="prenotabtn" >Prenota</button>
