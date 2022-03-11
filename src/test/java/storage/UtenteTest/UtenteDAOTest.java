@@ -1,5 +1,6 @@
 package storage.UtenteTest;
-
+/*
+@author Girolamo Martina*/
 import org.junit.jupiter.api.Test;
 import storage.ConPool;
 import storage.Utente.Utente;
@@ -130,6 +131,183 @@ public class UtenteDAOTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void insertUtenteTest(){
+        Utente utente1, utenteTest;
+        utente1 = new Utente();
+        utenteTest = new Utente();
+        try {
+            Connection connection = ConPool.getConnection();
+            PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utente1@utente.it';");
+            ps1.executeUpdate();
+            PreparedStatement ps2 = connection.prepareStatement(stringa1);
+            ps2.executeUpdate();
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        utente1.setEmail("utente1@utente.it");
+        utente1.setCognome("tizio");
+        utente1.setNome("utente");
+        utente1.setDateN("1996-12-22");
+        utente1.setIs_Admin(false);
+        utente1.setPsword("Password1");
+
+
+
+        utenteTest=utenteDAO.selectUtenteByEmailPassword("utente1@utente.it","Password1");
+        boolean test2 = utenteTest.equals(utente1);
+
+        assertTrue("L'utente non è stato inserito  correttamente", test2);
+
+        try {
+            Connection connection = ConPool.getConnection();
+            PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utente1@utente.it';");
+            ps1.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void deleteUtenteTest() throws SQLException {
+        Utente utente;
+        try {
+            Connection connection = ConPool.getConnection();
+            PreparedStatement ps2 = connection.prepareStatement(stringa1);
+            ps2.executeUpdate();
+            PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utente1@utente.it';");
+            ps1.executeUpdate();
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        boolean test2;
+        utente = utenteDAO.selectUtenteByEmailPassword("utente1@utente.it","Password1");
+        if(utente == null || utente.getEmail()==null){
+            test2= true;
+        }
+        else {test2=false;}
+
+        assertTrue("L'utente non è stato eliminato  correttamente", test2);
+
+    }
+
+    @Test
+    public void updateUtenteTest(){
+        Utente utente1, utenteTest;
+        try {
+            Connection connection = ConPool.getConnection();
+            PreparedStatement ps2 = connection.prepareStatement(stringa1);
+            ps2.executeUpdate();
+            PreparedStatement ps1 = connection.prepareStatement("UPDATE Utente SET pword='NuovaPassword1'WHERE email='utente1@utente.it';");
+            ps1.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        utente1=new Utente();
+        utente1.setEmail("utente1@utente.it");
+        utente1.setCognome("tizio");
+        utente1.setNome("utente");
+        utente1.setDateN("1996-12-22");
+        utente1.setIs_Admin(false);
+        utente1.setPsword("NuovaPassword1");
+
+        boolean test2;
+
+        utenteTest = utenteDAO.selectUtenteByEmailPassword("utente1@utente.it","NuovaPassword1");
+        if(utente1.equals(utenteTest)){
+            test2= true;
+        }
+        else {test2=false;}
+
+        assertTrue("L'utente non è stato modificato correttamente", test2);
+        try {
+            Connection connection = ConPool.getConnection();
+            PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utente1@utente.it';");
+            ps1.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+   public void controllaEmailTest(){
+       {
+
+           Utente utente1 = new Utente();
+           try {
+               Connection connection = ConPool.getConnection();
+               PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utente1@utente.it';");
+               ps1.executeUpdate();
+               PreparedStatement ps2 = connection.prepareStatement(stringa1);
+               ps2.executeUpdate();
+
+
+           }catch (SQLException e){
+               e.printStackTrace();
+           }
+
+           utente1.setEmail("utente1@utente.it");
+           utente1.setCognome("tizio");
+           utente1.setNome("utente");
+           utente1.setDateN("1996-12-22");
+           utente1.setIs_Admin(false);
+           utente1.setPsword("Password1");
+
+
+            boolean test2=false;
+           if(utenteDAO.controllaEmail(utente1)){
+               test2=true;
+           }
+           else test2=false;
+           assertTrue("L'utente non è restituito correttamente", test2);
+
+           try {
+               Connection connection = ConPool.getConnection();
+               PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utente1@utente.it';");
+               ps1.execute();
+           }catch (SQLException e){
+               e.printStackTrace();
+           }
+
+       }
+
+   }
+   @Test
+   public void isAdminTest(){
+
+       try {
+           Connection connection = ConPool.getConnection();
+           PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utenteAdmin@utente.it';");
+           ps1.executeUpdate();
+           PreparedStatement ps2 = connection.prepareStatement("INSERT INTO Utente ( email,pword,  nome, cognome, is_Admin, dateN ) VALUES ('utenteAdmin@utente.it','Password1','utente','tizio',true,'1996-12-22');");
+           ps2.executeUpdate();
+
+
+       }catch (SQLException e){
+           e.printStackTrace();
+       }
+
+       boolean test2 = utenteDAO.isAdmin("utenteAdmin@utente.it");
+
+       assertTrue("Il controllo non è eseguito correttamente", test2);
+
+       try {
+           Connection connection = ConPool.getConnection();
+           PreparedStatement ps1 = connection.prepareStatement("DELETE FROM Utente WHERE email='utenteAdmin@utente.it';");
+           ps1.execute();
+       }catch (SQLException e){
+           e.printStackTrace();
+       }
+    }
+
 
 
 
