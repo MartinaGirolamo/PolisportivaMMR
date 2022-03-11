@@ -1,1 +1,37 @@
- Il formato della data prenotazione deve essere: 'AAAA-MM-GG'
+INSERIMENTO DB MOMENTANEAMENTE CANCELLATO
+
+insert into Utente(email,pword,nome,cognome,dateN,is_admin)values
+('rosabianchi@gmail.com','password1','rosa','bianchi','12-10-1998',false),
+('admin1@gmail.com','password2','nome1','cognome1','13-04-1999',true),
+('admin2@gmail.com','password3','nome2','cognome2','07-08-2000',true),
+('admin3@gmail.com','password4','nome3','cognome3','15-06-1997',true);
+
+insert into Campo(nome,descrizione,tariffa,numGiocatori) values
+('Calcio','IL CAMPO È GRANDE 100 X 60, CON ERBETTA SINTETICA',20,22),
+('Tennis','IL CAMPO È GRANDE 24 X 10 SINTETICO',10,4),
+('Pallavolo','IL CAMPO È GRANDE 18 X 9. ALTEZZA RETE REGOLABILE, SI TROVA AL CHIUSO',15,12);
+
+insert into Abbonamento (tariffa,tipologia) value
+    (30,'calcio'),
+    (30,'tennis'),
+    (30,'pallavolo'),
+    (30,'palestra');
+
+insert into Prenotazione(codice, oraStart,oraEnd,dateP,utente,campo, tariffaTotale ) values
+(1,10,12,'2022-02-12','rosabianchi@gmail.com','Pallavolo',30),
+(2,15,16,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15),
+(3,19,20,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15);
+
+
+insert into Attrezzatura (nome,qta,tariffa,path,tipologia) value
+('Guanti',12,2,'immagini/guanti.jpg','calcio'),
+('Casacca',30,2,'immagini/casacca.jpg','calcio'),
+('Pallone',15,2,'immagini/palloneCalcio.jpg','calcio'),
+('Ginocchiere',20,2,'immagini/ginocchierePallavolo.jpg','pallavolo'),
+('Pallone',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
+('Palline',20,2,'immagini/pallineTennis.jpg','tennis'),
+('Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
+('Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
+
+insert into Acquisto (utente, codiceAbb, dataAcquisto, nMesi) value
+    ('rosabianchi@gmail.com',4,'2021-12-12',1);

@@ -1,5 +1,7 @@
 package storage.Utente;
 
+import java.util.Objects;
+
 public class Utente {
     private String email,  psword, nome, cognome, dateN ;
     private boolean is_Admin;
@@ -64,4 +66,12 @@ public class Utente {
                 ", is_Admin=" + is_Admin +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Utente utente = (Utente) o;
+        return is_Admin == utente.is_Admin && Objects.equals(email, utente.email) && Objects.equals(psword, utente.psword) && Objects.equals(nome, utente.nome) && Objects.equals(cognome, utente.cognome) && Objects.equals(dateN, utente.dateN);
+    }
+
+
 }

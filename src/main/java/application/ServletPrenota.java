@@ -20,15 +20,21 @@ public class ServletPrenota extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        prenota(req, resp);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        prenota(req, resp);
+    }
+
+
+    public void prenota(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Utente user=(Utente) req.getSession().getAttribute("user");
         ArrayList<PrenotazioneDisponibile> prenotazioniDisponibili = (ArrayList<PrenotazioneDisponibile>) req.getSession().getAttribute("listaPrenotazioniDisponibili");
         PrenotazioneDAO prenotazioneDAO = new PrenotazioneDAO();
-        ArrayList<Prenotazione> listPrenotazioniPresenti = prenotazioneDAO.selectAllPrenotazioni();
+        ArrayList<Prenotazione> listPrenotazioniPresenti = prenotazioneDAO.selectAllPrenotazioni();//
         int max =0;
         for (Prenotazione p: listPrenotazioniPresenti) {
             if(p.getCodice()>max)

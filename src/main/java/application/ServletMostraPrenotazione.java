@@ -18,15 +18,20 @@ import java.util.*;
 
 @WebServlet (name = "ServletMostraPrenotazione", value = "/ServletMostraPrenotazione")
 public class ServletMostraPrenotazione extends HttpServlet {
+    private  PrenotazioneDAO prenotazioneDAO;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+        mostraPrenotazione(req,resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        mostraPrenotazione(req,resp);
+    }
+
+
+    public void mostraPrenotazione (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String campo= req.getParameter("campoScelto");
         String datetimeString= req.getParameter("dataScelta");
         String stringOraStart, stringNumOre;
@@ -63,12 +68,12 @@ public class ServletMostraPrenotazione extends HttpServlet {
         float tariffaTotale=campo1.getTariffa()*numOre;
 
         System.out.println("campo = "+campo+" data= "+data+" oraStart= "+oraStart+" numOre= "+numOre+"");
-        PrenotazioneDAO prenotazioneDAO = new PrenotazioneDAO();
+
         if(data!=null && campo!=null && oraStart!=0){
             arrayPrenotazioniPresenti =  prenotazioneDAO.selectPrenotazioniByDataAndCampo(data,campo);
             Collections.sort(arrayPrenotazioniPresenti,new SortByOraStart());
         }
-        /*STAMPA DI PROVA PRENOTAZIONI PRESENTI*/
+        /*STAMPA DI PROVA PRENOTAZIONI PRESENTI
         if(arrayPrenotazioniPresenti.size()!=0){
             System.out.println("PRENOTAZIONI GIA PRESENTI IN DB");
            for (int i=0; i<arrayPrenotazioniPresenti.size();i++ ){
@@ -76,7 +81,7 @@ public class ServletMostraPrenotazione extends HttpServlet {
            }
         }
         else{
-        System.out.println("arrayPrenotazioniPresenti null");}
+        System.out.println("arrayPrenotazioniPresenti null");}*/
 
         ArrayList<PrenotazioneDisponibile> prenotazioniDisponibili = new ArrayList<>();
         if(arrayPrenotazioniPresenti.size()==0){
@@ -130,7 +135,7 @@ public class ServletMostraPrenotazione extends HttpServlet {
             }
         }
 
-        /*STAMPA DI PROVA*/
+        /*STAMPA DI PROVA
         if(prenotazioniDisponibili.size()!=0) {
             System.out.println("PRENOTAZIONI DISPONIBILI");
             for (int i = 0; i < prenotazioniDisponibili.size(); i++) {
@@ -139,7 +144,7 @@ public class ServletMostraPrenotazione extends HttpServlet {
         }
         else{
             System.out.println("prenotazioniDisponibili = null");
-        }
+        } **/
 
 
         HttpSession session = req.getSession(true);
@@ -148,15 +153,12 @@ public class ServletMostraPrenotazione extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
-
-
-
-
-
-
-
-
-
+    public ServletMostraPrenotazione(PrenotazioneDAO prenotazioneDAO) {
+        this.prenotazioneDAO = prenotazioneDAO;
+    }
+    public ServletMostraPrenotazione() {
+        this.prenotazioneDAO = new PrenotazioneDAO();
+    }
 
     static class SortByOraStart implements Comparator<Prenotazione> {
 

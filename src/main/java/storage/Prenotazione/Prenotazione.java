@@ -12,6 +12,16 @@ public class Prenotazione {
 
     public Prenotazione(){}
 
+    public Prenotazione(int oraStart, int oraEnd, int codice, float tariffaTotale, Date dateP, String email, String nomeCampo) {
+        this.oraStart = oraStart;
+        this.oraEnd = oraEnd;
+        this.codice = codice;
+        this.tariffaTotale = tariffaTotale;
+        this.dateP = dateP;
+        this.email = email;
+        this.nomeCampo = nomeCampo;
+    }
+
     public int getCodice() {
         return codice;
     }

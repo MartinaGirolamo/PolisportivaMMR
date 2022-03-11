@@ -89,14 +89,14 @@ insert into Prenotazione(codice, oraStart,oraEnd,dateP,utente,campo, tariffaTota
 
 
 insert into Attrezzatura (nome,qta,tariffa,path,tipologia) value
-('Guanti',12,2,'immagini/guanti.jpg','calcio'),
-('Casacca',30,2,'immagini/casacca.jpg','calcio'),
-('Pallone',15,2,'immagini/palloneCalcio.jpg','calcio'),
-('Ginocchiere',20,2,'immagini/ginocchierePallavolo.jpg','pallavolo'),
-('Pallone',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
-('Palline',20,2,'immagini/pallineTennis.jpg','tennis'),
-('Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
-('Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
+    ('Guanti',12,2,'immagini/guanti.jpg','calcio'),
+    ('Casacca',30,2,'immagini/casacca.jpg','calcio'),
+    ('Pallone',15,2,'immagini/palloneCalcio.jpg','calcio'),
+    ('Ginocchiere',20,2,'immagini/ginocchierePallavolo.jpg','pallavolo'),
+    ('Pallone',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
+    ('Palline',20,2,'immagini/pallineTennis.jpg','tennis'),
+    ('Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
+    ('Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
 
 insert into Acquisto (utente, codiceAbb, dataAcquisto, nMesi) value
     ('rosabianchi@gmail.com',4,'2021-12-12',1);

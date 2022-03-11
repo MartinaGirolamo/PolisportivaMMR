@@ -120,27 +120,7 @@ public class PrenotazioneDAO {
         return false;
     }
 
-    public int sizeNumeroPrenotazioni(){
-        ArrayList<Prenotazione> list = new ArrayList<>();
-        try(Connection conn= ConPool.getConnection()){
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM Prenotazione;");
-            ResultSet set = ps.executeQuery();
-            while(set.next()){
-                Prenotazione prenotazione = new Prenotazione();
-                prenotazione.setDateP(set.getDate("dateP"));
-                prenotazione.setOraStart(set.getInt("oraStart"));
-                prenotazione.setOraEnd(set.getInt("oraEnd"));
-                prenotazione.setCodice(set.getInt("codice"));
-                prenotazione.setNomeCampo(set.getString("campo"));
-                prenotazione.setEmail(set.getString("utente"));
-                prenotazione.setTariffaTotale(set.getFloat("tariffaTotale"));
-                list.add(prenotazione);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list.size();
-    }
+
 
     public Prenotazione selectPrenotazioneByCodice(int codice){
         Prenotazione prenotazione = new Prenotazione();
