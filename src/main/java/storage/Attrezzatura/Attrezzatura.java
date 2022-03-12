@@ -1,5 +1,7 @@
 package storage.Attrezzatura;
 
+import java.util.Objects;
+
 public class Attrezzatura {
     private String nome, path, tipologia;
     private int qta, codice;
@@ -66,4 +68,13 @@ public class Attrezzatura {
                 ", tariffa=" + tariffa +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Attrezzatura that = (Attrezzatura) o;
+        return qta == that.qta && codice == that.codice && Float.compare(that.tariffa, tariffa) == 0 && Objects.equals(nome, that.nome) && Objects.equals(path, that.path) && Objects.equals(tipologia, that.tipologia);
+    }
+
 }

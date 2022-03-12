@@ -1019,7 +1019,6 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="298" parent="290" name="tariffa">
       <DataType>float|0s</DataType>
@@ -1081,7 +1080,6 @@ dataAcquisto</ColNames>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="310" parent="292" name="nome">
       <DataType>varchar(20)|0s</DataType>
