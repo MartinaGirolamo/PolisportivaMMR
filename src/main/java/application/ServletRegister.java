@@ -56,6 +56,8 @@ public class ServletRegister extends HttpServlet {
         if(utenteDAO.controllaEmail(utente)){
             address="interface/EmailGiaInUso.jsp";
             System.out.println("email già presente in database");
+            //request.getSession().setAttribute("error", true);
+        //per fare il test
         }else{
             if(utenteDAO.insertUtente(utente)){
                 System.out.println("Inserimento effettuato");

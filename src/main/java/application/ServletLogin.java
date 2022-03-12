@@ -23,7 +23,7 @@ public class ServletLogin extends HttpServlet {
         UtenteDAO utenteDAO = new UtenteDAO();
         Utente utente= utenteDAO.selectUtenteByEmailPassword(email,password);
         System.out.println("utente : "+utente.toString());
-        String address=null;
+        String address=null;//sessione o parameter ? response.getcontentassstring
         if(utente.getEmail()== null || utente.getPsword()== null){
                address="interface/ErroreLogin.jsp";
         }
