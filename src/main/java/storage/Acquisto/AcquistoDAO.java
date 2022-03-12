@@ -5,7 +5,7 @@ import storage.ConPool;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class AcquistoDAO {
+public class AcquistoDAO implements AcquistoDAOInterface {
 
     public AcquistoDAO(){}
 

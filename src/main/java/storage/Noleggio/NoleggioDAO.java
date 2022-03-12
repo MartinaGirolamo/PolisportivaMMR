@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class NoleggioDAO {
+public class NoleggioDAO implements NoleggioDAOInterface {
     public NoleggioDAO(){}
 
     public ArrayList<Noleggio> selectAllNoleggio(){
