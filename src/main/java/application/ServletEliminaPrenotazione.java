@@ -5,6 +5,7 @@ import storage.Noleggio.NoleggioDAO;
 import storage.Prenotazione.Prenotazione;
 import storage.Prenotazione.PrenotazioneDAO;
 import storage.Utente.Utente;
+import storage.Utente.UtenteDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,13 +18,27 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ServletEliminaPrenotazione", value = "/ServletEliminaPrenotazione")
 public class ServletEliminaPrenotazione extends HttpServlet {
+    private PrenotazioneDAO prenotazioneDAO;
+    private NoleggioDAO noleggioDAO;
+    public ServletEliminaPrenotazione(PrenotazioneDAO prenotazioneDAO,NoleggioDAO noleggioDAO){
+        this.prenotazioneDAO = prenotazioneDAO;
+        this.noleggioDAO = noleggioDAO;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+       eliminaPrenotazione(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+
+
+    }
+
+
+    public void eliminaPrenotazione(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String context = req.getContextPath();
         Utente utente = (Utente)req.getSession().getAttribute("user");
         String codStr=req.getParameter("codice");
@@ -55,7 +70,5 @@ public class ServletEliminaPrenotazione extends HttpServlet {
                 requestDispatcher.forward(req, resp);
             }
         }
-
-
     }
 }
