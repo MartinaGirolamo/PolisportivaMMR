@@ -18,18 +18,17 @@ public class ServletRegister extends HttpServlet {
     private UtenteDAO utenteDao;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            registrazioneUtente(request,response);
+            registrazioneUtente(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+
     }
 
     private boolean checkPassword(String password){
