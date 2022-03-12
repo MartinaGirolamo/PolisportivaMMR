@@ -1,6 +1,7 @@
 package storage.Acquisto;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class Acquisto {
     private String utente;
@@ -8,6 +9,13 @@ public class Acquisto {
     private Date dataAcquisto;
 
     public Acquisto() {
+    }
+
+    public Acquisto(String utente, int codiceAbb, int nMesi, Date dataAcquisto) {
+        this.utente = utente;
+        this.codiceAbb = codiceAbb;
+        this.nMesi = nMesi;
+        this.dataAcquisto = dataAcquisto;
     }
 
     public String getUtente() {
@@ -51,4 +59,14 @@ public class Acquisto {
                 ", dataAcquisto=" + dataAcquisto +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Acquisto acquisto = (Acquisto) o;
+        return codiceAbb == acquisto.codiceAbb && nMesi == acquisto.nMesi && Objects.equals(utente, acquisto.utente) && Objects.equals(dataAcquisto, acquisto.dataAcquisto);
+    }
+
+
 }

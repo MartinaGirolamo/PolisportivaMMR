@@ -1,5 +1,7 @@
 package storage.Campo;
 
+import java.util.Objects;
+
 public class Campo {
 
     private String nome,descrizione;
@@ -49,4 +51,13 @@ public class Campo {
                 ", tariffa=" + tariffa +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campo campo = (Campo) o;
+        return numGiocatori == campo.numGiocatori && Float.compare(campo.tariffa, tariffa) == 0 && Objects.equals(nome, campo.nome) && Objects.equals(descrizione, campo.descrizione);
+    }
+
 }

@@ -32,13 +32,13 @@ CREATE TABLE Prenotazione(
 );
 
 CREATE TABLE Abbonamento(
-                            codice int AUTO_INCREMENT PRIMARY KEY,
+                            codice int  PRIMARY KEY,
                             tariffa float NOT NULL,
                             tipologia varchar(20) NOT NULL
 );
 
 CREATE TABLE Attrezzatura(
-                             codice int AUTO_INCREMENT PRIMARY KEY,
+                             codice int  PRIMARY KEY,
                              nome varchar(20) NOT NULL,
                              qta int NOT NULL,
                              tariffa float NOT NULL,
@@ -76,11 +76,11 @@ insert into Campo(nome,descrizione,tariffa,numGiocatori) values
 ('Tennis','IL CAMPO È GRANDE 24 X 10 SINTETICO',10,4),
 ('Pallavolo','IL CAMPO È GRANDE 18 X 9. ALTEZZA RETE REGOLABILE, SI TROVA AL CHIUSO',15,12);
 
-insert into Abbonamento (tariffa,tipologia) value
-    (30,'calcio'),
-    (30,'tennis'),
-    (30,'pallavolo'),
-    (30,'palestra');
+insert into Abbonamento (codice,tariffa,tipologia) value
+    (1,30,'calcio'),
+    (2,30,'tennis'),
+    (3,30,'pallavolo'),
+    (4,30,'palestra');
 
 insert into Prenotazione(codice, oraStart,oraEnd,dateP,utente,campo, tariffaTotale ) values
 (1,10,12,'2022-02-12','rosabianchi@gmail.com','Pallavolo',30),
@@ -88,18 +88,16 @@ insert into Prenotazione(codice, oraStart,oraEnd,dateP,utente,campo, tariffaTota
 (3,19,20,'2022-02-12','rosabianchi@gmail.com','Pallavolo',15);
 
 
-insert into Attrezzatura (nome,qta,tariffa,path,tipologia) value
-    ('Guanti',12,2,'immagini/guanti.jpg','calcio'),
-    ('Casacca',30,2,'immagini/casacca.jpg','calcio'),
-    ('Pallone',15,2,'immagini/palloneCalcio.jpg','calcio'),
-    ('Ginocchiere',20,2,'immagini/ginocchierePallavolo.jpg','pallavolo'),
-    ('Pallone',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
-    ('Palline',20,2,'immagini/pallineTennis.jpg','tennis'),
-    ('Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
-    ('Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
+insert into Attrezzatura (codice,nome,qta,tariffa,path,tipologia) value
+    (1,'Guanti',12,2,'immagini/guanti.jpg','calcio'),
+    (2,'Casacca',30,2,'immagini/casacca.jpg','calcio'),
+    (3,'Pallone',15,2,'immagini/palloneCalcio.jpg','calcio'),
+    (4,'Ginocchiere',20,2,'immagini/ginocchierePallavolo.jpg','pallavolo'),
+    (5,'Pallone',15,2,'immagini/pallonePallavolo.jpg','pallavolo'),
+    (6,'Palline',20,2,'immagini/pallineTennis.jpg','tennis'),
+    (7,'Polsini da tennis',15,2,'immagini/polsiniTennis.jpg','tennis'),
+    (8,'Racchetta da tennis',20,2,'immagini/racchettaTennis.jpg','tennis');
 
-insert into Acquisto (utente, codiceAbb, dataAcquisto, nMesi) value
-    ('rosabianchi@gmail.com',4,'2021-12-12',1);
 
 
 
