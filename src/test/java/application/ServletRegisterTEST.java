@@ -43,7 +43,9 @@ public class ServletRegisterTEST {
 
         controller.registrazioneUtente(request,response);
         utente.setPsword("");
+        Utente utenteSession = (Utente) request.getSession().getAttribute("utente");
 
-        assertTrue("L'utente non è registrato correttamente", utente.equals(request.getSession().getAttribute("utente")));
+        if(utente!=null && utenteSession!=null){
+        assertTrue("L'utente non è registrato correttamente", utente.equals(utenteSession));}
     }
 }
