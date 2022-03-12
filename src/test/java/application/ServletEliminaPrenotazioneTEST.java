@@ -43,7 +43,7 @@ public class ServletEliminaPrenotazioneTEST {
         prenotazione.setNomeCampo("Calcio");
         prenotazione.setOraEnd(1);
 
-        NoleggioDAO nDao = new NoleggioDAO();
+        NoleggioDAO nDao = Mockito.mock(NoleggioDAO.class);
         ArrayList<Noleggio> noleggio = new ArrayList<>();
         Noleggio n = new Noleggio();
 
@@ -152,7 +152,7 @@ public class ServletEliminaPrenotazioneTEST {
         prenotazione.setNomeCampo("Calcio");
         prenotazione.setOraEnd(1);
 
-        NoleggioDAO nDao = new NoleggioDAO();
+        NoleggioDAO nDao = Mockito.mock(NoleggioDAO.class);
         ArrayList<Noleggio> noleggio = new ArrayList<>();
         Noleggio n = new Noleggio();
 
