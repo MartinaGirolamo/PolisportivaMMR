@@ -13,8 +13,23 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletEliminaAmministratore", value = "/ServletEliminaUtente")
 public class ServletEliminaUtente extends HttpServlet {
+
+    private UtenteDAO utenteDao;
+    public ServletEliminaUtente(UtenteDAO utenteDao){
+        this.utenteDao = utenteDao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        eliminaUtente(request,response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            doGet(request,response);
+    }
+
+    public void eliminaUtente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente user = (Utente) request.getSession().getAttribute("user");
         if(user.isIs_Admin()){
             UtenteDAO utenteDAO=new UtenteDAO();
@@ -30,10 +45,5 @@ public class ServletEliminaUtente extends HttpServlet {
         }
 
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            doGet(request,response);
     }
 }
