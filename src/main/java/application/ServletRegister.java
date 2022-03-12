@@ -11,12 +11,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "ServletRegister", value = "/ServletRegister")
 public class ServletRegister extends HttpServlet {
+    private UtenteDAO utenteDao;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            registrazioneUtente(request,response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean checkPassword(String password){
+        if(password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})")){
+            return true;
+        }
+        return false;
+    }
+
+    public ServletRegister(UtenteDAO utenteDao){
+        this.utenteDao = utenteDao;
+    }
+
+    public void registrazioneUtente(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException, ServletException {
         Utente user = (Utente) request.getSession().getAttribute("user");
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
@@ -28,13 +55,13 @@ public class ServletRegister extends HttpServlet {
         Utente utente= new Utente();
         if(user==null||user.getEmail()==null || !user.isIs_Admin()){
 
-        utente.setNome(nome);
-        utente.setCognome(cognome);
-        utente.setEmail(email);
-        utente.setPsword(psw);
-        utente.setDateN(dateN);
-        utente.setIs_Admin(false);
-        System.out.println(utente.toString());}
+            utente.setNome(nome);
+            utente.setCognome(cognome);
+            utente.setEmail(email);
+            utente.setPsword(psw);
+            utente.setDateN(dateN);
+            utente.setIs_Admin(false);
+            System.out.println(utente.toString());}
         else if(user.isIs_Admin()){
             utente.setNome(nome);
             utente.setCognome(cognome);
@@ -50,7 +77,7 @@ public class ServletRegister extends HttpServlet {
         String address=null;
         while(!checkPassword(psw)){
             RequestDispatcher requestDispatcher= request.getRequestDispatcher("interface/ErrorePasswordRegister.jsp");
-            requestDispatcher.forward(request, response);
+            requestDispatcher.forward(request,response);
         }
 
         if(utenteDAO.controllaEmail(utente)){
@@ -65,7 +92,7 @@ public class ServletRegister extends HttpServlet {
                     address="index.jsp";
                 }
                 else{
-                address="interface/RegistrazioneEffettuata.jsp";
+                    address="interface/RegistrazioneEffettuata.jsp";
                 }
             }
             else{
@@ -76,24 +103,11 @@ public class ServletRegister extends HttpServlet {
 
 
         if(!utente.isIs_Admin()){
-        HttpSession session = request.getSession(true);
-        session.setAttribute("user", utente);}
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", utente);}
         RequestDispatcher requestDispatcher= request.getRequestDispatcher(address);
         requestDispatcher.forward(request, response);
 
 
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
-    }
-
-    private boolean checkPassword(String password){
-        if(password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})")){
-            return true;
-        }
-        return false;
     }
 }

@@ -3,6 +3,7 @@ package storage.Prenotazione;
 
 import java.sql.Date;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Prenotazione {
     private int oraStart, oraEnd, codice;
@@ -90,5 +91,14 @@ public class Prenotazione {
                 ", nomeCampo='" + nomeCampo + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prenotazione that = (Prenotazione) o;
+        return oraStart == that.oraStart && oraEnd == that.oraEnd && codice == that.codice && Float.compare(that.tariffaTotale, tariffaTotale) == 0 && Objects.equals(dateP, that.dateP) && Objects.equals(email, that.email) && Objects.equals(nomeCampo, that.nomeCampo);
+    }
+
 
 }
