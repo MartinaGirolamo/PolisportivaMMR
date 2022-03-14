@@ -31,7 +31,7 @@ public class ServletEliminaUtenteTEST {
         MockHttpServletResponse  response = new MockHttpServletResponse();
         HttpSession  session = request.getSession();
 
-        session.setAttribute("utente",utente);
+        session.setAttribute("user",utente);
         request.setParameter("nome", "mario");
         request.setParameter("cognome", "rossi");
         request.setParameter("password", "Password123*");
@@ -43,7 +43,7 @@ public class ServletEliminaUtenteTEST {
 
         ServletEliminaUtente controller = new ServletEliminaUtente(dao);
 
-        request.addHeader("referer", "ciao");
+        request.addHeader("referer", "header");
         controller.eliminaUtente(request, response);
         assertEquals("UTENTE ELIMINATO", response.getContentAsString().contains("UTENTE ELIMINATO"));
 
