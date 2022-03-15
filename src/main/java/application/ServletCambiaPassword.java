@@ -15,8 +15,33 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletCambiaPassword", value = "/ServletCambiaPassword")
 public class ServletCambiaPassword extends HttpServlet {
+
+    private UtenteDAO utenteDao;
+    public ServletCambiaPassword(UtenteDAO utenteDao){
+        this.utenteDao = utenteDao;
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        cambioPassword(req, resp);
+    }
+
+
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
+
+
+    private boolean checkPassword(String password){
+        if(password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})")){
+            return true;
+        }
+        return false;
+    }
+
+    public void cambioPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Utente user=(Utente) req.getSession().getAttribute("user");
         UtenteDAO utenteDAO = new UtenteDAO();
         String newPassword = req.getParameter("nuovaPassword");
@@ -63,20 +88,4 @@ public class ServletCambiaPassword extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }
     }
-
-
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
-    }
-
-
-    private boolean checkPassword(String password){
-        if(password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})")){
-            return true;
-        }
-        return false;
-    }
-
 }

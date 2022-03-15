@@ -11,7 +11,7 @@ import java.util.Date;
 
 /* Il formato della data prenotazione deve essere: 'AAAA-MM-GG'*/
 
-public class PrenotazioneDAO {
+public class PrenotazioneDAO implements PrenotazioneDAOInterface{
 
     public PrenotazioneDAO(){}
 

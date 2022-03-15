@@ -6,6 +6,7 @@ import storage.Acquisto.AcquistoDAO;
 import storage.Attrezzatura.Attrezzatura;
 import storage.Attrezzatura.AttrezzaturaDAO;
 import storage.Utente.Utente;
+import storage.Utente.UtenteDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,13 +18,23 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletEliminaAcquisto", value = "/ServletEliminaAcquisto")
 public class ServletEliminaAcquisto extends HttpServlet {
+
+    private AbbonamentoDAO abbonamentoDAO;
+    public ServletEliminaAcquisto(AbbonamentoDAO abbonamentoDAO){
+        this.abbonamentoDAO = abbonamentoDAO;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       doPost(req, resp);
+       eliminaAcquisto(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
+    public void eliminaAcquisto(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Utente user = (Utente) req.getSession().getAttribute("user");
         String email = user.getEmail();
         String tipologia = req.getParameter("tipologia");
@@ -39,4 +50,6 @@ public class ServletEliminaAcquisto extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }
     }
+
+
 }
