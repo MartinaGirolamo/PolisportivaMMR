@@ -60,7 +60,8 @@ public class ServletRegister extends HttpServlet {
             utente.setPsword(psw);
             utente.setDateN(dateN);
             utente.setIs_Admin(false);
-            System.out.println(utente.toString());}
+            System.out.println(utente.toString());
+        }
         else if(user.isIs_Admin()){
             utente.setNome(nome);
             utente.setCognome(cognome);

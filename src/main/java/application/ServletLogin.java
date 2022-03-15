@@ -20,7 +20,7 @@ public class ServletLogin extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        loginUtente(request, response);
 
     }
 
@@ -33,20 +33,28 @@ public class ServletLogin extends HttpServlet {
         String email= request.getParameter("email");
         String password= request.getParameter("psw");
         System.out.println(email +" "+ password);
-        UtenteDAO utenteDAO = new UtenteDAO();
-        Utente utente= utenteDAO.selectUtenteByEmailPassword(email,password);
-        System.out.println("utente : "+utente.toString());
-        String address=null;//sessione o parameter ? response.getcontentassstring
-        if(utente.getEmail()== null || utente.getPsword()== null){
+
+        Utente utente= utenteDao.selectUtenteByEmailPassword(email,password);
+        //System.out.println("utente : "+utente.toString());
+        String address=null;
+        if(utente==null || utente.getEmail()== null || utente.getPsword()== null){
             address="interface/ErroreLogin.jsp";
+            request.setAttribute("errore",true);
+            HttpSession session = request.getSession(false);
+            RequestDispatcher requestDispatcher= request.getRequestDispatcher(address);
+
         }
-        else address="index.jsp";
-        HttpSession session = request.getSession(true);
-        session.setAttribute("user", utente);
+        else
+        {
+            address="index.jsp";
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", utente);
 
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher(address);
+            RequestDispatcher requestDispatcher= request.getRequestDispatcher(address);
 
-        requestDispatcher.forward(request, response);
+            requestDispatcher.forward(request, response);
+        }
+
 
     }
 

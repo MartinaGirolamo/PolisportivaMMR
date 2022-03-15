@@ -143,8 +143,12 @@ public class UtenteDAO implements UtenteDAOInterface{
                 utenteRitorno.setDateN(set.getString("dateN"));
             }
 
-            if(utenteRitorno.getEmail()!=null) {System.out.println("Utente ritorno del DAO:"+utenteRitorno.toString()); return true;}
-            else return false;
+            if(utenteRitorno.getEmail()!=null) {
+                System.out.println("Utente ritorno del DAO:"+utenteRitorno.toString());
+                return true;
+            }
+            else
+                return false;
 
 
         }catch(SQLException e){

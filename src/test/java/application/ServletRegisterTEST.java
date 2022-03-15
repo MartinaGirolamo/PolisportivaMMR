@@ -55,29 +55,28 @@ public class ServletRegisterTEST {
     public void registrazioneEmailPresenteTest() throws IOException, SQLException, ServletException {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.addHeader("referer","header");
-
-        request.setParameter("nome","Mario");
-        request.setParameter("cognome","Rossi");
-        request.setParameter("email","emailerrata");
-        request.setParameter("psw","Password123*");
-        request.setParameter("dateN","2000-01-01");
+        request.setParameter("nome", "rosa");
+        request.setParameter("cognome", "bianchi");
+        request.setParameter("email", "rosabianchi@gmail.com");
+        request.setParameter("psw", "Password123*");
+        request.setParameter("dateN", "12-10-1998");
 
         MockHttpServletResponse response = new MockHttpServletResponse();
 
         Utente utente = new Utente();
-        utente.setNome("Mario");
-        utente.setCognome("Rossi");
-        utente.setEmail("emailerrata");
+        utente.setNome("rosa");
+        utente.setCognome("bianchi");
+        utente.setEmail("osabianchi@gmail.com");
         utente.setPsword("Password123*");
-        utente.setDateN("2000-01-01");
+        utente.setDateN("12-10-1998");
         utente.setIs_Admin(false);
 
-        Mockito.when(dao.insertUtente(utente)).thenReturn(true);
+        Mockito.when(dao.insertUtente(utente)).thenReturn(false);
 
         ServletRegister controller = new ServletRegister(dao);
 
         controller.registrazioneUtente(request,response);
 
-        assertEquals("Email già utilizzata", response.getContentAsString().contains("Email già utilizzata") );
+        assertTrue("Email già utilizzata", response.getContentAsString().contains("Email già utilizzata") );
     }
 }
