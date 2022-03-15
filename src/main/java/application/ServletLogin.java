@@ -15,6 +15,10 @@ import java.io.IOException;
 @WebServlet(name = "ServletLogin", value = "/ServletLogin")
 public class ServletLogin extends HttpServlet {
     private UtenteDAO utenteDao;
+
+    public ServletLogin(){
+
+    }
     public ServletLogin(UtenteDAO utenteDao){
         this.utenteDao = utenteDao;
     }

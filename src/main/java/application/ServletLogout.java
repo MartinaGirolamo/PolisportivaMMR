@@ -13,7 +13,9 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletLogout", value = "/ServletLogout")
 public class ServletLogout extends HttpServlet {
+    public ServletLogout(){
 
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

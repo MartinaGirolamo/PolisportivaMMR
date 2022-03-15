@@ -17,7 +17,9 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ServletPrenota", value = "/ServletPrenota")
 public class ServletPrenota extends HttpServlet {
+    public ServletPrenota(){
 
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         prenota(req, resp);
