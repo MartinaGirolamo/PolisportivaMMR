@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ServletEliminaUtenteTEST {
     @Test
@@ -45,7 +46,7 @@ public class ServletEliminaUtenteTEST {
 
         request.addHeader("referer", "header");
         controller.eliminaUtente(request, response);
-        assertEquals("UTENTE ELIMINATO", response.getContentAsString().contains("UTENTE ELIMINATO"));
+        assertTrue("UTENTE ELIMINATO", response.getContentAsString().contains("UTENTE ELIMINATO"));
 
     }
 

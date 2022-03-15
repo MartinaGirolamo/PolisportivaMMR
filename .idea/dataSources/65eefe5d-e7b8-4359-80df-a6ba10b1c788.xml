@@ -5,10 +5,17 @@
       <DefaultCasing>lower/lower</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>|root||root|localhost|ALTER|G
+      <Grants>|root||Marco||ALTER|G
+|root||root|localhost|ALTER|G
+|root||Marco||ALTER ROUTINE|G
 |root||root|localhost|ALTER ROUTINE|G
 |root||root|localhost|APPLICATION_PASSWORD_ADMIN|G
+|root||mysql.infoschema|localhost|AUDIT_ABORT_EXEMPT|G
+|root||mysql.session|localhost|AUDIT_ABORT_EXEMPT|G
+|root||mysql.sys|localhost|AUDIT_ABORT_EXEMPT|G
+|root||root|localhost|AUDIT_ABORT_EXEMPT|G
 |root||root|localhost|AUDIT_ADMIN|G
+|root||root|localhost|AUTHENTICATION_POLICY_ADMIN|G
 |root||mysql.session|localhost|BACKUP_ADMIN|G
 |root||root|localhost|BACKUP_ADMIN|G
 |root||root|localhost|BINLOG_ADMIN|G
@@ -17,49 +24,79 @@
 |root||root|localhost|CLONE_ADMIN|G
 |root||mysql.session|localhost|CONNECTION_ADMIN|G
 |root||root|localhost|CONNECTION_ADMIN|G
+|root||Marco||CREATE|G
 |root||root|localhost|CREATE|G
 |root||root|localhost|CREATE ROLE|G
+|root||Marco||CREATE ROUTINE|G
 |root||root|localhost|CREATE ROUTINE|G
+|root||Marco||CREATE TABLESPACE|G
 |root||root|localhost|CREATE TABLESPACE|G
+|root||Marco||CREATE TEMPORARY TABLES|G
 |root||root|localhost|CREATE TEMPORARY TABLES|G
+|root||Marco||CREATE USER|G
 |root||root|localhost|CREATE USER|G
+|root||Marco||CREATE VIEW|G
 |root||root|localhost|CREATE VIEW|G
+|root||Marco||DELETE|G
 |root||root|localhost|DELETE|G
+|root||Marco||DROP|G
 |root||root|localhost|DROP|G
 |root||root|localhost|DROP ROLE|G
 |root||root|localhost|ENCRYPTION_KEY_ADMIN|G
+|root||Marco||EVENT|G
 |root||root|localhost|EVENT|G
+|root||Marco||EXECUTE|G
 |root||root|localhost|EXECUTE|G
+|root||Marco||FILE|G
 |root||root|localhost|FILE|G
+|root||root|localhost|FLUSH_OPTIMIZER_COSTS|G
+|root||root|localhost|FLUSH_STATUS|G
+|root||root|localhost|FLUSH_TABLES|G
+|root||root|localhost|FLUSH_USER_RESOURCES|G
 |root||root|localhost|GROUP_REPLICATION_ADMIN|G
+|root||root|localhost|GROUP_REPLICATION_STREAM|G
+|root||Marco||INDEX|G
 |root||root|localhost|INDEX|G
 |root||root|localhost|INNODB_REDO_LOG_ARCHIVE|G
 |root||root|localhost|INNODB_REDO_LOG_ENABLE|G
+|root||Marco||INSERT|G
 |root||root|localhost|INSERT|G
+|root||Marco||LOCK TABLES|G
 |root||root|localhost|LOCK TABLES|G
+|root||root|localhost|PASSWORDLESS_USER_ADMIN|G
 |root||mysql.session|localhost|PERSIST_RO_VARIABLES_ADMIN|G
 |root||root|localhost|PERSIST_RO_VARIABLES_ADMIN|G
+|root||Marco||PROCESS|G
 |root||root|localhost|PROCESS|G
+|root||Marco||REFERENCES|G
 |root||root|localhost|REFERENCES|G
+|root||Marco||RELOAD|G
 |root||root|localhost|RELOAD|G
+|root||Marco||REPLICATION CLIENT|G
 |root||root|localhost|REPLICATION CLIENT|G
+|root||Marco||REPLICATION SLAVE|G
 |root||root|localhost|REPLICATION SLAVE|G
 |root||root|localhost|REPLICATION_APPLIER|G
 |root||root|localhost|REPLICATION_SLAVE_ADMIN|G
 |root||root|localhost|RESOURCE_GROUP_ADMIN|G
 |root||root|localhost|RESOURCE_GROUP_USER|G
 |root||root|localhost|ROLE_ADMIN|G
+|root||Marco||SELECT|G
 |root||mysql.infoschema|localhost|SELECT|G
 |root||root|localhost|SELECT|G
 |root||root|localhost|SERVICE_CONNECTION_ADMIN|G
 |root||mysql.session|localhost|SESSION_VARIABLES_ADMIN|G
 |root||root|localhost|SESSION_VARIABLES_ADMIN|G
 |root||root|localhost|SET_USER_ID|G
+|root||Marco||SHOW DATABASES|G
 |root||root|localhost|SHOW DATABASES|G
+|root||Marco||SHOW VIEW|G
 |root||root|localhost|SHOW VIEW|G
 |root||root|localhost|SHOW_ROUTINE|G
+|root||Marco||SHUTDOWN|G
 |root||mysql.session|localhost|SHUTDOWN|G
 |root||root|localhost|SHUTDOWN|G
+|root||Marco||SUPER|G
 |root||mysql.session|localhost|SUPER|G
 |root||root|localhost|SUPER|G
 |root||mysql.infoschema|localhost|SYSTEM_USER|G
@@ -69,13 +106,16 @@
 |root||mysql.session|localhost|SYSTEM_VARIABLES_ADMIN|G
 |root||root|localhost|SYSTEM_VARIABLES_ADMIN|G
 |root||root|localhost|TABLE_ENCRYPTION_ADMIN|G
+|root||Marco||TRIGGER|G
 |root||root|localhost|TRIGGER|G
+|root||Marco||UPDATE|G
 |root||root|localhost|UPDATE|G
 |root||root|localhost|XA_RECOVER_ADMIN|G
+|root||Marco||grant option|G
 |root||root|localhost|grant option|G
 performance_schema|schema||mysql.session|localhost|SELECT|G
 sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
-      <ServerVersion>8.0.22</ServerVersion>
+      <ServerVersion>8.0.28</ServerVersion>
     </root>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
@@ -934,338 +974,326 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <collation id="273" parent="1" name="utf8mb4_zh_0900_as_cs">
       <Charset>utf8mb4</Charset>
     </collation>
-    <schema id="274" parent="1" name="apprandomfilm">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="275" parent="1" name="information_schema">
+    <schema id="274" parent="1" name="information_schema">
       <CollationName>utf8_general_ci</CollationName>
     </schema>
-    <schema id="276" parent="1" name="mysql">
+    <schema id="275" parent="1" name="mysql">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="277" parent="1" name="nuovo">
+    <schema id="276" parent="1" name="performance_schema">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="278" parent="1" name="pasticceria">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="279" parent="1" name="performance_schema">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="280" parent="1" name="polisportiva">
+    <schema id="277" parent="1" name="polisportiva">
       <Current>1</Current>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="281" parent="1" name="smartechnology">
+    <schema id="278" parent="1" name="sakila">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="282" parent="1" name="sys">
+    <schema id="279" parent="1" name="sys">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="283" parent="1" name="unisa">
+    <schema id="280" parent="1" name="world">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="284" parent="1" name="unisa2">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="285" parent="1" name="world">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <user id="286" parent="1" name="mysql.infoschema">
+    <user id="281" parent="1" name="Marco">
+      <Plugin>caching_sha2_password</Plugin>
+    </user>
+    <user id="282" parent="1" name="mysql.infoschema">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="287" parent="1" name="mysql.session">
+    <user id="283" parent="1" name="mysql.session">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="288" parent="1" name="mysql.sys">
+    <user id="284" parent="1" name="mysql.sys">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="289" parent="1" name="root">
+    <user id="285" parent="1" name="root">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="290" parent="280" name="abbonamento">
+    <table id="286" parent="277" name="abbonamento">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="291" parent="280" name="acquisto">
+    <table id="287" parent="277" name="acquisto">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="292" parent="280" name="attrezzatura">
+    <table id="288" parent="277" name="attrezzatura">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="293" parent="280" name="campo">
+    <table id="289" parent="277" name="campo">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="294" parent="280" name="noleggio">
+    <table id="290" parent="277" name="noleggio">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="295" parent="280" name="prenotazione">
+    <table id="291" parent="277" name="prenotazione">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="296" parent="280" name="utente">
+    <table id="292" parent="277" name="utente">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="297" parent="290" name="codice">
+    <column id="293" parent="286" name="codice">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="298" parent="290" name="tariffa">
+    <column id="294" parent="286" name="tariffa">
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="299" parent="290" name="tipologia">
+    <column id="295" parent="286" name="tipologia">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <key id="300" parent="290" name="PRIMARY">
+    <key id="296" parent="286" name="PRIMARY">
       <ColNames>codice</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="301" parent="291" name="utente">
+    <column id="297" parent="287" name="utente">
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="302" parent="291" name="codiceAbb">
+    <column id="298" parent="287" name="codiceAbb">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="303" parent="291" name="dataAcquisto">
+    <column id="299" parent="287" name="dataAcquisto">
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="304" parent="291" name="nMesi">
+    <column id="300" parent="287" name="nMesi">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="305" parent="291" name="acquisto_ibfk_1">
+    <foreign-key id="301" parent="287" name="acquisto_ibfk_1">
       <ColNames>utente</ColNames>
       <RefColNames>email</RefColNames>
       <RefTableName>utente</RefTableName>
     </foreign-key>
-    <foreign-key id="306" parent="291" name="acquisto_ibfk_2">
+    <foreign-key id="302" parent="287" name="acquisto_ibfk_2">
       <ColNames>codiceAbb</ColNames>
       <RefColNames>codice</RefColNames>
       <RefTableName>abbonamento</RefTableName>
     </foreign-key>
-    <index id="307" parent="291" name="codiceAbb">
+    <index id="303" parent="287" name="codiceAbb">
       <ColNames>codiceAbb</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="308" parent="291" name="PRIMARY">
+    <key id="304" parent="287" name="PRIMARY">
       <ColNames>utente
 codiceAbb
 dataAcquisto</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="309" parent="292" name="codice">
+    <column id="305" parent="288" name="codice">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="310" parent="292" name="nome">
+    <column id="306" parent="288" name="nome">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="311" parent="292" name="qta">
+    <column id="307" parent="288" name="qta">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="312" parent="292" name="tariffa">
+    <column id="308" parent="288" name="tariffa">
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="313" parent="292" name="path">
+    <column id="309" parent="288" name="path">
       <DataType>varchar(70)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="314" parent="292" name="tipologia">
+    <column id="310" parent="288" name="tipologia">
       <DataType>varchar(20)|0s</DataType>
       <Position>6</Position>
     </column>
-    <foreign-key id="315" parent="292" name="attrezzatura_ibfk_1">
+    <foreign-key id="311" parent="288" name="attrezzatura_ibfk_1">
       <ColNames>tipologia</ColNames>
       <RefColNames>nome</RefColNames>
       <RefTableName>campo</RefTableName>
     </foreign-key>
-    <index id="316" parent="292" name="tipologia">
+    <index id="312" parent="288" name="tipologia">
       <ColNames>tipologia</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="317" parent="292" name="PRIMARY">
+    <key id="313" parent="288" name="PRIMARY">
       <ColNames>codice</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="318" parent="293" name="nome">
+    <column id="314" parent="289" name="nome">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="319" parent="293" name="descrizione">
+    <column id="315" parent="289" name="descrizione">
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="320" parent="293" name="tariffa">
+    <column id="316" parent="289" name="tariffa">
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="321" parent="293" name="numGiocatori">
+    <column id="317" parent="289" name="numGiocatori">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <key id="322" parent="293" name="PRIMARY">
+    <key id="318" parent="289" name="PRIMARY">
       <ColNames>nome</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="323" parent="294" name="codicePren">
+    <column id="319" parent="290" name="codicePren">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="324" parent="294" name="codiceAttr">
+    <column id="320" parent="290" name="codiceAttr">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="325" parent="294" name="qta">
+    <column id="321" parent="290" name="qta">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="326" parent="294" name="noleggio_ibfk_1">
+    <foreign-key id="322" parent="290" name="noleggio_ibfk_1">
       <ColNames>codicePren</ColNames>
       <RefColNames>codice</RefColNames>
       <RefTableName>prenotazione</RefTableName>
     </foreign-key>
-    <foreign-key id="327" parent="294" name="noleggio_ibfk_2">
+    <foreign-key id="323" parent="290" name="noleggio_ibfk_2">
       <ColNames>codiceAttr</ColNames>
       <RefColNames>codice</RefColNames>
       <RefTableName>attrezzatura</RefTableName>
     </foreign-key>
-    <index id="328" parent="294" name="codicePren">
+    <index id="324" parent="290" name="codicePren">
       <ColNames>codicePren</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="329" parent="294" name="codiceAttr">
+    <index id="325" parent="290" name="codiceAttr">
       <ColNames>codiceAttr</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="330" parent="295" name="codice">
+    <column id="326" parent="291" name="codice">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="331" parent="295" name="oraStart">
+    <column id="327" parent="291" name="oraStart">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="332" parent="295" name="oraEnd">
+    <column id="328" parent="291" name="oraEnd">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="333" parent="295" name="dateP">
+    <column id="329" parent="291" name="dateP">
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="334" parent="295" name="utente">
+    <column id="330" parent="291" name="utente">
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="335" parent="295" name="campo">
+    <column id="331" parent="291" name="campo">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="336" parent="295" name="tariffaTotale">
+    <column id="332" parent="291" name="tariffaTotale">
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <foreign-key id="337" parent="295" name="prenotazione_ibfk_2">
+    <foreign-key id="333" parent="291" name="prenotazione_ibfk_2">
       <ColNames>utente</ColNames>
       <RefColNames>email</RefColNames>
       <RefTableName>utente</RefTableName>
     </foreign-key>
-    <foreign-key id="338" parent="295" name="prenotazione_ibfk_1">
+    <foreign-key id="334" parent="291" name="prenotazione_ibfk_1">
       <ColNames>campo</ColNames>
       <RefColNames>nome</RefColNames>
       <RefTableName>campo</RefTableName>
     </foreign-key>
-    <index id="339" parent="295" name="utente">
+    <index id="335" parent="291" name="utente">
       <ColNames>utente</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="340" parent="295" name="campo">
+    <index id="336" parent="291" name="campo">
       <ColNames>campo</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="341" parent="295" name="PRIMARY">
+    <key id="337" parent="291" name="PRIMARY">
       <ColNames>codice</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="342" parent="296" name="email">
+    <column id="338" parent="292" name="email">
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="343" parent="296" name="pword">
+    <column id="339" parent="292" name="pword">
       <DataType>char(40)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="344" parent="296" name="nome">
+    <column id="340" parent="292" name="nome">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="345" parent="296" name="cognome">
+    <column id="341" parent="292" name="cognome">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="346" parent="296" name="dateN">
+    <column id="342" parent="292" name="dateN">
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="347" parent="296" name="is_admin">
+    <column id="343" parent="292" name="is_admin">
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <key id="348" parent="296" name="PRIMARY">
+    <key id="344" parent="292" name="PRIMARY">
       <ColNames>email</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
