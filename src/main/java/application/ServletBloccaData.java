@@ -23,10 +23,14 @@ import java.util.Comparator;
 
 @WebServlet (name = "ServletBloccaData", value = "/ServletBloccaData")
 public class ServletBloccaData extends HttpServlet {
+    private PrenotazioneDAO prenotazioneDAO;
     public ServletBloccaData(){
-
+        this.prenotazioneDAO=new PrenotazioneDAO();
     }
 
+    public ServletBloccaData( PrenotazioneDAO prenotazioneDAO){
+        this.prenotazioneDAO= prenotazioneDAO;
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req,resp);

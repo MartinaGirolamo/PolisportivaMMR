@@ -18,10 +18,11 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletEliminaAcquisto", value = "/ServletEliminaAcquisto")
 public class ServletEliminaAcquisto extends HttpServlet {
-    public ServletEliminaAcquisto(){
-
-    }
     private AbbonamentoDAO abbonamentoDAO;
+    public ServletEliminaAcquisto(){
+        this.abbonamentoDAO = new AbbonamentoDAO();
+    }
+
     public ServletEliminaAcquisto(AbbonamentoDAO abbonamentoDAO){
         this.abbonamentoDAO = abbonamentoDAO;
     }

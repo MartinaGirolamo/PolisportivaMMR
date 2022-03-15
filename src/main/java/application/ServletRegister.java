@@ -17,8 +17,13 @@ import java.sql.SQLException;
 public class ServletRegister extends HttpServlet {
     private UtenteDAO utenteDao;
     public ServletRegister(){
-
+        this.utenteDao=new UtenteDAO();
     }
+
+    public ServletRegister(UtenteDAO utenteDao){
+        this.utenteDao = utenteDao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -41,9 +46,7 @@ public class ServletRegister extends HttpServlet {
         return false;
     }
 
-    public ServletRegister(UtenteDAO utenteDao){
-        this.utenteDao = utenteDao;
-    }
+
 
     public void registrazioneUtente(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException, ServletException {
         Utente user = (Utente) request.getSession().getAttribute("user");

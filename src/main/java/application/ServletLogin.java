@@ -17,7 +17,7 @@ public class ServletLogin extends HttpServlet {
     private UtenteDAO utenteDao;
 
     public ServletLogin(){
-
+        this.utenteDao = new UtenteDAO();
     }
     public ServletLogin(UtenteDAO utenteDao){
         this.utenteDao = utenteDao;

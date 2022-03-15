@@ -17,8 +17,12 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ServletPrenota", value = "/ServletPrenota")
 public class ServletPrenota extends HttpServlet {
+    private PrenotazioneDAO prenotazioneDAO;
     public ServletPrenota(){
-
+        this.prenotazioneDAO=new PrenotazioneDAO();
+    }
+    public ServletPrenota( PrenotazioneDAO prenotazioneDAO){
+        this.prenotazioneDAO= prenotazioneDAO;
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

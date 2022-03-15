@@ -19,8 +19,15 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ServletNoleggia", value = "/ServletNoleggia")
 public class ServletNoleggia extends HttpServlet {
+    private NoleggioDAO noleggioDAO;
+    private AttrezzaturaDAO attrezzaturaDAO;
     public ServletNoleggia(){
-
+        this.noleggioDAO=new NoleggioDAO();
+        this.attrezzaturaDAO=new AttrezzaturaDAO();
+    }
+    public ServletNoleggia(NoleggioDAO noleggioDAO,AttrezzaturaDAO attrezzaturaDAO){
+        this.noleggioDAO=noleggioDAO;
+        this.attrezzaturaDAO= attrezzaturaDAO;
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +39,7 @@ public class ServletNoleggia extends HttpServlet {
         String[] listaParametri =  req.getParameterValues(tipologia);
 
 
-        NoleggioDAO noleggioDAO = new NoleggioDAO();
+        noleggioDAO = new NoleggioDAO();
         if(listaParametri==null){
             RequestDispatcher requestDispatcher= req.getRequestDispatcher("interface/errorNoleggio.jsp");
             requestDispatcher.forward(req, resp);

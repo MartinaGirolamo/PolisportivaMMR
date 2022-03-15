@@ -1,5 +1,6 @@
 package application;
 
+import storage.Attrezzatura.AttrezzaturaDAO;
 import storage.Noleggio.Noleggio;
 import storage.Noleggio.NoleggioDAO;
 import storage.Prenotazione.Prenotazione;
@@ -22,7 +23,8 @@ public class ServletEliminaPrenotazione extends HttpServlet {
     private NoleggioDAO noleggioDAO;
 
     public ServletEliminaPrenotazione(){
-
+        this.noleggioDAO=new NoleggioDAO();
+        this.prenotazioneDAO=new PrenotazioneDAO();
     }
     public ServletEliminaPrenotazione(PrenotazioneDAO prenotazioneDAO,NoleggioDAO noleggioDAO){
         this.prenotazioneDAO = prenotazioneDAO;
