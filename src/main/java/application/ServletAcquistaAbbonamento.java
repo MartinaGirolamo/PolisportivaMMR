@@ -21,6 +21,15 @@ import java.time.LocalDate;
 public class ServletAcquistaAbbonamento extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        acquistaAbbonamento(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
+    public void acquistaAbbonamento(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
         Utente user=(Utente) req.getSession().getAttribute("user");
         String nMesiString = (String) req.getParameter("nMesi");
         String tipologia= (String) req.getParameter("abb");
@@ -69,8 +78,5 @@ public class ServletAcquistaAbbonamento extends HttpServlet {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
-    }
+
 }
