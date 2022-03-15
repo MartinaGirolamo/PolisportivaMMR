@@ -13,7 +13,9 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletEliminaAmministratore", value = "/ServletEliminaUtente")
 public class ServletEliminaUtente extends HttpServlet {
+    public ServletEliminaUtente(){
 
+    }
     private UtenteDAO utenteDao;
     public ServletEliminaUtente(UtenteDAO utenteDao){
         this.utenteDao = utenteDao;

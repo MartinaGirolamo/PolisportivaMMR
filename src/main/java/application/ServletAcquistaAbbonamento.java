@@ -19,6 +19,10 @@ import java.time.LocalDate;
 
 @WebServlet(name = "ServletAcquistaAbbonamento", value = "/ServletAcquistaAbbonamento")
 public class ServletAcquistaAbbonamento extends HttpServlet {
+
+    public ServletAcquistaAbbonamento(){
+
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         acquistaAbbonamento(req, resp);

@@ -23,7 +23,9 @@ import java.util.Comparator;
 
 @WebServlet (name = "ServletBloccaData", value = "/ServletBloccaData")
 public class ServletBloccaData extends HttpServlet {
+    public ServletBloccaData(){
 
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

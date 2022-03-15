@@ -19,7 +19,9 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ServletNoleggia", value = "/ServletNoleggia")
 public class ServletNoleggia extends HttpServlet {
+    public ServletNoleggia(){
 
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Prenotazione prenotazione = (Prenotazione) req.getSession().getAttribute("prenotazioneEffettuata");

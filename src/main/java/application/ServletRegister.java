@@ -16,6 +16,9 @@ import java.sql.SQLException;
 @WebServlet(name = "ServletRegister", value = "/ServletRegister")
 public class ServletRegister extends HttpServlet {
     private UtenteDAO utenteDao;
+    public ServletRegister(){
+
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

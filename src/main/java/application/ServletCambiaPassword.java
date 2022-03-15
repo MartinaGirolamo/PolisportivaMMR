@@ -15,7 +15,9 @@ import java.io.IOException;
 
 @WebServlet(name = "ServletCambiaPassword", value = "/ServletCambiaPassword")
 public class ServletCambiaPassword extends HttpServlet {
+    public ServletCambiaPassword(){
 
+    }
     private UtenteDAO utenteDao;
     public ServletCambiaPassword(UtenteDAO utenteDao){
         this.utenteDao = utenteDao;

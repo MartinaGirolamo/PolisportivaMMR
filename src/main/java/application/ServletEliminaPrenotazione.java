@@ -20,6 +20,10 @@ import java.util.ArrayList;
 public class ServletEliminaPrenotazione extends HttpServlet {
     private PrenotazioneDAO prenotazioneDAO;
     private NoleggioDAO noleggioDAO;
+
+    public ServletEliminaPrenotazione(){
+
+    }
     public ServletEliminaPrenotazione(PrenotazioneDAO prenotazioneDAO,NoleggioDAO noleggioDAO){
         this.prenotazioneDAO = prenotazioneDAO;
         this.noleggioDAO = noleggioDAO;
