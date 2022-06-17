@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="PolisportivaMMR" />
+        <module name="FindYourHome" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="PolisportivaMMR" target="1.8" />
+      <module name="FindYourHome" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

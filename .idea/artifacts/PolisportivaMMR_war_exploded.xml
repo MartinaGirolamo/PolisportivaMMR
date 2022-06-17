@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="PolisportivaMMR" />
+          <element id="module-output" name="FindYourHome" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:9.0.58" />
